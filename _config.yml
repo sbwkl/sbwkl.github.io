@@ -1,1 +1,10 @@
+title: 孤独の観测者
+description: 0.571024α<br />0.571015α<br />0.523299α<br />0.456903α<br />0.409420α<br />0.337187α<br />0.334581α<br />0.337337α<br />0.337199α<br />0.328403α<br />...<br />1.048596β<br />
+
 theme: jekyll-theme-minimal
+repository: sbwkl/sbwkl.github.io
+google_analytics: UA-92300152-2
+
+github:
+    is_project_page: false
+    is_user_page: true
