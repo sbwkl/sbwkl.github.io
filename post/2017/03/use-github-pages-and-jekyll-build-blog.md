@@ -27,7 +27,7 @@ $ ruby dk.rb install
 ```
 1. 安装 Bundler
 ```bash
-$ gem bundle install
+$ gem install bundler
 ```
 
 ### 创建 repository
@@ -83,17 +83,17 @@ $ bundle exec jekyll serve
 ```
 输出信息
 ```
-# Configuration file: D:/workspace/sbwkl.github.io/_config.yml
-# Configuration file: D:/workspace/sbwkl.github.io/_config.yml
-#             Source: D:/workspace/sbwkl.github.io
-#        Destination: D:/workspace/sbwkl.github.io/_site
+# Configuration file: D:/workspace/your_username.github.io/_config.yml
+# Configuration file: D:/workspace/your_username.github.io/_config.yml
+#             Source: D:/workspace/your_username.github.io
+#        Destination: D:/workspace/your_username.github.io/_site
 #  Incremental build: disabled. Enable with --incremental
 #       Generating...
 #                     done in 8.279 seconds.
 #   Please add the following to your Gemfile to avoid polling for changes:
 #     gem 'wdm', '>= 0.1.0' if Gem.win_platform?
-#  Auto-regeneration: enabled for 'D:/workspace/sbwkl.github.io'
-# Configuration file: D:/workspace/sbwkl.github.io/_config.yml
+#  Auto-regeneration: enabled for 'D:/workspace/your_username.github.io'
+# Configuration file: D:/workspace/your_username.github.io/_config.yml
 #     Server address: http://127.0.0.1:4000/
 #   Server running... press ctrl-c to stop.
 ```
@@ -145,8 +145,16 @@ $ gem update github-pages
     ```
     可能原因是 4000 端口被占用，找到对应程序 kill 掉
 + 出现错误信息
+
     ```
-    GitHub Metadata NO GitHub api Authentication could be found
+        Configuration file: E:/workspace/your_username.github.io/_config.yml
+    Configuration file: E:/workspace/your_username.github.io/_config.yml
+                Source: E:/workspace/your_username.github.io
+           Destination: E:/workspace/your_username.github.io/_site
+     Incremental build: disabled. Enable with --incremental
+          Generating...
+       GitHub Metadata: No GitHub API authentication could be found. Some fields may be missing or have incorrect data.
+    jekyll 3.4.3 | Error:  SSL_connect returned=1 errno=0 state=error: certificate verify failed
     ```
     可能原因是环境变量 JEKYLL_GITHUB_TOKEN 和 SSL_CERT_FILE 设置不对
 
