@@ -33,24 +33,25 @@ liquibase 可以通过 [command line](http://www.liquibase.org/documentation/com
 项目的结构如下，在实际使用时作为父项目的一个 module 存在，需要注意的是在执行 Maven 命令时需要 cd 到具体的项目，不要直接在父项目下运行
 
 ```
-db
-    ddl                                                         sql 存放文件夹
-        1.1.x                                                   minor 中版本
-            1.1.6                                               patch 小版本
-                001_table_dynamic_func_create.sql               sql 文件
-                008_table_user_push_create.sql
-                db.changelog-1.1.6.xml                          配置信息
-            1.1.7
-                001_table_mi_message_info_create.sql
-                002_table_me_message_entrance_create.sql
-                db.changelog-1.1.7.xml
-            db.changelog-1.1.x.xml
-        db.changelog-master.xml
-    dev
-        liquibase.properties                                    dev 环境的 jdbc 配置
-    dev-test
-        liquibase.properties                                    dev-test 环境的 jdbc 配置
-pom.xml                                                         
+.
+├── db
+│   ├── ddl                                                    sql 存放文件夹
+│   │   ├── 1.1.x                                              minor 中版本
+│   │   │   ├── 1.1.6                                          patch 小版本
+│   │   │   │   ├── 001_table_dynamic_func_create.sql          sql 文件
+│   │   │   │   ├── 008_table_user_push_create.sql
+│   │   │   │   └── db.changelog-1.1.6.xml                     配置信息
+│   │   │   ├── 1.1.7
+│   │   │   │   ├── 001_table_mi_message_info_create.sql
+│   │   │   │   ├── 002_table_me_message_entrance_create.sql
+│   │   │   │   └── db.changelog-1.1.7.xml
+│   │   │   └── db.changelog-1.1.x.xml
+│   │   └── db.changelog-master.xml
+│   ├── dev
+│   │   └── liquibase.properties                               dev 环境的 jdbc 配置
+│   └── dev-test
+│       └── liquibase.properties                               dev-test 环境的 jdbc 配置
+└── pom.xm
 ```
 sql 文件的版本管理与项目相同，使用 major.minor.patch 的方式命名
 
@@ -58,13 +59,13 @@ pom.xml 中添加 liquibase-maven-plugin 插件，同时添加对应的数据库
 
 ```
 <plugin>
-	<groupId>org.liquibase</groupId>
-	<artifactId>liquibase-maven-plugin</artifactId>
-	<version>3.5.3</version>
-	<configuration>
-		<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-		<propertyFile>./db/${runtime.env}/liquibase.properties</propertyFile>
-	</configuration>
+    <groupId>org.liquibase</groupId>
+    <artifactId>liquibase-maven-plugin</artifactId>
+    <version>3.5.3</version>
+    <configuration>
+        <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+        <propertyFile>./db/${runtime.env}/liquibase.properties</propertyFile>
+    </configuration>
 </plugin>
 ```
 ```
@@ -120,10 +121,10 @@ changeSet 下有 createTable, alterTable, dropTable 等标签用于数据库修�
 
     <changeSet id="1.1.6-1" author="zhang">
       <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="001_table_dynamic_func_create.sql" />
-	</changeSet>
+    </changeSet>
     <changeSet id="1.1.6-2" author="li">
       <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="008_table_user_push_create.sql" />
-	</changeSet>
+    </changeSet>
 </databaseChangeLog>
 ```
 
