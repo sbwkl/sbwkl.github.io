@@ -114,16 +114,25 @@ changeSet 有全局唯一的 id 否则会报错，author 填写这次修改的�
 changeSet 下有 createTable, alterTable, dropTable 等标签用于数据库修改，由于项目之前已经有 sql 文件保存下来，这里直接使用 sqlFile 标签，详细介绍参考[这里](http://www.liquibase.org/documentation/changes/sql_file.html)
 
 ```
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
-    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
 
+    <changeSet id="1.1.6" author="zhang">
+        <tagDatabase tag="1.1.6"/>
+    </changeSet>
     <changeSet id="1.1.6-1" author="zhang">
-      <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="001_table_dynamic_func_create.sql" />
+        <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="001_table_dynamic_func_create.sql"/>
+        <rollback>
+            DROP TABLE IF EXISTS `dynamic_func`;
+        </rollback>
     </changeSet>
     <changeSet id="1.1.6-2" author="li">
-      <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="008_table_user_push_create.sql" />
+        <sqlFile encoding="UTF-8" relativeToChangelogFile="true" path="008_table_user_push_create.sql"/>
+        <rollback>
+            DROP TABLE IF EXISTS `user_push`;
+        </rollback>
     </changeSet>
 </databaseChangeLog>
 ```
@@ -135,6 +144,12 @@ changeSet 下有 createTable, alterTable, dropTable 等标签用于数据库修�
 查看需要更新的 changeSet
 
     mvn liquibase:status
+    
+回滚数据库版本，3 种方法取其中一种
+    
+    mvn liquibase:rollback -Dliquibase.rollbackTag=1.1.6
+    mvn liquibase:rollback -Dliquibase.rollbackCount=1
+    mvn liquibase:rollback -Dliquibase.rollbackDate=2017-03-30
     
 [更多命令](http://www.liquibase.org/documentation/maven/index.html)
 
@@ -150,8 +165,11 @@ INFO 17-3-30 2:18: liquibase: Waiting for changelog lock....
 INFO 17-3-30 2:18: liquibase: Waiting for changelog lock....
 INFO 17-3-30 2:18: liquibase: Waiting for changelog lock....
 ```
-上一次执行命令时意外中断，或者有其他人正在使用同一个数据库执行命令。暴力的办法是确定没别人使用的情况下删除表 ```DATABASECHANGELOGLOCK``` 的记录。
+上一次执行命令时意外中断，或者有其他人正在使用同一个数据库执行命令。在确保没别人使用的情况下只用命令释放锁
+    
+    mvn liquibase:releaseLocks
 
+    
 ### 参考链接
 
 - [http://www.liquibase.org](http://www.liquibase.org)
