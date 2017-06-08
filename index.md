@@ -1,3 +1,5 @@
+[GitLab CI 学习笔记](post/2017/06/gitlab-ci-1.md)
+
 [release-maven-plugin 使用心得](post/2017/04/release-maven-plugin-1.md)
 
 [liquibase-maven-plugin 使用心得](post/2017/03/liquibase-maven-plugin-1.md)

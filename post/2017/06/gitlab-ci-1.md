@@ -135,3 +135,8 @@ maven-build:
 + [安装 GitLab Runner](https://docs.gitlab.com/runner/install)
 + [config.toml 高级配置](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/blob/master/docs/configuration/advanced-configuration.md)
 + [config.toml.example](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/blob/master/config.toml.example)
+
+
+<p style="text-align: center"><a href="/">回首页</a></p>
+ 
+<p align="right">06/08/2017</p>
