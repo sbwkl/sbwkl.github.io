@@ -51,25 +51,64 @@ Runner 可以运行在很多平台，我使用的是一台 CentOS7 的虚拟机
     sudo yum install gitlab-ci-multi-runner
     ```
 
-1. 注册 Runner
+1. [注册 Runner](https://docs.gitlab.com/runner/register/index.html)
 
-```
-sudo gitlab-ci-multi-runner register
-
-Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com )
-http://192.168.0.116/ci
-Please enter the gitlab-ci token for this runner
-DVZL3rvQHWwSAa1tgMPK
-Please enter the gitlab-ci description for this runner
-my-runner
-INFO[0034] fcf5c619 Registering runner... succeeded
-Please enter the executor: shell, docker, docker-ssh, ssh?
-docker
-Please enter the Docker image (eg. ruby:2.1):
-ruby:2.1
-INFO[0037] Runner registered successfully. Feel free to start it, but if it's
-running already the config should be automatically reloaded!
-```
+    1. 执行命令
+    
+        ```
+        sudo gitlab-ci-multi-runner register
+        ```
+    1. 填写 GitLab 的 URL
+    
+        ```
+        Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com )
+        http://192.168.0.116/ci
+        ```
+    1. 填写 Token 
+    
+        ```
+        Please enter the gitlab-ci token for this runner
+        DVZL3rvQHWwSAa1tgMPK
+        ```
+    1. 填写 runner 的描述，也就是名字，可以通过 web UI 修改
+    
+        ```
+        Please enter the gitlab-ci description for this runner
+        my-runner
+        ```
+    1. 填写 tag 列表，用逗号隔开，可以通过 web UI 修改
+    
+        ```
+        Please enter the gitlab-ci tags for this runner (comma separated):
+        xx-25t,obj140
+        ```
+    1. 选择 Runner 选择 job 的时候是否需要tags。可以通过 web UI 修改 true：不用匹配 tag，false：需要匹配 tag 才能被 Runner 执行
+    
+        ```
+        Whether to run untagged jobs [true/false]:
+        [false]: false
+        ```
+    1. 选择是否锁定 Runner
+    
+        ```
+        Whether to lock Runner to current project [true/false]:
+        [false]: false
+        ```
+    1. 填写 Runner executor
+    
+        ```
+        INFO[0034] fcf5c619 Registering runner... succeeded
+        Please enter the executor: shell, docker, docker-ssh, ssh?
+        docker
+        ```
+    1. 填写默认镜像
+    
+        ```    
+        Please enter the Docker image (eg. ruby:2.1):
+        ruby:2.1
+        INFO[0037] Runner registered successfully. Feel free to start it, but if it's
+        running already the config should be automatically reloaded!
+        ```
 
 配置完成！
 
@@ -83,12 +122,14 @@ running already the config should be automatically reloaded!
 
 ```
 maven-build:
-  image: maven:3-jdk-8
-  stage: build
-  script: "mvn package -B -Dmaven.test.skip=true"
-  artifacts:
-    paths:
-      - target/*.jar
+    image: maven:3-jdk-8
+    stage: build
+    script: "mvn package -B -Dmaven.test.skip=true"
+    artifacts:
+        paths:
+            - target/*.jar
+tags: 
+    - xx-25t
 ```
 
 这个示例配置做了这么几件事情
