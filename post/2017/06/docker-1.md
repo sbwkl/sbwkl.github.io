@@ -189,7 +189,7 @@ $ docker-compose -f ./docker-compose.yml up -d
 + [进入容器](https://askubuntu.com/questions/505506/how-to-get-bash-or-ssh-into-a-running-container-in-background-mode)
 + [不停止容器退出](https://stackoverflow.com/questions/25267372/correct-way-to-detach-from-a-container-without-stopping-it)
 + [Docker 官方仓库](https://store.docker.com)
-
++ [Compose file version 3 reference](https://docs.docker.com/compose/compose-file/)
 
 <p style="text-align: center"><a href="/">回首页</a></p>
  
