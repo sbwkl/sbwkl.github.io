@@ -1,3 +1,5 @@
+[GitLab CI 学习笔记（二）](post/2018/02/gitlab-ci-2.md)
+
 [Spring Cloud Config 学习笔记](post/2017/08/spring-cloud-config-1.md)
 
 [Docker 学习笔记（二）](post/2017/07/docker-2.md)
