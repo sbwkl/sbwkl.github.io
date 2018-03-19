@@ -4,7 +4,7 @@
 
 ### Stream
 
-[Stream](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html) 是元素的序列，支持顺序和并行的操作
+[Stream](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html) 是元素的序列，支持顺序和并行的操作，类似的有 IntStream，LongStream 等
 
 ### Optional
 
@@ -514,3 +514,11 @@ Output
 3.0
 
 ```
+## 参考链接
+
++ [Stream](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
++ [Intro To RxJava](https://github.com/Froussios/Intro-To-RxJava)
+
+<p style="text-align: center"><a href="/">回首页</a></p>
+ 
+<p align="right">19/03/2018</p>
