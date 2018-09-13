@@ -1,3 +1,5 @@
+[一次应用莫名宕机排查经历](post/2018/09/application-down-FGC.md)
+
 [Stream 学习笔记](post/2018/03/stream.md)
 
 [GitLab CI 学习笔记（二）](post/2018/02/gitlab-ci-2.md)
