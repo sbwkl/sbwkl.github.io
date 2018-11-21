@@ -1,3 +1,5 @@
+[minify-maven-plugin 使用心得](post/2018/11/minify-maven-plugin.md)
+
 [一次应用莫名宕机排查经历](post/2018/09/application-down-FGC.md)
 
 [Stream 学习笔记](post/2018/03/stream.md)
