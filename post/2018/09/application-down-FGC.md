@@ -22,7 +22,11 @@
 ### 分析应用宕机后留下来的 heap dump 文件
 
 heap dump 的分析工具有很多 jhat, jvisualvm, mat 等。这里选择了 mat 
-原本准备用 eclipse 插件看，结果因为太大，还没导入内存就满了
+原本准备用 eclipse 插件看，结果因为太大，还没导入内存就满了，如果没有 heap dump 文件可以在发生问题时使用命令 dump 一份
+
+```
+jmap -dump:format=b,file=/opt/tmp/heapdump.hprof <pid>
+```
 
 使用命令
 
