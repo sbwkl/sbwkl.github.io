@@ -10,4 +10,5 @@ github:
     is_user_page: false
     owner_name: 観测者
     
-gems: [jekyll-mermaid]
+plugins: [jekyll-mermaid]
+port: 4005

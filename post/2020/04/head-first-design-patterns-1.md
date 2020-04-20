@@ -6,10 +6,13 @@
 classDiagram
 Duck <|-- MallardDuck
 Duck <|-- RedheadDuck
-Duck : quack()
-Duck : swim()
-Duck : display()
-MallardDuck : display() {// looks like a mallard}
+class Duck {
+    - //some property
+    +display()
+}
+MallardDuck : -// some property
+MallardDuck : display() {//looks like a mallard}
+RedheadDuck : -// some property
 RedheadDuck : display() {// looks like a redhead}
 ```
 然后产品经理的二期需求来了，产品经理希望鸭溏里的样子可以飞起来
@@ -22,15 +25,36 @@ RedheadDuck : display() {// looks like a redhead}
 但是问题 2 没有合适方法来优化
 
 既然继承体系走不通，我们不妨试试组合，通过持有一个 Flyable 的引用，把 Duck 的 fly() 方法委托给 Flyable
+
 ```mermaid
 classDiagram
 Duck <|-- MallardDuck
 Duck <|-- RedheadDuck
+Duck o-- Flyable
+Flyable <|.. FlyWithWings
+Flyable <|.. FlyNoWay
 
-FlyBehavior <|-- FlyWithWings
-FlyBehavior <|-- FlyNoWay
-FlyBehavior : fly()
+class Duck {
+    -Flyable Flyable
+    +display()
+}
+Duck : +fly() { Flyable.fly() }
 
+MallardDuck : -// some property
+MallardDuck : display() {//looks like a mallard}
+RedheadDuck : -// some property
+RedheadDuck : display() {// looks like a redhead}
+
+class Flyable {
+    -// no property
+    +fly()
+}
+
+FlyWithWings : -wing
+FlyWithWings : +fly() {// fily with wings}
+
+FlyNoWay : -// some property
+FlyNoWay : fly() {// can not fly}
 ```
 这种把相似（family）的算法封装到独立的类，使每个算法可以独立的变化，这种模式叫 Strategy Pattern 我们看一下官方定义
 
@@ -39,10 +63,22 @@ encapsulates each one, and makes them interchangeable.
 Strategy lets the algorithm vary independently from
 clients that use it.
 
-这是定义也是它的目的（Intent），在之后其他模式中，我们会看到结构类似但是不同模式，了解一个模式的目的是区分它们的重要手段
+这是定义也是它的目的（Intent），在之后其他模式中，我们会看到结构类似但是属于的不同模式，了解一个模式的目的是区分它们的重要手段
 
-<此处展示策略模式类图>
-Strategy Pattern 包含 3 部分 Strategy, ConcreteStrategy, Context。这里引用 GoF 的描述，GoF 是 Gang Of Four 的缩写，设计模式的四个巨佬，分别是：Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides
+```mermaid
+classDiagram
+Context o-- Strategy
+Strategy <|.. concreteStrategyA
+Strategy <|.. concreteStrategyB
+Strategy <|.. concreteStrategyC
+
+Context : ContextInterface()
+Strategy : AlgorithmInterface()
+concreteStrategyA : AlgorithmInterface()
+concreteStrategyB : AlgorithmInterface()
+concreteStrategyC : AlgorithmInterface()
+```
+Strategy Pattern 包含 3 部分 Strategy, ConcreteStrategy, Context。这里引用 GoF 的描述。GoF 是 Gang Of Four 的缩写，设计模式的四个巨佬，分别是：Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides
 
 > * Strategy (Compositor)
 >   * declares an interface common to all supported algorithms. Context uses this interface to call the algorithm defined by a ConcreteStrategy.
@@ -53,9 +89,11 @@ Strategy Pattern 包含 3 部分 Strategy, ConcreteStrategy, Context。这里引
 >   * maintains a reference to a Strategy object.
 >   * may define an interface that lets Strategy access its data.
 
-Strategy 负责定义接口，这个接口要适用于所有的 ConcreteStrategy，Context 只依赖 Strategy 不依赖特定的 ConcreStrategy
-ConcreteStrategy 是 Strategy 其中一个具体实现，实现特定的算法（业务逻辑），所有类似的算法在不同的 ConcreteStrategy 类中独立变化，不影响其他类，若要新增算法只需新建一个 ConcreteStrategy 类即可
-Context 使用 Strategy 接口，因为有多态这个特性，就可以某个特定的算法。Context 有时候会把自己作为参数传给 Strategy 所以可能需要定义一些方法，让 Strategy 可以访问自己的数据
+Strategy 负责定义接口，这个接口要适用于所有的 ConcreteStrategy，Context 只依赖 Strategy 不依赖特定的 ConcreStrategy<br>
+
+ConcreteStrategy 是 Strategy 其中一个具体实现，实现特定的算法（业务逻辑），所有类似的算法在不同的 ConcreteStrategy 类中独立变化，不影响其他类，若要新增算法只需新建一个 ConcreteStrategy 类即可<br>
+
+Context 使用 Strategy 接口，因为有多态这个特性，就可以某个特定的算法。Context 有时候会把自己作为参数传给 Strategy 所以可能需要定义一些方法，让 Strategy 可以访问自己的数据<br>
 
 Strategy Pattern 遵循了三条设计原则（Design Principle）
 > * identify the aspects of your application that vary and separate them from what stays the same.
@@ -68,8 +106,29 @@ Strategy Pattern 遵循了三条设计原则（Design Principle）
 
 第三条建议多使用组合（一个对象持有另一个对象的引用）而非继承。继承相当于持有父类对象的引用（super），组合和继承各有各的优缺点，在使用过程中需要权衡，建议更加偏爱组合一点
 
-这里还有一个例子适用 Strategy Pattern 来解决。我们知道 RPG 游戏里有许多角色（战士 & 法师 & 其他...）和武器，通过冒险可以获得各式各样的武器，不同的武器可以对敌人造成不同的伤害，那么我们可以这么来设计系统
-<此处展示类图>
+这里再举个例子，适合用 Strategy Pattern 来解决。我们知道 RPG 游戏里有许多武器，通过冒险可以获得各式各样的武器，不同的武器可以对敌人造成不同的伤害，那么我们可以这么来设计系统
+```mermaid
+classDiagram
+Character o-- Weapon
+Weapon <|.. Sword
+Weapon <|.. Knife
+
+class Character {
+    -int HP
+    -Weapon weapon
+    +equipWeapon(Weapon weapon)
+    +setTarget(Character enemy)
+}
+Character : +attack(enemy) { weapon.attack(enemy)}
+
+class Weapon {
+    +attack(Character enemy)
+}
+
+Sword : +attack(Character enemy) { // enemy.HP = enemy.HP - 2 }
+Knife : +attack(Character enemy) { // enemy.HP = enemy.HP - 1 }
+
+```
 
 角色通过 equipWeapon() 方法装备武器，在攻击 attack() 时委托（delegate）给武器类，这样每种武器可以实现自己的攻击方式
 
