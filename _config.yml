@@ -12,3 +12,4 @@ github:
     
 plugins: [jekyll-mermaid]
 port: 4005
+host : 0.0.0.0
