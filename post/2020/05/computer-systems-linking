@@ -1,0 +1,23 @@
+# Computer Systems 学习笔记
+
+今天学习《Computer Systems》第七章 Linking。Linking 的作用是把不同的代码和数据组合到一个文件中，这个文件可以被加载内存中执行。Linking 可以发生在 3 个时间点
+
++ compile time : 从源代码编译成机器码
++ load time : 程序被 loader 加载到内存
++ run time : 应用程序运行
+
+Linking 对于软件开发非常重要，它的存在允许程序分开编译。这样就可以分模块管理不同的程序，极大的提升了灵活性。因为分模块开发，每次只需要编译修改过的模块，节省编译时间
+
+
+
+Library Interpositioning
+
+bash: cc1: command not found
+
+原因：cc1 命令没有放到环境变量下面，通过 find / -name cc1 找到 cc1 文件的位置，假设在 /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/cc1
+
+创建软链即可使用 cc1 命令
+ln -s /usr/bin/cc1 /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/cc1
+
+如果不想创建软链可以直接这么使用 /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/cc1 -o 
+
