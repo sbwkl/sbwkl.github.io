@@ -679,7 +679,7 @@ yum install glic-static
 原因：我使用了 docker 虚拟机，默认不下载文档
 注释掉文件 /etc/yum.conf 中的 tsflags=nodocs 重新安装 man
 ```
-yun -y reinstall man-pages man-db
+yum -y reinstall man-pages man-db
 mandb 
 ```
 
