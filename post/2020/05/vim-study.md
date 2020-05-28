@@ -3,8 +3,16 @@
 安装 vimrc， 它在 vim 上增加了一些插件，调整了一些配置，使初学者在接触 vim 时更加有亲切感。
 
 ```
+# 安装 vimrc
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
+
+# 安装 vim
+yum install vim
+
+# 设置 vi = vim 在 ~/.bashrc 中添加
+export EDITOR=vim
+alias vi="vim"
 ```
 自己的配置定义在 my_configs.vim 我这里配置了 2 项
 1. tab 缩进 2 个空格
@@ -72,5 +80,6 @@ v -- ESC --> n
 |copy to x include x                | yf[x]             |
 |find a file                          | ctrl + f          |
 |edit file                            | :edit {file path} |
+|reload file                          | :e (short for :edit)|
 |add file                             | :new {file path}  |
 |copy all content to current file     | :r {file path}    |

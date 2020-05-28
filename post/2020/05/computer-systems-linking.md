@@ -1,4 +1,4 @@
-# Computer Systems 学习笔记
+# Linking 学习笔记
 
 今天学习《Computer Systems》第七章 Linking。Linking 的作用是把不同的代码和数据合并到一个文件中，这个文件可以被加载内存中执行。
 
