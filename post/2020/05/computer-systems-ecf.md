@@ -34,7 +34,7 @@ Interrupt 会在 I<sub>curr</sub> 执行完成后执行 handler 程序，所以�
 Trap 最大的作用是提供了 *system call* 一种允许用户程序调用内核服务的方式，syscall *n* 就是调用 n 号服务，Linux 提供了大量的服务，下表是其中一些服务
 
 |编号|服务名|描述|
-|--|--|
+|--|--|--|
 |0|read|读取文件|
 |1|write|写文件|
 |2|open|打开文件|
@@ -302,7 +302,219 @@ Fgets 读取用户输入的命令行，交给 eval 方法执行，eval 方法通
 
 ## Signals
 
+在展示进程状态的例子中我们就用到了 signal 我们可以通过 kill 命令向特定的进程发送信号，具体的信号信息可以通过命令 ```man 7 signal``` 查询
+
+signal 是一个小的消息体来通知进程系统中有某种类型的事件发生，包括 2 个步骤
+
++ Sending a signal : 内核通过修改进程上下文某些状态给进程发消息，一般有 2 个理由
+  + 内核侦测到系统事件
+  + 有进程执行 kill 命令，进程可以给自己发 signal
++ Receiving a signal : 进程以某种方式处理信号，可以是忽略，终止进程或者执行自定义 signal hanlder 方法
+
+发送但尚未被接受的信号叫 *pending signal* 同一时间同类型最多有 1 条 pending signal 多的直接被丢弃，进程可以有选择的阻塞某种信号，信号被阻塞后可以正常发送，但是不会被接收，直到解除阻塞，信号只会被接受一次
+
+内核为每个进程维护 pending bit vector 代表 pending signal，blocked bit vector 代表 blocked signal。比如当信号 k 发送时设置 pending bit vector 第 k 位，而当信号 k 被接受时，清除第 k 位
+
+### Sending Signals
+
+每个进程属于一个进程组，默认情况下子进程属于父进程所在的进程组，可以通过方法获得和改变进程组 id
+
+```
+#include <unistd.h>
+
+# 获得进程组 id
+pid_t getpgrp(void);
+
+# 改变进程组 id，pid = 0 取当前进程 pid，pgid = 0 当前进程号当作进程组 id
+int setpgrp(pid_t pid, pid_t pgid);
+```
+
+Linux 有多种方式可以发送信号
++ 通过 kill 命令可以给进程或者进程组内的所有进程发信号
+  ```
+  # 给进程 15213 发信号 9
+  kill -9 15213
+  # 给进程组 15213 内所有进程发信号 9
+  kill -9 -15213
+  ```
++ 通过键盘发信号 ctrl + c 给前台进程所在的组发信号 SIGINT，ctrl + z 给前台进程所在组发信号 SIGTSTP
++ 通过 kill 方法
+  ```
+  #include <sys/types.h>
+  #include <signal.h>
+
+  int kill(pit_t pid, int sig);
+  ```
++ 通过 alarm 方法
+  ```
+  #include <unistd.h>
+  # 让内存 secs 秒后给自己发一个 SIGALARM 信号，再次调用会取消上次的信号并返回还剩几秒
+  unsigned int alarm(unsigned int secs);
+  ```
+
+### Receiving Signals
+
+当进程从 kernel mode 切换回 user mode 会校验有没有未阻塞的等待信号(pending & ~blocked)如果存在内核会选取某个信号要求进程接收处理，完成后把控制权交还给进程，信号有 4 种默认行为
+
++ The process terminated
++ The process terminated and dumps core
++ The process stops (suppends) until restarted by a SIGCONT signal
++ The process ignores the signal
+
+可以通过 signal 方法改变默认行为，注意 SIGSTOP 和 SIGKILL 这两个信号改变不了默认行为
+
+```
+# include <signal.h>
+typedef void (*sighandler_t)(int);
+
+# 改变信号处理行为，如果成功返回上个信号处理程序地址，否则返回 SIG_ERR
+sighandler_t signal(int signum, sighandler_t handler);
+```
++ handler = SIG_IGN 忽略信号
++ handler = SIG_DFL 恢复为默认行为
++ handler = signal handler 地址，改变为 handler 对应方法的行为，这个过程叫做 *installing the handler* 调用 handler 叫做 *catching the signal* 执行 handler 叫做 *handling the signal*
+
+### Blocking and Unblocking Signals
+
+Linux 提供了显式和隐式 2 种方式阻塞信号
+
++ Implicit blocking mechanism : 内核会阻塞正在执行中的信号
++ Explicit blocking mechanism : 使用 sigprocmask 阻塞和解除阻塞
+
+```
+#include <signal.h>
+
+/* 阻塞和解除阻塞信号 */
+int sigprocmask(int how, const sigset_t *set, const sigset_t *oldset);
+/* 初始化 set 为空集合*/
+int sigemptyset(sigset_t *set);
+/* 全部信号加入 set */
+int sigfillset(sigset_t *set);
+/* signum 添加到 set*/
+int sigaddset(sigset_t *set, int signum);
+/* 从 set 中移除 signum */
+int sigdelset(sigset_t *set, int signum);
+/* signum 在 set 中返回 1 否则 0*/
+int sigismember(const sigset *set, int signum);
+```
+
+sigprocmask 方法的行为和 how 有关，它有 3 个值
+
++ SIG_BLOCK :  把 set 中的信号追加到 blocked 中 (blocked = blocked | set)
++ SIG_UNBLOCK : 从 blocked 中删除 set 的信号 (blocked = blocked & ~set)
++ SIG_SETMASK : blocked = set
+
+oldset 如果不是 NULL 原先的 blocked 会被保存在 oldset
+
+临时阻塞信号的代码可以这样写
+
+```
+Sigset_t mask, prev;
+Sigemptyset(&mask);
+Sigaddset(&mask, SIGINT);
+
+Sigprocmask(SIG_BLOCK, &mask, &prev);
+
+/* do something*/
+
+Sigprocmask(SIG_SETMASK, &prev, NULL);
+```
+
+### Writing Signal Handlers
+
+信号处理是 Linux 系统编程中比较棘手的问题，它的难度主要来源于 3 点
+
++ handler 和 main 并发运行，且共享全局变量，程序之间会互相干扰
++ 信号到达的时机和方式通常反直觉
++ 不同的系统有不同的信号处理语义
+
+为了写出安全、正确、可移植的信号处理程序一些规则可以参考
+
+#### Safe Signal Handling
+
++ *Keep handlers as simple as possible* : 简单才方便规避问题。比如处理程序只是设置全局变量并且马上返回，剩下的事情交给 main 程序来处理
++ *Call only async-signal-safe functions in your handler* : 这类方法有特点要么是 *reentrant* 要么不能被信号处理程序中断，通过 man 7 signal 查看所有 async-signal-safe functions
++ *Save and restore errno* : 一些 async-signal-safe 方法会设置 errno 需要在完成 handler 前把 errno 设置回来
++ *Protect accesses to shared global data structures by blocking all signals* : 这是因为访问数据结构通常需要一系列指令，如果执行过程中被中断最后访问到的数据很有可能不是预期想要的数据
++ *Declare global variables with volatile* : 使用 volatile  关键字保证每次都从内存读取数据，避免变量会缓存在寄存器或者 L1, L2, L3
++ *Declare flags with sig_atomic_t* : 这个关键字可以保证读和写的原子性，本质是通过一条指令完成操作，所以不会被中断
+
+#### Corrent Signal Handling
+
+信号处理其中一处反直觉的地方在于信号不是排队处理的，只有一个 pending signal 后续的信号全部被丢弃，也就是说系统可能发了 3 个信号，实际只能收到 1 个。这里举一个例子
+
+bug  版本 [signal1](https://github.com/sbwkl/todo-example/blob/master/computer-systems/exceptional-control-flow/signal1.c)
+
+正确的版本 [signal2](https://github.com/sbwkl/todo-example/blob/master/computer-systems/exceptional-control-flow/signal2.c)
+
+bug 版本中假设了信号是排队到来的，每个信号到来时会回收 1 个子进程，然而实际上因为处理速度的原因可能会有信号丢失，这就导致有子进程一直不能被回收而成为了僵尸进程
+
+正确版本中修复了这个问题每次收到信号直接回收所有已终止的子进程
+
+#### Portable Signal Handling
+
+Unix 信号处理程序另一个不优雅的地方是不同的系统有不同的信号处理语义，比如
+
++ The semantics of the signal function varies : 有些 Unix 系统会在处理信号后恢复成默认行为，这时候就需要每次 reinstall
++ System calls can be interrupted : 有些 syscall 如 read, write, accept 可能会阻塞进程较长时间，称为 *slow system calls* 有些 Unix 系统在 syscall 在信号处理程序返回时不会继续执行，而是直接返回错误，这时候需要手动重新运行 syscall
+
+为了解决上面 2 个问题 Posix standard 定义了 sigaction 方法
+
+```
+#include <signal.h>
+
+int sigaction(int signum, struct sigaction *act, struct sigaction *oldact)
+```
+sigaction 没有广泛使用，原因是它需要用户设置复杂结构的条目，W.Richard Stevens 包装这个方法，提供更加方便使用的版本
+
+```
+handler_t *Signal(int signum, handler_t *handler) {
+  struct sigaction action, old_action;
+
+  action.sa_handler = handler;
+  sigemptyset(&action.sa_mask);
+  action.sa_flags = SA_RESTART;
+
+  if (sigaction(signum, &action, &old_action) < 0) {
+    unix_error("Signal error");
+  }
+  return (old_action.sa_handler);
+}
+```
+用法与 signal 一样，信号处理的语义更加丰富
+
++ 只有当前被执行的信号才会阻塞
++ 信号不会排队，多余的信号被丢弃
++ 被中断的 syscall 会重新运行
++ handler 被 install 后会一直保持
+
+sigsuspend 方法可以挂起进程并且将 blocked set 临时替换为 mask 
+
+```
+#include <signal.h>
+
+int sigsuspend(const sigset_t *mask)
+```
+
+## Nonlocal Jumps
+
+C 语言提供了一种用户级别的异常控制流，叫做 nonlocal jump 它可以把控制权直接从一个函数转移到另一个正在执行的函数，通过 setjmp 和 longjmp 2 个函数实现
+
+```
+#include <setjmp.h>
+
+/* 返回 0 调用 longjmp 时返回非 0 */
+int setjmp(jmp_buf buf);
+int sigsetjmp(sigjmp_buf buf, int savesigs);
+
+/* retval 是调用 longjmp 时 setjmp 返回的值 */
+void longjmp(jmp_buf buf, int retval);
+void siglongjmp(sigjmp_buf buf, int retval);
+```
+
+setjmp 相当于在函数里打了标记，在调用 longjmp 时会回到 setjmp 处，这个特性子在处理错误和异常时很好用，可以无视冗长的调用链，直接跳转到标记地点继续执行。这是一个例子 [setjmp](https://github.com/sbwkl/todo-example/blob/master/computer-systems/exceptional-control-flow/setjmp.c)
+
 
 <p style="text-align: center"><a href="/">回首页</a></p>
  
-<p align="right">05/14/2020</p>
+<p align="right">05/30/2020</p>
