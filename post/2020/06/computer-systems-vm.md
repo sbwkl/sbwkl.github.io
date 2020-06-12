@@ -10,7 +10,7 @@
 
 ## Physical And Virtual Addressing
 
-主存可以看作总容量为 M 的数组，每个元素都有唯一的地址叫做 *physical address(PA)* 通过 PA 来访问元素的方式叫做 *physical addressing* 早期的电脑使用 physical addressing 现代处理器使用 *virtual addressing* CPU 先产生 *virtual address(VA)* 在访问主存前先通过一个叫 *memory management unit(MMU)* 设备把 VA 转化为 PA 这个过程叫 *address translation* 再使用 PA 访问主存
+主存可以看作总容量为 M 的数组，每个元素都有唯一的地址叫做 *physical address(PA)* 通过 PA 来访问元素的方式叫做 *physical addressing* 早期的电脑使用 physical addressing 现代 CPU 使用 *virtual addressing* CPU 先产生 *virtual address(VA)* 在访问主存前先通过一个叫 *memory management unit(MMU)* 设备把 VA 转化为 PA 这个过程叫 *address translation* 再使用 PA 访问主存
 
 ## Address Spaces
 
@@ -48,7 +48,7 @@ VP 1, 4, 6 缓存物理主存，VP 2, 5, 7 分配了单没有缓存
 4. 从 disk 拷贝 VP3 的内容到 PP3 
 5. 更新 VP3 对应的 PTE
 
-从虚拟主存的视角，拷贝来拷贝去的块叫做 *page*，page 在硬盘和主存之间传输的活动称为 *swapping* 或者 *paging*，从硬盘到主存叫 *swapping in* 从主存到硬盘叫 *swapping out* 知道最后时刻才把 page swapping in 到主存的策略叫做 *demand paging* 现代处理器都是用这个策略，其他的还有靠预测提现 swapping in 的策略
+从虚拟主存的视角，拷贝来拷贝去的块叫做 *page*，page 在硬盘和主存之间传输的活动称为 *swapping* 或者 *paging*，从硬盘到主存叫 *swapping in* 从主存到硬盘叫 *swapping out* 知道最后时刻才把 page swapping in 到主存的策略叫做 *demand paging* 现代 CPU 都是用这个策略，其他的还有靠预测提现 swapping in 的策略
 
 操作系统可以分配新的虚拟主存也，比如调用 malloc 方法，会在磁盘上创建空间并且更新对应 PTE
 
@@ -89,18 +89,143 @@ MMU 使用 page table 执行映射，*page table base register (PTBR)* 指向当
 
 在 page hit 的情况下，地址翻译包括 5 个步骤
 
-Step 1. 处理器产生虚拟地址发送给 MMU
-Step 2. MMU 生成 PTE 地址请求内容
-Step 3. 缓存/主存返回 PTE 给 MMU
-Step 4. MMU 翻译成物理地址发送给缓存/主存
-Step 5. 缓存/主存返回数据给处理器
++ Step 1. CPU 产生虚拟地址发送给 MMU
++ Step 2. MMU 生成 PTE 地址请求内容
++ Step 3. 缓存/主存返回 PTE 给 MMU
++ Step 4. MMU 翻译成物理地址发送给缓存/主存
++ Step 5. 缓存/主存返回数据给 CPU 
 
 ![](page-fault.jpg)
 
 在 page fault 的情况下，地址翻译包括 7 个步骤
 
-Step 1 ~ 3 同 page hit 的情况
-Step 4. valid = 0 触发异常，page fault exception handler 开始工作
-Step 5. 异常处理程序挑选一块 PP swapping out
-Step 6. 异常处理程序 swapping in 新的页
-Step 7. 异常处理程序交还控制权，restart 指令，按照 page hit 的流程再来一遍
++ Step 1 ~ 3 同 page hit 的情况
++ Step 4. valid = 0 触发异常，page fault exception handler 开始工作
++ Step 5. 异常处理程序挑选一块 PP swapping out
++ Step 6. 异常处理程序 swapping in 新的页
++ Step 7. 异常处理程序交还控制权，restart 指令，按照 page hit 的流程再来一遍
+
+### Speeding Up Address Translation with a TLB
+
+*Translation lookside buffer (TLB)* 是一个很小的 PTE 缓存，每行包含一个 PTE。假设 TLB 有 T = 2<sup>t</sup> set 然后 VPN 的低 t 位表示 *TLB index (TLBI)* 剩下的位表示 *TLB tag (TLBT)*
+
+![](tlb.jpg)
+
+在 TLB hit 情况下获取 PTE 的步骤
+
+![](tlb-hit.jpb)
+
++ Step 1. CPU 产生虚拟地址
++ Step 2. MMU 从 TLB 找到 PTE
++ Step 3. MMU 把虚拟地址翻译成物理地址，发送给主存
++ Step 4. 主存返回数据给 CPU
+
+![](tlb-miss.jpg)
+
+如果发生 TLB miss MMU 从 L1 缓存拿到 PTE 然后把 PTE 保存在 TLB 并覆盖掉一条已经存在的记录
+
+### Multi-Level Page Tables
+
+假设 32-bit 地址空间，页大小 4k，PTE 大小 4-byte 这时候 page table 需要 4M 主存并且常驻。对于稀缺的主存来说是一种很大的浪费，而且我们真正使用的其实是很小一部分。
+
+为了解决这个问题，设计了带有层级结构的 page table 下图描述 two-level page table
+
+![](two-level-page-table.jpg)
+
++ Level 1 的 PTE 代表 4M 的块，每个块有 1024 个连续的页，对于 4GB 的地址空间，只需要 1024 条 PTE 就足够了
++ Level 2 的 PTE 代表 4K 的页
++ Level 2 所有 PTE 都是 NULL 那么 level 1 的 PTE 也是 NULL
++ Level 2 有任何一条 PTE allocated 那么对应 level 1 的 PTE 指向 level 2 的起始地址
+
+Multi-level page table 会分成多个 VPN 每个 VPN 指向对应 level 的 page table 直到左后一级 page table 得到 PPN 再和 VPO 组成物理地址，因为 TLB 的存在，地址翻译并不会比单层级慢多少
+
+![](address-translation-k-level-page-table.jpg)
+
+## Memory Mapping
+
+### Linux Virtual Memory Areas
+
+Linux 用 *area (也叫 segment)* 的集合来组织虚拟内存。Area 是连续的已分配的虚拟内存，比如 code segment, data segment, heap, shared library segment 等。VP 都包含在 area 中，不再 area 中的 VP 不能被进程引用到。
+
+内核为每个进程维护独立的 *task structure (task_structure)*，它包含或指向进程运行需要的所有信息，比如 pid，PC，用户栈等。其中一条指向 *mm_struct* 描述虚拟内存的当前状态，mm_struct 其中有 2 个字段 *pgd* 和 *mmap*。
+
++ pgd : 指向 level 1 page table 的起始地址
++ mmap : 指向 vm_area_structs (area structs) 列表
+
+Area struct 包括以下字段
+
++ fvm_start. 指向 area 其实地址
++ fvm_end. 指向 area 结束地址
++ vm_port. 描述 read/write 权限
++ vm_flags. 描述 shared/private 与其他进程共享或者进程私有
++ vm_next. 指向下一个 area
+
+![](linux-organizes-virtual-memory.jpg)
+
+*Memory mapping* 是指 Linux area 和磁盘上的 *object* 建立关联，area 可以关联 2 种类型的 object
+
++ Regular file in the Linux file system. 文件被分成 page 大小的块，每块包含 VP 的初始信息。由于 demand paging 文件实际不会加载到物理内存，直到 cpu 请求数据才会别加载，如果 area 比文件大，剩下的部分用 0 填充。
++ Annoymous file. 这个文件是内核创建的，所有位都是 0。当 CPU 接触到这个 ares 的 VP 内核会选取一个物理页 swap out 然后用 0 覆盖这个页。这个过程没有从磁盘传输数据所以关联到 annoymout file 的页也叫 *demand-zero pages*
+
+VP 初始化后会在内核维护的 *swap file (swap space or swap area)* 间换来换去。swap file 限制 VP 的最大数量
+
+### Shared Objects Revisited
+
+映射到 area 的 object 有 2 种存在形式 *shared object* 和 *private object*。对 shared object 的改变其他进程是可见的，也会反应到原始的 object。private object 对其他进程是不可见的，也不会反应到原始 object。映射 shared object 的 area 叫做 *shared area* 同理还有 *private area*
+
+Private object 映射到虚拟内存使用 *copy-on-write* 的技术。最开始只有一份 private object 在物理内存中，不同的进程都映射到同一块物理内存，这点和 shared object 是一样的。当有进程尝试写入数据，会触发 protection fault 然后异常处理程序开始工作，在物理内存创建新的 page 副本，更新 page table 指向新的副本，授权写权限，然后返回重新执行 CPU 指令，这时候就可以写入数据了。这么做还是为了更有效的利用物理内存。
+
+### The *fork* Function Revisited
+
+当前进程调用 fork 函数时，内核分配唯一的 pid 和很多数据结构，为了给新进程创建虚拟内存内核拷贝当前进程的 mm_struct, area structs 和 page table。page 都标记为 read-only，area 标记为 private copy-on-write。此时子进程有了和父进程一样的虚拟内存，当父子进程开始执行随后的指令时，copy-on-wirte 机制保证私有地址空间的抽象，也就是各自改各自的数据。
+
+### The *execve* Function Revisited
+
+当前进程调用 execve 函数会把当前的程序替换为 execve 指定的程序，有以下几个步骤
+
+![](loader-map-area-user-address-space.jpg)
+
+1. Delete existing user areas. 删除虚拟地址中用户部分 area struct
+2. Map private areas. 创建新程序的 area structs。 code 对应 .text，data 对应 .data，bss, stack, heap 都是 demand-zero 
+3. Map shared areas. 如果新程序链接 shared objects 建立映射
+4. Set the program counter (PC). 更新 PC 到新程序的入口地址
+
+### User-level Memory Mapping with the *mmap* Function
+
+Linux 提供 mmap 函数完成映射，提供 munmap 函数删除
+
+![](mmap-arguments.jpg)
+
+```
+#include <unistd.h>
+#include <sys/mman.h>
+
+/* 成功返回 area 地址，失败返回 -1 */
+void *mmap(void *start, size_t length, int port, int flags, int fd, off_t offset);
+
+/* 成功返回 0 失败 -1 */
+int munmap(void *start, size_t length);
+```
+mmap 参数
++ start. 没啥用，期望从虚拟地址 start 开始，实际上内核说了算，传 NULL 就好了
++ length. 映射大小
++ prot. 指定 page 访问权限，可以用 | 组合
+  + PROT_EXEC 包含指令的页，可以被 CPU 执行
+  + PROT_READ 读权限
+  + PROT_WRITE 写权限
+  + PROT_NONE 不能访问
++ flags. 指定映射类型，可以用 | 组合
+  + MAP_ANON 映射文件是 annoymous file 
+  + MAP_PRIVATE private copy-on-write object
+  + MAP_SHARED shared object
++ fd. 指定映射文件
++ offset. 距离文件开始位置的偏移量
+
+munmap 参数
++ start. 其实地址
++ lenght. 删除的大小
+
+删除后尝试引用这个区域的数据会触发 segmentation fault
+
+## Dynamic Memory Allocation
+
