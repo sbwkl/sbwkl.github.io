@@ -229,3 +229,145 @@ munmap 参数
 
 ## Dynamic Memory Allocation
 
+Dynamic Memory Allocator 更方便的管理内存，不需要使用 mmap 和 munmap 创建和删除虚拟内存，它管理虚拟内存 heap 区域，对于每个进程内核会维护变量 brk 指向 heap 顶端。Allocator 把 heap 当成大小不同块的集合，每个块有 2 种状态 *allocated* 或者 *free* 可以互相转化。
+
+Allocator 有 2 种风格，区别在于如何释放内存，分配内存都必须显式分配
+
++ Explicit alloctors. 显式释放内存，比如调用 free 方法
++ Implicit alloctors. 也可以叫 *garbage collectors* 通过 *garbage collection (GC)* 自动释放内存
+
+### The *malloc* and *free* Functions
+
+```
+#include <stdlib.h>
+#include <unistd.h>
+
+/* 成功返回分配块的指针，失败返回 NULL */
+void *malloc(size_t size);
+
+/* 成功返回旧的 brk 指针，失败返回 -1 */
+void *sbrk(intptr_t incr);
+
+void free(void *ptr);
+```
+
+malloc 方法配置至少 size 大小的内存块，需要考虑地址对齐有时候会大一点，它不会初始化内存块，如果需要初始化成 0 调用 *calloc* 方法，如果要改变大小调用 *remalloc* 方法
+
+sbrk 方法可以增加/缩小 heap 大小，失败返回 -1 并且设置 errno = ENOMEM 如果 incr = 0 返回当前 brk 值
+
+free 方法的入参 ptr 必须是分配块的起始地址，否则 free 的行为无法预测会出现各种诡异问题
+
+### Why Dynamic Memory Alloctation
+
+最大的原因是有些数据结构的大小只有在运行时才知道，比如我们从标准输入读取字符串，程序不知道要读取多少字符，也就不知道该申请多少内存，它只能申请足够大的内存以保证可以容纳所有字符，但是这样会减少内存的利用率。比较好的方式是在运行时动态分配需要的内存，需要 n 个就分配 n 个。
+
+### Alloctor Requirements And Goals
+
+Explicit alloctor 需要在严格的限制下运行
+
++ Handling arbitrary request sequences. 你永远不知道调用者是怎么来分配和释放内存的，会有各种姿势的顺序，所以 alloctor 要能处理任何顺序的请求
++ Making immediate responses to requests. Allocator 必须马上响应请求，不允许为了性能排序请求顺序或者缓存请求
++ Using only the heap. Allocator 只使用 heap
++ Aligning blocks (alignmemt requirement). 块对齐，就是所有地址都是 8 或者 16 的倍数，保证可以存储任何数据
++ Not modifiying allocated blocks. Allocator 只操作空闲的块，不允许操作已分配的块，譬如压缩已分配的块
+
+Explicit alloctor 的目标
+
++ Goal 1: Maximizing throughput. 单位时间内完成的请求（malloc 和 free）数量最大
++ Goal 2: Maximizing memory utilization. 指标 *peak utilization (U<sub>k</sub>)* 最大。设 P<sub>k</sub> 是所有请求 *payload* 的总和，H<sub>k</sub> 是当前 heap 大小。U<sub>k</sub> = max<sub>i <= k</sub> P<sub>i</sub> / H<sub>k</sub>
+
+这 2 个目标相互冲突，如何平衡 2 个目标是一个有意思的挑战
+
+### Fragmentation
+
+Fragmentation 是指未使用的内存不能满足分配要求，它是 U<sub>k</sub> 下降的主要原因。Fragmentation 有 2 种形式 
+
++ Internal fragmentation. 分配的块比请求的块大导致。比如请求块大小比最小块还小，比如为了对齐多分配一点空间。
++ External fragmentation. 空闲块总和满足请求块大小，单任何单一的空闲块不满足导致。它比较难以量化因为不仅依赖历史的内存请求，还依赖将来的内存请求，为了改善这个问题，allocator 偏向维护少量大的空闲块而不是大量小的空闲块
+
+### Implementation Issues
+
+为了平衡 2 个目标，allocator 通常要考虑这些问题，这些问题有很多解法，书中介绍了简单的方式，思路是一样的
++ Free block organization. 如何跟踪空间快
++ Placement. 如何确定合适的空闲块用于分配
++ Splitting. 分配后多余的部分怎么处理
++ Coalescing. 内存释放后怎么处理
+
+### Implicit Free Lists
+
+Allocator 通过再块中嵌入 header 的方式表示块是否被分配，header 占一个字 (4 byte = 32 bit) 前 29 bit 表示块大小，后 3 bit 表示其他信息，其中最后 1 bit (allocated bit) 等于 0 表示空闲，1 表示已分配。header 之后跟着 malloc 需要的内存 （也叫 payload） 后面跟着一些填充块，为了减少 external fragmentation 或者用来对齐，malloc 返回的指针指向 payload 起始地址而不是 header 起始地址。
+
+通过这种方式把已分配和空闲块组织起来的方式叫 *implicit free list* 因为 header 隐含在内存块中。Allocator 可以通过 header 信息遍历这个 heap 区域，可以知道所有空闲块的信息。这种方式的优点是简单，缺点是寻找适合空闲块的时间与总块数（含已分配和空闲块）线性相关，因为 allocator 需要顺序遍历过去寻找。另外 header 占用一个字大小，假设 malloc(1) 也要分配至少 4 + 1 空间，还要再加上对齐的空间。
+
+### Placing Allocated Blocks
+
+应用程序调用 malloc(k) 请求 *k* byte 空间，allocator 检索合适的空闲块，检索的方式叫做 *placement policy* 常用策略有 first fit, next fit, best fit。
+
++ First fit. 从头开始找空闲块，使用第一块合适的空闲块
+  + 优点：倾向在列表尾部保留大的空闲块
+  + 缺点：容易在列表头留下小的空闲块，增加检索时间（总块数变多了）
++ Next fit. 从上次搜索结束的地方开始找，使用第一块合适的空闲块
+  + 优点：比 first fit 快，尤其是列表头部有很多小的空闲块
+  + 缺点：内存利用率比 fitst fit 低
++ Best fit. 遍历所有空闲块选择最小合适的空闲块
+  + 优点：3 个当中内存利用率最高
+  + 缺点：需要遍历整个 heap 区域，或者需要更加精密复杂的空闲块列表来支撑它
+
+### Splitting Free Blocks
+
+找到合适的空闲块后，有另外 2 种策略使用空闲块
++ 使用整个空闲块
+  + 优点：简单，速度快
+  + 缺点：产生 internal fragmentation 如果 placement policy 能找到合适的空闲块，那么这些随便可接受，否则内存利用率堪忧
++ 分成 2 部分，已分配和新的空闲块，优缺点和上一个反过来
+
+### Getting Additional Heap Memory
+
+如果当前的空闲块都不能满足大小要求，allocator 会通过 sbrk 方法向内核申请额外的 heap memory 然后转化成大的空闲块，插入到当前的空闲列表中，这时候就有合适的空闲块了
+
+### Coalescing Free Blocks
+
+Allocator 释放已分配的块时有可能和其他的空闲块相邻，这种现象叫 *false Fragmentation* 许多空闲块被切成小的，不能使用的空闲块，这会导致一个请求明明总大小有合适的空闲块，但是却无法分配。为了解决这个问题 allocator 使用 coalescing 操作，把相邻的空闲块合并起来，有 2 种方式
++ Immediate coalescing. 每次 free 立即合并相邻空闲块
+  + 优点：简单，速度快 O(1)
+  + 缺点：某些模式下可能会抖动，就是合了又拆，拆了又合
++ Deferred coalescing. 推迟到某个时刻再合并。比如推迟到有请求分配失败了，在扫描整个 heap 合并相邻的空闲块。优缺点反过来，有些 quick allocator 是这种方式的优化版本
+
+### Coalescing with Boundary tags
+
+Allocator 可以很容易确定下一块是否空闲，当然也就很容易合并。但是怎么找到前一块，使用 header 只能很方便的往后找，但是往前找就没办法了，除非整个 heap 扫一遍，但是显然不合适。Knuth 提出了一种优雅又通用的技术叫做 *boundary tags* 就是给每个块增加 *footer (boundary tag)* 内容和 header 一模一样，然后找前一块就和找后一块一样容易了。
+
+Allocator 合并空闲块会遇到 4 种情形，假设前一块大小 m1 当前块大小 n 后一块大小 m2
+
+1. The previous and next blocks are both allocated.
+2. The previous block is allocated and the next block is free.
+3. The previous block is free and the next block is allocated.
+4. The previous and next blocks are both free.
+
+![](coalescing-with-boundary-tags.jpg)
+
+Footer 占用一个字，在分配大量小块的情况下会显著增加开销，有一种优化方式是已分配块不加 footer 空闲块仍然保留 footer 前一块的空闲标记记在当前块的 header 信息中，这样既能满足合并需求，也有更多的空间用于 payload。
+
+### Putting It Together: Implementing a Simple Allocator
+
+编写一个简单版本的 allocator
+
+### Explicit Free Lists
+
+Implicit free list 实现比较简单但是实际使用中不常使用，因为它 malloc 时间是 O(n) n = 总块数，就是有点慢。更好的方式是通过一种显式的数据结构在组织空闲块。考虑到空闲块除了 header 和 footer 其他部分还没有用起来，可以在里面存储 2 个指针 *pred* 和 *succ*。pred 指向前一个空闲块，succ 指向后一个空闲块，这样就以双向链表的形式组织空闲块了。此时 malloc 时间是 O(n) n = 空闲块数，比 implicit free list 要好，free 时间可能是 O(n) 或者 O(1) 取决于排序策略。
++ Last-in-first-out (LIFO). 这种策略把新的 free 块放在列表头，LIFO 配合 first fit 倾向使用最新使用过的块，free 是 O(1) 如果用了 boundary tags coalescing 也是 O(1) 这个策略内存利用率不高
++ Address order. 按照地址升序排序，此时 free 是 O(n) 寻找合适 pred 需要时间。这个策略配合 first fit 内存使用率比较高，接近 best fit
+
+Explicit free list 的缺点是需要占用 2 个指正的空间，增大了 minimum block size 可能会造成 internal fragmentation
+
+### Segregated Free Lists
+
+为了优化 malloc 耗时，一种流行的方式叫 *segregated storage* 它把大小相当的空闲块组成等价类，叫做 *size class*。Allocator 维护等价类的列表，这样 malloc(n) 时先搜索合适的 size class 然后在进一步搜索合适的空闲块，如果找不到再找大一号的 size class 直到找到为止。
+
+Segregated storage 有几十种不同的方式，不同的 size class 划分，不同的 coalescing 执行时机，何时想操作系统申请额外空间，是否需要分割等等，书中介绍 2 种 *simple segregated storage* 和 *segregated fits*
+
+#### Simple Segregated Storage
+
+
+
+#### Segregated fits
