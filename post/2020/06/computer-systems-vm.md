@@ -2,7 +2,7 @@
 
 今天学习《Computer Systems》第九章 Virtual Memory。
 
-虚拟主存是一个很棒的想法，源于它提供了 3 个重要的能力
+虚拟内存是一个很棒的想法，源于它提供了 3 个重要的能力
 
 + 通过主存看作 disk 的缓存，更有效率的利用了主存
 + 通过提供统一的地址空间简化主存管理
@@ -14,13 +14,13 @@
 
 ## Address Spaces
 
-*address space* 是一个有序的正整数集合 {0, 1, 2, ...} 如果正整数是连续的，叫做 *linear address space* 
+*Address space* 是一个有序的正整数集合 {0, 1, 2, ...} 如果正整数是连续的，叫做 *linear address space* 
 
-*virtual address space* 是 CPU 产生的容量为 N = 2<sup>n</sup> 的集合 {0, 1, ..., N - 1} 也叫做 n-bit address space 现代计算机 n 通常等于 32 或者 64 同理 *physical address space* 也是一个集合 {0, 1, ..., M - 1} M = 2<sup>m</sup> 当然 M 并不总是 2 的幂，这里是简化处理。一个数据可以有 1 个 PA 和多个 VA
+*Virtual address space* 是 CPU 产生的容量为 N = 2<sup>n</sup> 的集合 {0, 1, ..., N - 1} 也叫做 n-bit address space 现代计算机 n 通常等于 32 或者 64 同理 *physical address space* 也是一个集合 {0, 1, ..., M - 1} M = 2<sup>m</sup>  当然 M 并不总是 2 的幂，这里是简化处理。一个数据可以有 1 个 PA 和多个 VA
 
 ## VM as a Tool for Caching
 
-VM 系统把 virtual memory 分成大小相同的块叫做 *virtual pages(VPs)*，每块大小 P = 2<sup>p</sup> 同理 phisical memory 也被分成大小相同的块叫做 *physical pages(PPs)* 大小也是 P (PPs 也被叫做 *page frames*)
+VM 系统把 virtual memory 分成大小相同的块叫做 *virtual pages (VPs)*，每块大小 P = 2<sup>p</sup> 同理 phisical memory 也被分成大小相同的块叫做 *physical pages (PPs)* 大小也是 P (PPs 也被叫做 *page frames*)
 
 在某个时间点 VP 的集合由 3 个互不相交的子集组成
 
@@ -48,7 +48,7 @@ VP 1, 4, 6 缓存物理主存，VP 2, 5, 7 分配了单没有缓存
 4. 从 disk 拷贝 VP3 的内容到 PP3 
 5. 更新 VP3 对应的 PTE
 
-从虚拟主存的视角，拷贝来拷贝去的块叫做 *page*，page 在硬盘和主存之间传输的活动称为 *swapping* 或者 *paging*，从硬盘到主存叫 *swapping in* 从主存到硬盘叫 *swapping out* 知道最后时刻才把 page swapping in 到主存的策略叫做 *demand paging* 现代 CPU 都是用这个策略，其他的还有靠预测提现 swapping in 的策略
+从虚拟主存的视角，拷贝来拷贝去的块叫做 *page*，它在硬盘和主存之间传输的活动称为 *swapping* 或者 *paging*，从硬盘到主存叫 *swapping in* 从主存到硬盘叫 *swapping out* 知道最后时刻才把 page swapping in 到主存的策略叫做 *demand paging* 现代 CPU 都是用这个策略，其他的还有靠预测提现 swapping in 的策略
 
 操作系统可以分配新的虚拟主存也，比如调用 malloc 方法，会在磁盘上创建空间并且更新对应 PTE
 
@@ -350,7 +350,7 @@ Footer 占用一个字，在分配大量小块的情况下会显著增加开销�
 
 ### Putting It Together: Implementing a Simple Allocator
 
-编写一个简单版本的 allocator
+// TODO 编写一个简单版本的 allocator 
 
 ### Explicit Free Lists
 
@@ -368,6 +368,249 @@ Segregated storage 有几十种不同的方式，不同的 size class 划分，�
 
 #### Simple Segregated Storage
 
+Simple segregated storage 的每个空闲列表包含大小一样的块取 size class 定义中的最大值。比如 size class 定义 {17-32} 那么块大小就是 32。malloc 操作：找到对应的 size class 如果列表不为空，直接取第一块，不分割。如果为空，向内核申请固定长度的额外空间，分成大小相等的块组成空闲列表，然后取第一块。Free 操作：释放的块插入到对应 size class 的列表头部
 
+优点：简单，malloc 和 free 都是 O(1) 不分割不合并让它不需要 boundary tags 因为大小相等所以地址可以推算出来，空闲列表不需要双向只要有 succ 指针即可，减小 minimum block size 可以到 4 一个字的大小。
+缺点：内存使用率不高，不分割容易导致 internal fragmentation 不合并容易导致 external fragmentation。
 
 #### Segregated fits
+
+Allocator 维护空闲列表的数组，每个空闲列表关联到 size class 空闲列表通过隐式或者显式组织。每个空闲列表块大小不一，都在 size class 的定义范围内。
+
+Malloc 操作：根据请求块大小确定 size class 查找合适的空闲块，可以用 first fit, next fit 或者 best fit 如果找到分割（可选）把剩余的部分插入到合适的空闲列表，如果没找到检索下一个 size class 如果全 size class 都搜索了还是没找到，向内核申请额外空间，分割把剩余部分插入到合适的空闲列表。Free 操作：合并然后插入到合适的空闲列表
+
+#### Buddy Systems
+
+Buddy System 是 segregated fit 的特殊版本，特点是 size class 是 2 的幂。假设 allocator 有大小为 2<sup>m</sup> 的 heap，最初空闲列表只有一块 2<sup>m</sup> 的空闲块，当请求大小为 K 的内存时，先向上取整到 2<sup>k</sup> 大小，然后找到可用空闲块 2<sup>j</sup> 如果 k = j 那么直接用，不然就对半分直到 k = j 分割后剩下的空闲块叫做 *buddy* 放在合适的空闲列表中。释放块时会持续合并 free buddies 直到遇到已分配的 buddy 停止合并。
+
+在直到当前地址和块大小的情况下，可以很容易推算出 buddy 块的地址，假设 32 bytes 大小的块有地址 xxx...x00000 那么 buddy 块地址是 xxx...x10000 只相差 1bit。
+
+Buddy system 不是通用解，它的寻找操作和合并操作很快，缺点是内存使用率不高，块大小是 2 的幂容易造成 internal fragmentation 属于在某种 case 下的特殊解
+
+## Garbage Collection
+
+Garbage collector 是一种会自动 free 不再使用块的 allocator， 不再使用的块叫做 *garbage*，自动回收的过程叫做 *garbage collection*。支持 garbage collection 的系统比如 java 需要显式的分配内存，但是不要释放，garbage collector 会使用 *Mark & Sweep* 算法定期回收垃圾块。
+
+### Garbage Collector Basics
+
+Garbage collector 把内存看作 *directed reachability graph*，图的节点分为两类 *root nodes* 和 *heap nodes*。Root node 代表位置不在 heap 但是包含指向 heap 的指针，可以是寄存器，栈或者全局变量，heap node 代表 heap 中已分配的块。有向边 p -> q 表示 p 的某个位置指向 p 的某个位置。
+
+![](directed-graph.jpg)
+
+如果从某个 root node 有路径可以到 p 我们就说 p 是可达的（reachable）。在某个时间点，不可达的 node 就是垃圾块，不会再被程序使用。Garbage collector 的任务就是维护 reachability graph 定期释放不可达的 node 提高内存利用率。
+
+### Mark & Sweep Garbage Collectors
+
+Mark & Sweep garbage collector 包含 2 个阶段
+
++ Mark phase. 标记所有可达的 node 标记通常保存在 header 的低位 bit 中
++ Sweep phase. 释放未被标记的块
+
+伪代码实现 mark & sweep 算法
+
+```
+/* mark function */
+void mark(ptr p) {
+  if ((b = isPtr(b)) == NULL) {
+    return;
+  }
+  if (blockMarked(b)) {
+    return;
+  }
+  markBlock(b);
+  len = length(b);
+  for (i = 0; i < len; i++) {
+    mark(b[i]);
+  }
+}
+
+/* sweep function*/
+void sweep(ptr b, ptr end) {
+  while(b < end) {
+    if (blockMarked(b)) {
+      unmarkBlock(b);
+    } else if (blockAllocated(b)) {
+      free(b);
+      b = nextBlock(b);
+    }
+  }
+  return;
+}
+```
+
++ ptr isPtr(ptr p). 如果 p 指向已分配的块，返回那个快的起始地址，否则返回 NULL
++ int blockMarked(ptr b). true = b 已经被标记
++ int blockAllocated(ptr b). true = b 已经被分配
++ void markBlock(ptr b). 标记 b
++ int length(ptr b). 返回 b 的大小，以字为单位
++ void unmarkBlock(ptr b). 清楚 b 的标记
++ ptr nextBlock(ptr b). 下一块
+
+## Common Memory-Related Bugs in C Programs
+
+管理和使用虚拟内存是一件困难的事，一是出了 bug 很难排查，因为出现症状时距离出 bug 的地方有一段距离，无论是时间上还是空间上。二是一旦出 bug 都是些匪夷所思的问题。
+
+### Dereferencing Bad Pointers
+
+虚拟内存很大，一个进程通常使用其中的一部分，如果指针尝试引用未使用部分，操作系统会终止进程并报告 segmentation exception 如果尝试写 read-only 的部分会报告 protection exception。比如 scanf 是从 stdin 读取数据到变量，入参是变量的地址
+
+```
+scanf("%d", &val);
+```
+
+但是有些时候会写成
+
+```
+scanf("%d", val);
+```
+
+这时编译是不会报错的，会把 val 的值当作是地址来执行这个方法。好的情况是进程终止并报告错误，这样就能发现问题。如果 val 的值刚好是某个可读写的地址，那么会覆盖这个值，等出现问题时已经不知道过去多久了，而且很难排查到问题的原因在这里。
+
+### Reading Uninitialized Memory
+
+Heap 被 malloc 分配后不会初始化未 0 这点和 bss 不同，一个常见的问题是当作已经初始化 0 比如下面这个例子
+
+```
+int *matvec(int **A, int *x, int n) {
+  int i, j;
+  int *y = (int *) Malloc(n * sizeof(int));
+  for (i = 0; i < n; i++) {
+    for (j = 0; j < n; j++) {
+      y[i] += A[i][j] * x[j];
+    }
+  }
+  return y;
+}
+```
+
+正确的做法是赋值 y[i] = 0 或者使用 calloc 方法，这个方法或默认初始化
+
+### Allowing Stack Buffer Overflows
+
+当写入数据时没有限制最大长度容易发生 *buffer overflow bug* 这是黑客常常用的功能
+
+```
+void bufoverflow() {
+  char buf[64];
+  gets(buf);
+  return;
+}
+```
+
+gets 方法拷贝任意长度的字符串到 buf 容易引起 bug 用 fgets 代替
+
+### Assuming That Pointers and the Objects They Point to Are the Same size
+
+这个问题是假设指针和指针指向的对象有相同的大小，实际情况是不一定，有可能一样有可能不一样
+
+```
+int **makeArray1(int n, int m) {
+  int i;
+  int **A = (int **) Malloc(n * sizeof(int));
+
+  for (i = 0; i < n; i++) {
+    A[i] = (int *) Malloc(m * sizeof(int));
+  }
+  return A;
+}
+```
+第一次分配内存本意是创建 n 个指针的数组，实际上写成创建 n 个 int 的数组，这个例子在 int 和指针大小相同的系统没有问题，但是在指针比 int 大的系统循环部分会覆盖掉一部分其他数据，下次出现问题又不知道是什么时候，很难排查。正确的写法是 ```int **A = (int **) Malloc(n * sizeof(int *));``` 
+
+### Making Off-by-One Errors
+
+这个问题是多算了 1 个，类似点名数数的时候忘了自己
+
+```
+int **makeArray2(int n, int m) {
+  int i;
+  int **A = (int **) Malloc(n * sizeof(int *));
+
+  for (i = 0; i <= n; i++) {
+    A[i] = (int *) Malloc(m * sizeof(int));
+  }
+  return A;
+}
+```
+
+循环终止条件错误的写成了 ```<=``` 导致循环时多循环一次，会覆盖掉某些数据
+
+### Referencing a Pointer Instead of the Object It Point to
+
+这个问题是不小心弄错了运算符优先级和结合性，上例子
+
+```
+int *binheapDelete(int **binheap, int *size) {
+  int *packet = binheap[0];
+
+  binheap[0] = binheap[*size - 1];
+  *size--;
+  heapify(binheap, *size, 0);
+  return (packet);
+}
+```
+
+-- 和 * 拥有一样的优先级，从右向左结合，```*size--``` 实际效果是 ```*(size--)``` 获取的是 size 前一个元素的值。正确的写法是 ```(*size)--```
+
+### Misunderstanding Pointer Arithmetic
+
+这个问题是忘记指针操作是以元素大小为单位的。
+
+```
+int *search(int *p, int val) {
+  while(*p && *p != NULL) {
+    p += sizeof(int);
+  }
+  return p;
+}
+```
+本意是遍历 p 实际写法是步长为 4 的遍历，正确的写法是 p++ 即可
+
+### Referencing Nonexistent Variables
+
+这个问题是引用了不合法的本地变量
+
+```
+int *stackref() {
+  int val;
+
+  reutrn &val;
+}
+```
+val 在 stackref 退出后已经不合法，虽然依旧可以被引用到。如果往 val 写入数据，可能会改变其他方法的数据引发一些莫名其妙的问题
+
+### Referencing Data in Free Heap Blocks
+
+这个问题是引用到已经被释放的块
+
+```
+int *heapref(int n, int m) {
+  int i;
+  int *x, *y;
+  x = (int *) Malloc(n * sizeof(int));
+
+  free(x);
+
+  y = (int *) Malloc(m * sizeof(int));
+  for (i = 0; i < m; i++) {
+    y[i] = x[i]++;
+  }
+  return y;
+}
+```
+变量 x 指向的块已经被释放，但是在循环中引用了，运气好的情况会直接终止并报错，运气不好可以读出此时 x 的值，但是内容肯定不是期望的内容，可能已经分配给别的变量了
+
+### Introducing Memory Leaks
+
+这个问题是分配了内存但是不释放，它会慢慢侵蚀内存，直到吃完所有内存。
+
+```
+void leak(int n) {
+  int *x = (int *) Malloc(n * sizeof(int));
+  return;
+}
+```
+虽然 GC 能做一定程度的努力，但是显然不是万能的，有借有还再借不难。
+
+<p style="text-align: center"><a href="/">回首页</a></p>
+ 
+<p align="right">06/23/2020</p>

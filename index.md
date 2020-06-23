@@ -1,6 +1,4 @@
-[Exception Control Flow 学习笔记](post/2020/05/computer-systems-ecf.md)
-
-[Linking 学习笔记](post/2020/05/computer-systems-linking.md)
+[Computer Systems 学习笔记](post/index/computer-system-index.md)
 
 [vim 备忘录](post/2020/05/vim-study.md)
 
