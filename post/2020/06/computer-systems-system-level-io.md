@@ -268,3 +268,64 @@ int closedir(DIR *dirp);
 
 ## Sharing Files
 
+内核使用 3 个相关的数据结构表示打开的文件
+
++ Descriptor table. 每个进程一份，由打开的文件组成，每条记录指向 file table
++ File table. 全进程共享一份，每条记录包括当前文件位置，被引用的数量 *reference count* 和一个指向 v-node table 的指针。只要 reference count 不为 0 内核就不会删除这条记录
++ v-node table. 全进程共享一份，每条记录包含文件信息，类似 stat 的结构
+
+![](typical-kernal-data-structures-for-open-files.jpg)
+
+不同的 descriptor table 记录可以指向同一条 file table 记录，不同的 file table 记录又可以指向同一条 v-node table 记录
+
+## I/O Redirection
+
+应用程序可以通过 dup2 来重定向 I/O
+
+```
+#include <unistd.h>
+
+int dup2(int oldfd, int newfd);
+```
+
+函数 dup2 把 oldfd 的 descriptor table 记录拷贝到 newfd 覆盖掉原来的记录，如果 newfd 已经打开，那么会先关闭它。相当于 oldfd 和 newfd 都指向 oldfd 的 file table 记录，也就是 newfd 重定向到了 oldfd。
+
+Linus shell 用 ```>``` 操作来完成重定向动作。比如 ls > foo.txt 就是把标准输出重定向到 foo.txt 这个文件。
+
+## Standard I/O
+
+C 语言提供一组 high-level 的 I/O 操作，叫做 *standard I/O library*。它把打开的文件建模成 *stream* 一个指向类型为 FILE 的指针，每个程序都有 3 个打开的 stream
+
+```
+#include <stdio.h>
+extern FILE *stdin;
+extern FILE *stdout;
+extern FILE *stderr;
+```
+
+FILE 是文件描述符和 *stream buffer* 的抽象，stream buffer 的目的和 RIO 的 buffer 是一样的，都是为了减少 syscall 提高效率。
+
+## Putting It Together: Which I/O Functions Should I Use?
+
+![](relationship-io.jpg)
+
+Unix I/O 是内核实现的，RIO 和 Standard I/O 在 Unix I/O 的基础上实现。选择指导
+
++ Use the standard I/O functions whanever possible. 
++ Don't use scanf or rio_readlineb to read binary files. 二进制文件含有很多意义不明的换行符，其实它也根本不是换行符的意思
++ Use the RIO functions for I/O on network sockets. Standard I/O 在处理 socket 读写时容易出现问题，不建议使用
+
+Standard I/O stream 既可以执行 input 操作，也可以执行 output 操作，这个叫做 *full duplex* 但是在与 socket 交互时有一些限制 
+
++ Restriction 1: Input functions following output functions. input 要在 output 执行了 fflush, fseek, fsetpos, rewind 之后才能执行。fflush 清空缓冲区，后 3 个方法充值 position。
++ Restriction 2: Output functions following input functions. output 要在 input 执行了 fseek, fsetpos, rewind 之后才能执行，或者 input 方法遇到 EOF。
+
+第一个限制比较好解决，只要规定 output 执行完执行一次 fflush 就好了，第二个限制不太好解决，因为 fseek 不支持 socket 文件，比较好的规避方法是打开 2 个文件描述符，一个负责读，一个负责写。关闭的时候也要关闭 2 个，但是第二个关闭必定失败，因此不太推荐用 standard I/O 处理网络读写。
+
+
+<p style="text-align: center"><a href="/">回首页</a></p>
+ 
+<p align="right">06/25/2020</p>
+
+
+
