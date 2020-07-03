@@ -655,6 +655,19 @@ No version information found in this file.
    ```
 4. 下载[证书](https://github.com/mitchellh/vagrant/blob/master/keys/vagrant)，使用 ssh 工具
 
+#### 修改已经存在的容器
+
+手滑创建了容易没映射端口，可以通过修改容器对应的 config.v2.json 和 hostconfig.json 补救，[参考](https://mybrainimage.wordpress.com/2017/02/05/docker-change-port-mapping-for-an-existing-container/)
+
+1. 关闭容器 docker stop ssh.1
+2. 关闭 docker 引擎 systemctl stop docker
+3. 修改 config.v2.json ExposedPorts 节和 NetworkSettings 节内容
+4. 修改 hostconfig PortBindings 节内容
+5. 启动 docker 引擎
+6. 启动容器
+
+修改的文件在 /var/libs/docker/containers/[容器 hash 值]/ 文件夹下。注意必须先关闭容器和引擎。
+
 #### bash: cc1: command not found
 
 原因：cc1 命令没有放到环境变量下面，通过 find / -name cc1 找到 cc1 文件的位置，假设在 /usr/libexec/gcc/x86_64-redhat-linux/4.8.5/cc1
