@@ -83,3 +83,7 @@ v -- ESC --> n
 |reload file                          | :e (short for :edit)|
 |add file                             | :new {file path}  |
 |copy all content to current file     | :r {file path}    |
+|d1G, dG| 删除光标所在行到第一行的数据，删除光标所在行到最后一行的数据|
+|d0, d$| 删除光标所在到第一个字符，删除光标所在到最后一个字符|
+|ndd| 删除 n 行|
+|nx, nX|nx 删除当前字符后 n 个字符，nX 删除光标前 n 个字符|
