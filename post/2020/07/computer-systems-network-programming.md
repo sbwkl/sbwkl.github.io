@@ -1,6 +1,10 @@
 # Network Programming 学习笔记
+{:.no_toc}
 
 今天学习《Computer Systems 》第十一章 network programming。
+
+* TOC
+{:toc}
 
 ## The Client-Server Programming Model
 
@@ -17,7 +21,7 @@ Client-server 模型最基本的操作是 *transaction* 它有 4 个步骤
 
 Clients 和 servers 通常运行在不同的主机上，通过 *computer network* 通讯。对主机来说 network 是一个 I/O 设备提供数据的收发，插在扩展槽上提供网络的物理接口。从网络来的数据通过 I/O bus 和 memory bus 拷贝到主存，反之亦然。
 
-网络通过层级结构组织，最底层是 LAN (local area network) 最流行的 LAN 技术是 *Ethernet*. *Ethernet segment* 由电线（通常是双绞线）和 hub 组成，线的一段连接到主机的适配器 (adapter)，另一端连接到 hub 的端口 (port) hub 会把收到的数据复制给所有端口，就是说每台主机都会收到一份数据。
+网络通过层级结构组织，最底层是 LAN (local area network) 最流行的 LAN 技术是 *Ethernet*。*Ethernet segment* 由电线（通常是双绞线）和 hub 组成，线的一段连接到主机的适配器 (adapter)，另一端连接到 hub 的端口 (port) hub 会把收到的数据复制给所有端口，就是说每台主机都会收到一份数据。
 
 每个适配器保存全局唯一的 48bit 地址，主机可以发送 *frame (a chunk of bits)* 给在 ethernet segment 中的其他主机。frame 包含几部分
 + header. 固定大小，包含源和目标地址，frame 的长度
@@ -112,7 +116,7 @@ struct sockaddr_in {
 }
 ```
 
-*sin_family* 通常是 AF_INET *sin_port* 是 16-bit 端口 *sin_addr* 是 32-bit IP 地址，通常用 network byte order。
+*sin_family* 通常是 AF_INET，*sin_port* 是 16-bit 端口 *sin_addr* 是 32-bit IP 地址，通常用 network byte order。
 
 ```
 #include <sys/types.h>
@@ -132,7 +136,7 @@ int accept(int listenfd, const struct sockaddr *addr, int *addrlen);
 
 Client 和 server 通过 socket 函数创建 *socket descriptor* 比如 ```clientfd = Socket(AF_INET, SOCK_STREAM, 0)``` 参数 AF_INET 表示是用 32-bit IP 地址，SOCK_STREAM 表示 socket 是链接的一个端点，参数 0 表示当 type 的值只支持一种协议时使用，详细的描述见 ```man socket```。
 
-Client 通过 connect 函数和 server 建立链接，链接成功建立后 socket 才可以正常读写。
+Client 通过 connect 函数和 server 建立连接，连接成功建立后 socket 才可以正常读写。
 
 Server 通过 bind 函数要求内核分配 socket 地址和描述符
 
@@ -294,7 +298,7 @@ CGI 程序会把内容输出到标准输出 stdout，在运行子程序之前先
 
 ## Putting It Together: The tiny Web Server
 
-Tiny Web Server 实现 [tiny.c 源码](https://github.com/sbwkl/practice-example/blob/master/computer-systems/network/tiny.c)
+[Tiny Web Server 实现](https://github.com/sbwkl/practice-example/blob/master/computer-systems/network/tiny.c)
 
 程序由 8 个函数组成，一个 main 函数和 7 个功能函数
 

@@ -1,8 +1,12 @@
 # Linking 学习笔记
+{:.no_toc}
 
-今天学习《Computer Systems》第七章 Linking。Linking 的作用是把不同的代码和数据合并到一个文件中，这个文件可以被加载内存中执行。
+今天学习《Computer Systems》第七章 Linking。
 
-Linking 可以发生在 3 个时间点
+* TOC
+{:toc}
+
+Linking 的作用是把不同的代码和数据合并到一个文件中，这个文件可以被加载内存中执行，Linking 可以发生在 3 个时间点
 
 + compile time : 从源代码编译成机器码
 + load time : 程序被 loader 加载到内存

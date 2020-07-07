@@ -4,6 +4,7 @@ description: <br><strong>1. Be Impeccable With Your Word</strong><br>Speak with 
 theme: jekyll-theme-minimal
 repository: sbwkl/sbwkl.github.io
 google_analytics: UA-92300152-2
+markdown: kramdown
 
 github:
     is_project_page: false

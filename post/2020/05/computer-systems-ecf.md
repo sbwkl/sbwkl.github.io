@@ -1,6 +1,10 @@
 # Exceptional Control Flow 学习笔记
+{:.no_toc}
 
 今天学习《Computer Systems》第八章 Exceptional Control Flow。
+
+* TOC
+{:toc}
 
 假设有一组数据 a<sub>0</sub>, a<sub>1</sub>,..., a<sub>n-1</sub> 其中 a<sub>k</sub> 表示指令 I<sub>k</sub> 的地址，那么我们把 a<sub>k</sub> 到 a<sub>k + 1</sub> 的过程叫做 *control transfer* 一系列的 control transfer 连起来叫做 *control flow*
 

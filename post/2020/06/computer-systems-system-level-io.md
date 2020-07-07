@@ -1,6 +1,10 @@
 # System-Level I/O 学习笔记
+{:.no_toc}
 
 今天学习《Computer Systems》第十章 System-Level I/O。
+
+* TOC
+{:toc}
 
 *Input/Output (I/O)* 是数据在主存和其他设备之间拷贝来拷贝去的过程，外部设备包括磁盘、终端、网络。input 从 I/O 设备拷贝主存，output 从主存拷贝到 I/O 设备。通常编程语言都提供 high-level 的 IO 操作，它们都基于内核提供的 system-level Unix I/O ，学习 Unix I/O 有诸多好处
 

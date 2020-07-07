@@ -1,6 +1,10 @@
 # Virtual Memory 学习笔记
+{:.no_toc}
 
 今天学习《Computer Systems》第九章 Virtual Memory。
+
+* TOC
+{:toc}
 
 虚拟内存是一个很棒的想法，源于它提供了 3 个重要的能力
 
@@ -113,7 +117,7 @@ MMU 使用 page table 执行映射，*page table base register (PTBR)* 指向当
 
 在 TLB hit 情况下获取 PTE 的步骤
 
-![](tlb-hit.jpb)
+![](tlb-hit.jpg)
 
 + Step 1. CPU 产生虚拟地址
 + Step 2. MMU 从 TLB 找到 PTE
