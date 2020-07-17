@@ -1,3 +1,5 @@
+[Introduction to Algorithms 学习笔记](post/index/introduction-to-algorithms.md)
+
 [Computer Systems 学习笔记](post/index/computer-system-index.md)
 
 [vim 备忘录](post/2020/05/vim-study.md)
