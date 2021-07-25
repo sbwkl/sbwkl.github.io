@@ -139,16 +139,14 @@ int main(int argc, char **argv) {
   char msg[1024];
   int n;
   while((n = read(STDIN_FILENO, msg, sizeof(msg))) > 0) {
-      if (msg[n - 1] == '\n') {
-        msg[n - 1] = '\0';
-      }
-      printf("%s\n", msg);
+      msg[n] = '\0';
+      printf("%s", msg);
   }
   printf("dynawing\n");
 }
 ```
 
-这段代码很简单，现将输入内容原封不动的输出，然后再输出「dynawing」。143 行去掉处理换行符，原因是不去掉的话会显示一些奇怪的字符，原因未知。
+这段代码很简单，现将输入内容原封不动的输出，然后再输出「dynawing」。
 
 ```
 ./tinypipeshell
@@ -159,4 +157,159 @@ dynasolider
 
 ```
 
-pipe 在父子进程中很有用，但是有个缺点。如果 2 个进程没有关系，这时候就很难拿到文件描述符，也就没法读写。解决这个问题需要用到 FIFO 或者叫 named pipe。
+pipe 在父子进程中很有用，但是有个缺，如果 2 个进程没有关系，这时候就很难拿到文件描述符，也就没法读写。解决这个问题需要用到 FIFO 或者叫 named pipe。
+
+```
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+int mkfifo(const char *pathname, mode_t mode);
+int unlink(const char *pathname);
+```
+
+与 pipe 相比 FIFO 的操作更加类似文件，首先需要使用 mkfifo 创建，之后所有知道 pathname 的进程都可以对 FIFO 进行读写。
+
+FIFO 读取写入的内容都是由内核持久化的，并不会真正写入到文件，文件单纯起到一个确定唯一标识的作用。而且当获取到文件描述符后就算删掉文件也不影响代码运行。
+
+一个简单的例子演示 FIFO 的使用，例子包含 2 个进程，client 和 server 如下图。
+
+[]()
+
+```server
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <fcntl.h>
+
+static char *settings[2] = {
+  "手持两把锟斤拷",
+  "口中疾呼烫烫烫"
+};
+
+int main(int argc, char **argv) {
+  char *serverfifo = "/tmp/fifo/qrs.fifo";
+  mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
+  mkfifo(serverfifo, mode);
+  int readfd = open(serverfifo, O_RDONLY);
+  // exec when client come.
+  open(serverfifo, O_WRONLY);
+
+  char buff[4096]; 
+  int n;
+  while((n = read(readfd, buff, 4096)) > 0) {
+    buff[n] = '\0';
+    int idx = atoi(strchr(buff, ',') + 1);
+    char *pid = strtok(buff, ",");
+
+    char clientpath[4096];
+    snprintf(clientpath, 4096, "/tmp/fifo/%s.fifo", pid);
+    int writefd = open(clientpath, O_WRONLY);
+    if (idx > 0 && idx < 3) {字符串
+      write(writefd, settings[idx - 1], strlen(settings[idx - 1]));
+    } else {
+      write(writefd, "index out of range.", 19);
+    }
+    close(writefd);
+  }
+  exit(0);
+}
+```
+
+188~191 定义响应的字符串
+
+194~199 创建公用的 FIFO 并分别打开读、写。199 打开写是为了 203 的 while 循环不结束，如果没有这句，那么当 client 关闭时 FIFO 会收到 EOF 也就是 n == 0 那么循环就会退出了。另外 199 之后的代码在有 client 打开写端口之后才会执行，或者 199 和 201 还一下顺序也会执行。
+
+201~206 从 FIFO 读取内容，根据逗号分割，前半截是 pid 后半截是 idx 比如 5462,1
+
+208~216 往 client 的临时 FIFO 里面写对应的字符串内容，写完关闭文件描述符。
+
+```client
+#include <stdio.h>
+#include <unistd.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <fcntl.h>
+
+int main(int argc, char **argv) {
+  mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
+  char clientfifo[4096];
+  snprintf(clientfifo, 4096, "/tmp/fifo/%d.fifo", getpid());
+  mkfifo(clientfifo, mode);
+
+  char *serverfifo = "/tmp/fifo/qrs.fifo";
+  int writefd = open(serverfifo, O_WRONLY);
+  char buff[4096];
+  snprintf(buff, 4096, "%d,%s", getpid(), argv[1]);
+  write(writefd, buff, strlen(buff));
+  close(writefd);
+
+  int readfd = open(clientfifo, O_RDONLY);
+  int n;
+  while((n = read(readfd, buff, 4096)) > 0) {
+    buff[n] = '\0';
+    printf("%s", buff);
+  }
+  unlink(clientfifo);
+  printf("\n");
+}
+```
+
+241~244 创建临时 FIFO 用来获得返回值
+
+246~251 往公用的 FIFO 按照格式写入数据，比如 5462,1
+
+253~258 从临时 FIFO 中读取返回值
+
+259 删除临时 FIFO 文件
+
+运行效果 
+
+```
+# 编译代码
+gcc -o qrs server.c
+gcc -o qrc client.c
+
+# 启动 server
+./qrs
+
+# 启动 client 要求返回 settings 第一个字符串
+./qrc 1
+手持两把锟斤拷
+```
+
+server 会顺序处理 client 的请求，这会导致一个问题，当有一个恶意的 client 写入内容后不读取临时 FIFO 的内容，这时候 server 阻塞无法处理其他 client 的请求，这就是一种 denial-of-service(DoS) 攻击。
+
+比如我们的恶意 client 是这样的，其他内容都一样，只是没有读取临时 FIFO 那段代码
+
+```
+mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
+char clientfifo[4096];
+snprintf(clientfifo, 4096, "/tmp/fifo/%d.fifo", getpid());
+mkfifo(clientfifo, mode);
+
+char *serverfifo = "/tmp/fifo/qrs.fifo";
+int writefd = open(serverfifo, O_WRONLY);
+char buff[4096];
+snprintf(buff, 4096, "%d,%s", getpid(), argv[1]);
+write(writefd, buff, strlen(buff));
+close(writefd);
+
+while (1) {
+
+}
+```
+
+解决这个问题的一种办法是让 server 具有同时处理多个 client 的能力。比如 fork 子进程来处理每个 client 的请求。
+
+```
+
+```
