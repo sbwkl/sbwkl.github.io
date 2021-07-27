@@ -1,6 +1,6 @@
 # 一起学 IPC: PIPE
 
-IPC(Interprocess Communication)从字面上理解就是进程和进程之间通信的手段。当构建大型系统时，普遍被人接受的观点是把大型系统拆分成不同的进程，然后进程与进程之间采用某种机制互相通信，pipe 就是其中的一种机制。
+IPC(Interprocess Communication)从字面上理解就是进程和进程之间通信的手段。它出现的原因是大家普遍认为构建大型系统时，把系统拆成组件独立运行要比所有功能集成在一起运行更容易维护。但是进程拥有独立的地址空间且受到保护，所以就需要一些特殊的机制，统称 IPC，PIPE 是其中一种。
 
 PIPE 是一个单向的数据通道，一头写数据，一头读数据。写入的数据由内核缓存。在任何一台 Linux 机器上运行 man pipe 可以看到 pipe 的介绍。man 是 Linux 命令，manual 的前三个字母，用来查看文档，挺好用的。
 
@@ -10,7 +10,12 @@ PIPE 是一个单向的数据通道，一头写数据，一头读数据。写入
 int pipe(int pipefd[2]);
 ```
 
-数组 pipefd 用来接收 2 个文件描述符，其中 pipefd[0] 用于读，pipefd[1] 用来写。返回值 0 表示调用成功，-1 表示发生错误。pipe 可以用来让子进程把结果返回给父进程，父进程如果想传参数给子进程很方便，只要在 fork 之前把数据初始化即可，子进程复制了父进程的地址空间。
+数组 pipefd 用来接收 2 个文件描述符，其中 pipefd[0] 用于读，pipefd[1] 用来写。返回值 0 表示调用成功，-1 表示发生错误。pipe 可以用来让子进程把结果返回给父进程。父进程如果想传参数给子进程很方便，只要在 fork 之前把数据初始化即可，子进程复制了父进程的地址空间。
+
+
+
+
+
 
 ```
 #include <sys/wait.h>
@@ -35,7 +40,9 @@ int main(int argc, char **argv) {
 }
 ```
 
-需要注意的是从 PIPE 读取到 EOF(end of file) 的条件是所有的写描述符关闭。如果删掉代码 13 行，那么程序将一直阻塞在 31 行。虽然子进程的 pipefd[1] 关闭了（进程退出会关闭掉所有文件描述符），但是父进程的没有关闭。所以会一直尝试从 pipe 读取数据。另外 c 语言的标准 I/O 库有一个 buffer 会缓存数据，直到满足条件才会写到标准输出，这么设计的原因是 write 是非常昂贵的操作，为了性能尽量减少 write 的次数。这就好比从杭州拉货到宁波，肯定希望每次都拉满满的一车过去，必要的时候还可以对货物进行压缩以腾出更多的地方。
+这段代码很简单，初始化 pipe 后子进程把一段字符串返回给父进程。
+
+需要注意的是从 PIPE 读取到 EOF(end of file) 的条件是所有的写描述符关闭。如果删掉代码 13 行，那么程序将一直阻塞在 16 行。虽然子进程的 pipefd[1] 关闭了（进程退出会关闭掉所有文件描述符），但是父进程的没有关闭。所以会一直尝试从 pipe 读取数据。另外 c 语言的标准 I/O 库有一个 buffer 会缓存数据，直到满足条件才会写到标准输出，这么设计的原因是 write 是非常昂贵的操作，为了性能尽量减少 write 的次数。
 
 标准 I/O 的 buffer 有时候会导致我们写出 bug 代码，比如下面这段代码，在我的电脑上当 size < 1025 时不会有任何输出，原因是数据都在 buffer 里没有 write 就直接退出了，如果想要符合预期需要在 _exit 之前加一句 fflush(stdout)。
 
@@ -54,7 +61,7 @@ int main(int argc, char** argv) {
 }
 ```
 
-除了可以从子进程得到返回内容 PIPE 还可以把多个进程串成糖葫芦，这样上一个进程的处理结果就是下一个进程的处理内容，像图里一样。
+除了可以从子进程得到返回内容 PIPE 还可以把多个进程串成糖葫芦，这样上一个进程的处理结果就是下一个进程的处理内容，这种方式让进程组合非常灵活。
 
 ![](pipe.png)
 
@@ -119,7 +126,7 @@ int main(int argc, char **argv, char **envp) {
 
 47~49 等待子进程执行完毕并回收
 
-程序会按照顺序执行输入的命令，并且将前一个命令的输出作为下一个命令的输入，直到最后一个命令执行完成并输出结果。我们可以写几个简单测试代码
+程序会按照顺序执行输入的命令，并且将前一个进程的输出作为下一个进程的输入，直到最后执行完成并输出结果，我们可以写几个简单测试代码。
 
 ```
 // dynawing.c
@@ -140,6 +147,9 @@ int main(int argc, char **argv) {
 这段代码很简单，现将输入内容原封不动的输出，然后再输出「DYNAWING」。
 
 ```
+# 编译
+gcc -o tinypipeshell tinypipeshell.c
+# 运行
 ./tinypipeshell
 dynawing|dynasolider
 
@@ -148,7 +158,7 @@ DYNASOLIDER
 
 ```
 
-PIPE 在父子进程中很有用，但是有个缺，如果 2 个进程没有关系，这时候就很难拿到文件描述符，也就没法读写。解决这个问题需要用到 FIFO 或者叫 named pipe。
+PIPE 在父子进程中很有用，但是有个缺点，如果 2 个进程没有关系，这时候就很难拿到文件描述符，也就没法读写。FIFO(named pipe) 解决这个问题。
 
 ```
 #include <sys/types.h>
@@ -159,9 +169,9 @@ int mkfifo(const char *pathname, mode_t mode);
 int unlink(const char *pathname);
 ```
 
-与 PIPE 相比 FIFO 的操作更加类似文件，首先需要使用 mkfifo 创建，之后所有知道 pathname 的进程都可以对 FIFO 进行读写。
+与 PIPE 相比 FIFO 的操作更加类似文件，首先需要使用 mkfifo 创建，之后所有知道 pathname 的进程都可以对 FIFO 进行读写，通过 ls 命令可以查看 FIFO 文件。
 
-FIFO 读取写入的内容都是由内核持久化的，并不会真正写入到文件，文件单纯起到一个确定唯一标识的作用。而且当获取到文件描述符后就算删掉文件也不影响代码运行。
+FIFO 读取写入的内容都是由内核持久化的，并不会真正写入到文件，文件单纯起到唯一标识的作用。而且当获取到文件描述符后就算删掉文件也不影响。
 
 一个简单的例子演示 FIFO 的使用，例子包含 2 个进程，client 和 server 如下图。
 
@@ -277,31 +287,11 @@ gcc -o qrc client.c
 手持两把锟斤拷
 ```
 
-server 会顺序处理 client 的请求，这会导致一个问题，当有一个恶意的 client 写入内容后不读取临时 FIFO 的内容，这时候 server 阻塞无法处理其他 client 的请求，这就是一种 denial-of-service(DoS) 攻击。
-
-比如我们的恶意 client 是这样的，其他内容都一样，只是没有读取临时 FIFO 那段代码
-
-```
-mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
-char clientfifo[4096];
-snprintf(clientfifo, 4096, "/tmp/fifo/%d.fifo", getpid());
-mkfifo(clientfifo, mode);
-
-char *serverfifo = "/tmp/fifo/qrs.fifo";
-int writefd = open(serverfifo, O_WRONLY);
-char buff[4096];
-snprintf(buff, 4096, "%d,%s", getpid(), argv[1]);
-write(writefd, buff, strlen(buff));
-close(writefd);
-
-while (1) {
-
-}
-```
+server 会顺序处理 client 的请求，这会导致一个问题，当有一个恶意的 client 写入内容后不读取临时 FIFO 的内容，这时候 server 阻塞无法处理其他 client 的请求，这就是一种 denial-of-service(DoS) 攻击。把 client 16 行之后的代码删掉，添加一段阻塞代码比如从 stdin 读数据或者死循环都行，一个恶意 client 就写好了。
 
 解决这个问题的一种办法是让 server 具有同时处理多个 client 的能力。比如 fork 子进程来处理每个 client 的请求。
 
-在原来代码的基础上，增加信号处理程序用来回收完成的子进程。这里的信号其实也是一种 IPC
+在原来代码的基础上，增加信号处理程序用来回收完成的子进程。这里的信号其实也是一种 IPC。
 ```
 void reap_child(int sig) {
   while (waitpid(-1, NULL, WNOHANG) > 0) {
@@ -311,6 +301,14 @@ void reap_child(int sig) {
 }
 
 signal(SIGCHLD, reap_child);
+```
+然后执行任务部分 fork 子进程来处理
+
+```
+if (fork() == 0) {
+  exectask(buff);
+  exit(0);
+}
 ```
 
 这种方式可以解决一定的问题，但是当恶意客户端足够多时 server 没法无限 fork 子程序，一旦达到上限 server 将无法提供服务。
