@@ -314,3 +314,5 @@ if (fork() == 0) {
 这种方式可以解决一定的问题，但是当恶意客户端足够多时 server 没法无限 fork 子程序，一旦达到上限 server 将无法提供服务。
 
 PIPE 和 FIFO 都是由内核保留数据，当所有相关的进程都终止后留在 PIPE 或者 FIFO 里面的数据会直接丢弃。
+
+更多关于 PIPE 和 FIFO 的内容可以看《网络编程 卷2》，巨佬 W. Richard Stevens 的著作。
