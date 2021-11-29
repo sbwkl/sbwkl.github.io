@@ -84,7 +84,7 @@ PythonShell.run(pythonFile, options, function (err, out) {
 });
 ```
 
-图像处理用了 opencv 类库，主要就是为了识别那个豁口，然后返回豁口的坐标 (x, y) 和图片的大小 (width, height)，用来确定滑块需要滑动多少个像素，python 的代码直接照抄那位大佬的，命名为 edge-detector.py 放到 src/utils 文件夹下。然后用 node 包装一下方便使用，万能的 Promise。
+图像处理用了 opencv 类库，主要就是为了识别那个缺口，然后返回缺口的坐标 (x, y) 和图片的大小 (width, height)，用来确定滑块需要滑动多少个像素，python 的代码直接照抄那位大佬的，命名为 edge-detector.py 放到 src/utils 文件夹下。然后用 node 包装一下方便使用，万能的 Promise。
 
 ```typescript
 import {PythonShell} from 'python-shell';
@@ -197,7 +197,7 @@ export const slideCaptcha = new SlideCaptcha();
     page.$x(selector)
     page.$$eval(selector, pageFunction)
 
-42 ~ 50 计算豁口的辅助方法，返回需要移动的像素。需要注意的是图片展示时实际上是被压缩的，所以图片像素和 web 页面的像素大小实际上是不一样的，所以需要等比缩小。这里的 23 是滑块图距离边缘有 23 像素，用画图工具测量的，这是图片的像素所以要等比缩一下。这里的 26 是 web 页面滑块距离左边的像素距离，这个可以在 css 样式表那边看到。
+42 ~ 50 计算缺口的辅助方法，返回需要移动的像素。需要注意的是图片展示时实际上是被压缩的，所以图片像素和 web 页面的像素大小实际上是不一样的，所以需要等比缩小。这里的 23 是滑块图距离边缘有 23 像素，用画图工具测量的，这是图片的像素所以要等比缩一下。这里的 26 是 web 页面滑块距离左边的像素距离，这个可以在 css 样式表那边看到。
 
 52 ~ 60 计算开始坐标，也就是滑动按钮起始位置的坐标。
 
