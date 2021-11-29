@@ -1,10 +1,10 @@
 # 一起学 puppeteer
 
-前段时间有个同事说：你试试 puppeteer，我就去谷歌了下相关的资料。根据官方描述 puppeteer 是一个 node 类库，通过提供 API 控制 Chrome 或者 Chromium 浏览器（有头无头都可以），通信的协议是 DevTools Protocol 协议。维护的团队是本家的 Chrome DevTools team 团队，他们也想通过 puppeteer 项目让大家更好的认识 DevTools Protocol。
+前段时间有个同事说：你试试 puppeteer，我就去谷歌了下相关的资料。根据官方描述 puppeteer 是一个 node 类库，通过提供 API 控制 Chrome 或者 Chromium 浏览器（有头无头都可以），通信的协议是 DevTools Protocol。维护的团队是本家的 Chrome DevTools team 团队，他们似乎想通过 puppeteer 项目让大家更好的认识 DevTools Protocol 协议。
 
 Puppeteer 源码托管在 github，文档地址是 https://pptr.dev。最近 1 个月 issue 新增 42 个，关闭 29 个，pr 新增 11 个，合并 21 个，看起来还蛮活跃的。
 
-Puppeteer 的 API 设计很符合直觉，文档写的也很详细，所以根据 README.md 的描述我们可以很快写出自己的 demo。
+Puppeteer 的 API 设计很符合直觉，文档写的也很详细，所以根据 README.md（这个文件在 github 那边）的描述我们可以很快写出自己的 demo。
 
 
 ```typescript
@@ -45,7 +45,7 @@ class Index {
 })()
 ```
 
-在终端运行 ```npm install``` 然后再运行 ```npm run try-try``` 就可以看到效果了。首先会打开一个 chromium 浏览器，然后输入地址，切换 tab 输入用户名/密码点击登录（肯定提示用户名密码不对，我瞎填的）等待 10s 后关闭浏览器。
+在终端运行 ```npm install``` 然后再运行 ```npm run try-try``` 就可以看到效果了，try-try 对应的命令是：ts-node -r tsconfig-paths/register src/main/index.ts。首先会打开一个 chromium 浏览器，然后输入地址，切换 tab 输入用户名/密码点击登录（肯定提示用户名密码不对，我瞎填的）等待 10s 后关闭浏览器。
 
 6 ~ 9 启动 chromium 浏览器，参数 ```headless: false``` 指定不使用无头浏览器，参数 ```--no-sandbox```, ```--disable-setuid-sandbox``` 生产尽量别用，可能会导致安全问题，关于 sandbox 是啥，这里有篇[漫画](https://www.google.com/googlebooks/chrome/med_26.html)解释。
 
@@ -72,7 +72,7 @@ Puppeteer 通过 css selector 来定位元素，本质是 ```document.querySelec
     page.type(selector, text)​​
 
 
-为了完成自动化登录还需要通过滑动验证码验证，谷歌一番后觉得可能 python 更加适合做一些图像处理，这里借鉴的是这位大佬的[博客](https://juejin.cn/post/6970289221038931976) 《让 Python 爬虫也能读得懂「滑动验证码」》，这也是那个同事说的。当然这么做了整体会复杂一点，node 和 python 需要通信，而且为了让项目能跑起来，需要同时安装 node 环境和 python 环境。
+为了完成自动化登录还需要通过滑动验证码验证，谷歌一番后觉得可能 python 更加适合做一些图像处理，这里借鉴的是这位大佬的[博客](https://juejin.cn/post/6970289221038931976)《让 Python 爬虫也能读得懂「滑动验证码」》，这也是那个同事说的。当然这么做了整体会复杂一点，node 和 python 需要通信，而且为了让项目能跑起来，需要同时安装 node 环境和 python 环境。
 
 通信用了 python-shell 这个 node 类库，使用方法也很简单，只需要指定 python 文件路径和入参即可，然后执行结果就会通过回调函数告诉 node。
 
