@@ -4,7 +4,7 @@
 
 Puppeteer 源码托管在 github，文档地址是 https://pptr.dev。最近 1 个月 issue 新增 42 个，关闭 29 个，pr 新增 11 个，合并 21 个，看起来还蛮活跃的。
 
-Puppeteer 的 API 设计很符合直觉，文档写的也很详细，所以根据 README.md（这个文件在 github 那边）的描述我们可以很快写出自己的 demo。
+Puppeteer 的 API 设计很符合直觉，文档写的也很详细，根据 README.md（这个文件在 github 那边）的描述我们可以很快写出自己的 demo。
 
 
 ```typescript
@@ -45,19 +45,19 @@ class Index {
 })()
 ```
 
-在终端运行 ```npm install``` 然后再运行 ```npm run try-try``` 就可以看到效果了，try-try 对应的命令是：ts-node -r tsconfig-paths/register src/main/index.ts。首先会打开一个 chromium 浏览器，然后输入地址，切换 tab 输入用户名/密码点击登录（肯定提示用户名密码不对，我瞎填的）等待 10s 后关闭浏览器。
+在终端运行 ```npm install``` 然后再运行 ```npm run try-try``` 就可以看到效果了（try-try 对应的命令是：ts-node -r tsconfig-paths/register src/main/index.ts）。首先会打开一个 chromium 浏览器，然后输入地址，切换 tab 输入用户名/密码点击登录（肯定提示用户名密码不对，我瞎填的）等待 10s 后关闭浏览器。
 
 6 ~ 9 启动 chromium 浏览器，参数 ```headless: false``` 指定不使用无头浏览器，参数 ```--no-sandbox```, ```--disable-setuid-sandbox``` 生产尽量别用，可能会导致安全问题，关于 sandbox 是啥，后面有篇[漫画](https://www.google.com/googlebooks/chrome/med_26.html)解释。
 
 11 ~ 15 打开一个新的 Tab 页，输入地址并且等待 button 元素出现，最长等待 5s。
 
-16 ~ 29 点击按钮，等待 id = identity 的元素出现。
+16 ~ 19 点击按钮，等待 id = identity 的元素出现。
 
 20 ~ 22 输入用户名/密码并提交。
 
-27 关闭浏览器。
+26 关闭浏览器。
 
-33 ~ 37 入口函数。
+32 ~ 35 入口函数。
 
 Sandbox 简介
 
@@ -92,7 +92,6 @@ import {PythonShell} from 'python-shell';
 class ImageDetector {
 
     async detectEdge(imageUrl: string): Promise<Object> {
-        
         return new Promise((resolve, reject) => {
             try {
                 PythonShell.run('src/utils/edge-detector.py', {
@@ -108,7 +107,6 @@ class ImageDetector {
         });
     }
 }
-
 export const imageDetector = new ImageDetector();
 ```
 
@@ -199,7 +197,7 @@ export const slideCaptcha = new SlideCaptcha();
 
 42 ~ 50 计算缺口的辅助方法，返回需要移动的像素。需要注意的是图片展示时实际上是被压缩的，所以图片像素和 web 页面的像素大小实际上是不一样的，所以需要等比缩小。这里的 23 是滑块图距离边缘有 23 像素，用画图工具测量的，这是图片的像素所以要等比缩一下。这里的 26 是 web 页面滑块距离左边的像素距离，这个可以在 css 样式表那边看到。
 
-52 ~ 60 计算开始坐标，也就是滑动按钮起始位置的坐标。
+52 ~ 59 计算开始坐标，也就是滑动按钮起始位置的坐标。
 
 最后是调用的代码
 
