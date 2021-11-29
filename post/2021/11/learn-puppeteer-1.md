@@ -52,15 +52,15 @@ class Index {
 > ![](26.jpg)
 > ![](27.jpg)
 
-21 ~ 25 打开一个新的 Tab 页，输入地址并且等待 button 元素出现，最长等待 5s。
+11 ~ 15 打开一个新的 Tab 页，输入地址并且等待 button 元素出现，最长等待 5s。
 
-26 ~ 39 点击按钮，等待 id = identity 的元素出现。
+16 ~ 29 点击按钮，等待 id = identity 的元素出现。
 
-30 ~ 32 输入用户名/密码并提交。
+20 ~ 22 输入用户名/密码并提交。
 
-37 关闭浏览器。
+27 关闭浏览器。
 
-43 ~ 47 入口函数。
+33 ~ 37 入口函数。
 
 Puppeteer 通过 css selector 来定位元素，本质是 ```document.querySelector(selector)``` 方法。比较常用的有 ID selector 比如 #identity，class selector 比如 div.styles_authing-tabs-inner__KEW7v，attribute selector 比如 button[type="button"]，还有 type selector 比如 div。常写前端的同学应该都很熟悉，忘记了也可以查[文档](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)。
 
@@ -111,6 +111,11 @@ export const imageDetector = new ImageDetector();
 ```
 
 然后是解锁滑动验证码的代码，单独写了一个模块，包含 3 个辅助方法，命名 slideCaptcha.ts 放到 src/utils 文件夹下
+
+
+
+
+
 
 ```typescript
 import { imageDetector } from 'utils/imageDetector';
@@ -177,7 +182,7 @@ class SlideCaptcha {
 export const slideCaptcha = new SlideCaptcha();
 ```
 
-115 ~ 125 移动滑块，通过辅助方法得到滑块的起始位置和滑动距离，这里用 page.mouse 控制鼠标来移动滑块。用 waitForTimeout 和 for 循环滑动是为了方便人眼看，实际上一滑到底也是可以的。puppeteer 还有很多 wait 方法用来等待元素加载，按需使用。
+15 ~ 25 移动滑块，通过辅助方法得到滑块的起始位置和滑动距离，这里用 page.mouse 控制鼠标来移动滑块。用 waitForTimeout 和 for 循环滑动是为了方便人眼看，实际上一滑到底也是可以的。puppeteer 还有很多 wait 方法用来等待元素加载，按需使用。
 
     page.waitForSelector(selector)
     page.waitForXpath(xpath)
@@ -185,16 +190,16 @@ export const slideCaptcha = new SlideCaptcha();
     page.waitForResponse(urlOrPredicate)
     page.waitForFrame(urlOrPredicate)
 
-133 ~ 140 保存图片的辅助方法，取到 img 元素的 src 值，通过 fetch API 下载图片到本地，然后返回文件的本地路径，记得先把文件夹建起来。这里用了 page.$eval 方法用来获取元素的属性，类似的方法还有好几个，用来取元素或者元素属性
+33 ~ 40 保存图片的辅助方法，取到 img 元素的 src 值，通过 fetch API 下载图片到本地，然后返回文件的本地路径，记得先把文件夹建起来。这里用了 page.$eval 方法用来获取元素的属性，类似的方法还有好几个，用来取元素或者元素属性
 
     page.$(selector)
     page.$$(selector)
     page.$x(selector)
     page.$$eval(selector, pageFunction)
 
-142 ~ 150 计算豁口的辅助方法，返回需要移动的像素。需要注意的是图片展示时实际上是被压缩的，所以图片像素和 web 页面的像素大小实际上是不一样的，所以需要等比缩小。这里的 23 是滑块图距离边缘有 23 像素，用画图工具测量的，这是图片的像素所以要等比缩一下。这里的 26 是 web 页面滑块距离左边的像素距离，这个可以在 css 样式表那边看到。
+42 ~ 50 计算豁口的辅助方法，返回需要移动的像素。需要注意的是图片展示时实际上是被压缩的，所以图片像素和 web 页面的像素大小实际上是不一样的，所以需要等比缩小。这里的 23 是滑块图距离边缘有 23 像素，用画图工具测量的，这是图片的像素所以要等比缩一下。这里的 26 是 web 页面滑块距离左边的像素距离，这个可以在 css 样式表那边看到。
 
-152 ~ 160 计算开始坐标，也就是滑动按钮起始位置的坐标。
+52 ~ 60 计算开始坐标，也就是滑动按钮起始位置的坐标。
 
 最后是调用的代码
 
