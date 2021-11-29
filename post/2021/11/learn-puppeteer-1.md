@@ -47,10 +47,7 @@ class Index {
 
 在终端运行 ```npm install``` 然后再运行 ```npm run try-try``` 就可以看到效果了，try-try 对应的命令是：ts-node -r tsconfig-paths/register src/main/index.ts。首先会打开一个 chromium 浏览器，然后输入地址，切换 tab 输入用户名/密码点击登录（肯定提示用户名密码不对，我瞎填的）等待 10s 后关闭浏览器。
 
-6 ~ 9 启动 chromium 浏览器，参数 ```headless: false``` 指定不使用无头浏览器，参数 ```--no-sandbox```, ```--disable-setuid-sandbox``` 生产尽量别用，可能会导致安全问题，关于 sandbox 是啥，这里有篇[漫画](https://www.google.com/googlebooks/chrome/med_26.html)解释。
-
-> ![](26.jpg)
-> ![](27.jpg)
+6 ~ 9 启动 chromium 浏览器，参数 ```headless: false``` 指定不使用无头浏览器，参数 ```--no-sandbox```, ```--disable-setuid-sandbox``` 生产尽量别用，可能会导致安全问题，关于 sandbox 是啥，后面有篇[漫画](https://www.google.com/googlebooks/chrome/med_26.html)解释。
 
 11 ~ 15 打开一个新的 Tab 页，输入地址并且等待 button 元素出现，最长等待 5s。
 
@@ -61,6 +58,11 @@ class Index {
 27 关闭浏览器。
 
 33 ~ 37 入口函数。
+
+Sandbox 简介
+
+> ![](26.jpg)
+> ![](27.jpg)
 
 Puppeteer 通过 css selector 来定位元素，本质是 ```document.querySelector(selector)``` 方法。比较常用的有 ID selector 比如 #identity，class selector 比如 div.styles_authing-tabs-inner__KEW7v，attribute selector 比如 button[type="button"]，还有 type selector 比如 div。常写前端的同学应该都很熟悉，忘记了也可以查[文档](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)。
 
@@ -111,8 +113,6 @@ export const imageDetector = new ImageDetector();
 ```
 
 然后是解锁滑动验证码的代码，单独写了一个模块，包含 3 个辅助方法，命名 slideCaptcha.ts 放到 src/utils 文件夹下
-
-
 
 
 
