@@ -15,18 +15,19 @@
 假设有 2 个同余式
 
 $$
-a \equiv b \bmod m
+a \equiv b \bmod n
 $$
+
 $$
-c \equiv d \bmod m
+c \equiv d \bmod n
 $$
 
 那么
 
 $$
 \begin{aligned}
-a + b &\equiv (c + d) \bmod m \\
-ab &\equiv cd \bmod m \\
+a + b &\equiv (c + d) \bmod n \\
+ab &\equiv cd \bmod n \\
 a + b &\equiv (a \bmod n + b \bmod n) \bmod n \\
 ab &\equiv ((a \bmod n)(b \bmod n)) \bmod n \\
 a^b &\equiv (a \bmod n)^b \bmod n
@@ -134,6 +135,7 @@ RSA 的工作原理是这样的，生成 5 个数 p q n e d 其中 p q 是两个
 $$
 n = pq 
 $$
+
 $$
 ed \equiv 1 \bmod (p - 1)(q - 1)
 $$
@@ -169,6 +171,7 @@ $$
 $$
 m^{ed} \bmod p = m * m^{(p - 1)k(q - 1)} \bmod p = m \bmod p
 $$
+
 $$
 m^{ed} \bmod q = m * m^{(q - 1)k(p - 1)} \bmod q = m \bmod q
 $$
@@ -242,9 +245,11 @@ e = 65537
 $$
 x \equiv 2 \bmod 3
 $$
+
 $$
 x \equiv 3 \bmod 5
 $$
+
 $$
 x \equiv 2 \bmod 7
 $$
