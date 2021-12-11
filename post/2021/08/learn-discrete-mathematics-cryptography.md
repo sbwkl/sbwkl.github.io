@@ -16,8 +16,8 @@
 
 $$
 \begin{aligned}
-a &\equiv b \bmod n \\
-c &\equiv d \bmod n
+a &\equiv b \bmod m \\
+c &\equiv d \bmod m
 \end{aligned}
 $$
 
@@ -25,11 +25,11 @@ $$
 
 $$
 \begin{aligned}
-a + b &\equiv (c + d) \bmod n \\
-ab &\equiv cd \bmod n \\
-a + b &\equiv (a \bmod n + b \bmod n) \bmod n \\
-ab &\equiv ((a \bmod n)(b \bmod n)) \bmod n \\
-a^b &\equiv (a \bmod n)^b \bmod n
+a + b &\equiv (c + d) \bmod m \\
+ab &\equiv cd \bmod m \\
+a + b &\equiv (a \bmod m + b \bmod m) \bmod m \\
+ab &\equiv ((a \bmod m)(b \bmod m)) \bmod m \\
+a^b &\equiv (a \bmod m)^b \bmod m
 \end{aligned}
 $$
 
