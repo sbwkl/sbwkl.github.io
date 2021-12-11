@@ -24,13 +24,13 @@ $$
 那么
 
 $$
-\begin{align}
+\begin{aligned}
 a + b &\equiv (c + d) \bmod m \\
 ab &\equiv cd \bmod m \\
 a + b &\equiv (a \bmod n + b \bmod n) \bmod n \\
 ab &\equiv ((a \bmod n)(b \bmod n)) \bmod n \\
 a^b &\equiv (a \bmod n)^b \bmod n
-\end{align}
+\end{aligned}
 $$
 
 这个和四则运算有点像，同样的也满足交换律、结合律和分配律。四则运算还有两个逆元：加法逆元和乘法逆元（倒数），模运算里面也有，而且这个乘法逆元是上述解密时要用的。
