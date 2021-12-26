@@ -11,3 +11,4 @@ Dubbo 的必须的外部依赖不多，主要有 javasist、netty 等。
 Javasist(Java Programming Assistant) 是一个工具库维护字节码更加方便，它可以做到在 java 运行时创建类或者修改类。Dubbo 用它创建好多适配类，估计是不高兴写这部分格式差不多的代码。
 
 Netty 是一个通信框架，写 Socket 更加方便，而且它是 NIO 的，性能会更好。
+
