@@ -19,11 +19,11 @@ Dubbo 是一款高性能，基于 java 开源的 RPC 框架。RPC 是进程间�
 + 2.x https://dubbo.apache.org/zh/docsv2.7/dev/spi
 + 3.0 https://dubbo.apache.org/zh/docs/concepts/extensibility
 
-为什么会有这个机制，在文档里有介绍。
+为什么会有这个机制，在文档里有解释。
 
 > 一般来说，系统会采用 Factory、IoC、OSGI 等方式管理扩展(插件)生命周期。考虑到 Dubbo 的适用面，不想强依赖 Spring 等 IoC 容器。 而自己造一个小的 IoC 容器，也觉得有点过度设计，所以选择最简单的 Factory 方式管理扩展(插件)。在 Dubbo 中，所有内部实现和第三方实现都是平等的。
 
-为什么没用 JDK 标准的 SPI 文档里也有介绍。
+为什么没用 JDK 标准的 SPI 文档里也有解释。
 
 > Dubbo 的扩展点加载从 JDK 标准的 SPI (Service Provider Interface) 扩展点发现机制加强而来。
 > + JDK 标准的 SPI 会一次性实例化扩展点所有实现，如果有扩展实现初始化很耗时，但如果没用上也加载，会很浪费资源。
