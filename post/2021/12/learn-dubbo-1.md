@@ -7,7 +7,7 @@ Dubbo 是一款高性能，基于 java 开源的 RPC 框架。RPC 是进程间�
 我选了 Dubbo-2.7.15 版本的源码学习，主要学习了两块内容。
 
 + 扩展点加载机制
-+ RPC 过程
++ RPC 过程（dubbo 协议）
   + 生产者 export 服务
   + 消费者 refer 服务
   + 消费者 invoke
@@ -38,9 +38,9 @@ Protocol PROTOCOL = ExtensionLoader
     .getAdaptiveExtension();
 ```
 
-这段代码的意思是获取 Protocol 扩展点的适配类对象。Dubbo 设置的扩展点，有一堆实现类，有一个特殊实现类被标记上 @Adaptive 注解，表示它是适配类，上面的代码会获取这个的对象。如果所有实现都没有标记上 @Adaptive 注解，那么系统会动态生成一个。
+这段代码的意思是获取 Protocol 扩展点的适配类对象。Dubbo 设置的扩展点，有一堆实现类，有一个特殊实现类被标记上 @Adaptive 注解，表示它是适配类，上面的代码会获取这个类的对象。如果所有实现都没有标记上 @Adaptive 注解，那么系统会动态生成一个。
 
-Protocol 有 SPI 注解（SPI 可以指定默认值），是其中一个扩展点，有很多不同协议的实现，比如 DubboProtocol, RestProtocol 等，它的适配类就是动态生成的，大概长这个样子
+Protocol 有 SPI 注解（这个注解可以指定默认值），是其中一个扩展点，有很多不同协议的实现，比如 DubboProtocol, RestProtocol 等，它的适配类就是动态生成的，大概长这个样子
 
 ```
 ...
@@ -86,7 +86,7 @@ private ExtensionLoader(Class<?> type) {
 }
 ```
 
-这里拿到的 objectFactory 是 AdaptiveExtensionFactory 对象，因为这个类有 @Adaptive 注解。
+这里拿到的 objectFactory 是 AdaptiveExtensionFactory 对象，只有这个类有 @Adaptive 注解。
 
 getAdaptiveExtension 方法创建适配类单例对象，这个模式在后面的很多方法中都有使用。它从 Holder 中取 Adaptive 如果不存在就通过 createAdaptiveExtension 创建
 
@@ -104,7 +104,7 @@ public T getAdaptiveExtension() {
 
 ```
 
-方法 getAdaptiveExtension 的流程是：读取配置文件 ==> 缓存扩展实现类 ==> 缓存/生成适配类 ==> newInstance 实例化适配类 ==> IOC 注入依赖属性
+方法 getAdaptiveExtension 的流程是：读取配置文件 ==> 缓存扩展实现类 ==> 缓存/生成适配类 ==> newInstance 实例化适配类 ==> IOC 注入依赖属性，分几个方法完成
 
 + loadExtensionClasses 完成读取配置、缓存扩展实现类
 + createAdaptiveExtensionClass 动态生成适配类
@@ -136,13 +136,15 @@ private void loadClass(Map<String, Class<?>> extensionClasses, java.net.URL reso
 }
 ```
 
-createAdaptiveExtensionClass 在没有加载到适配类的时候执行，用 String 编译一个 Class 出来，这里打个断点可以查看 code 看看生成的代码长啥样。
+createAdaptiveExtensionClass 在没有加载到适配类的时候执行，用 String 编译一个 Class 出来，这里打个断点可以查看 code，看看生成的代码长啥样。
 ```
 private Class<?> createAdaptiveExtensionClass() {
     String code = new AdaptiveClassCodeGenerator(type, cachedDefaultName).generate();
     ClassLoader classLoader = findClassLoader();
     org.apache.dubbo.common.compiler.Compiler compiler =
-            ExtensionLoader.getExtensionLoader(org.apache.dubbo.common.compiler.Compiler.class).getAdaptiveExtension();
+            ExtensionLoader
+                .getExtensionLoader(org.apache.dubbo.common.compiler.Compiler.class)
+                .getAdaptiveExtension();
     return compiler.compile(code, classLoader);
 }
 ```
@@ -385,6 +387,8 @@ private ProtocolServer createServer(URL url) {
 生产者收到消费者的消息由 requestHandler 来处理。reply 方法根据 invocation 提供的参数从 exporterMap 找对应的 exporter 再找到对应的 invoker 然后执行。
 
 ### 消费者 refer 服务
+
+同样有 demo 类，在项目 dubbo-demo > dubbo-demo-api > dubbo-demo-api-consumer。
 
 官方也有时序图
 ![](dubbo-refer.jpg)
@@ -630,6 +634,6 @@ public static void received(Channel channel, Response response, boolean timeout)
 
 通过这次源码学习 get 到了几个不错的点
 
-1. Dubbo 用的策略模式和适配类这个想法，在日常工作中应该用得上，保证代码看起来语义统一
-2. Filter 责任链那一块不错的代码样板，要用的时候去那边拷贝
-3. 动态生成类对重复搬砖类的工作提供了一个不错的思路，既有挑战又能更好维护
+1. Dubbo 用的策略模式和适配类这个想法，在日常工作中应该用得上，代码语义更统一
+2. Filter 责任链不错的代码样板，要用的时候去那边拷贝
+3. 动态生成类对重复搬砖类的工作提供了一个不错的思路，既有挑战又好维护
