@@ -1,8 +1,8 @@
 # 数据库查询和查询优化
 
-这篇是《数据库系统概念》第 12，13 章学习笔记，看到这里发现了个坑爹的事，这本书已经有第七版了，然而我看的是第六版，尴尬啊。
+这篇是《数据库系统概念》第 12，13 章学习笔记，看到这里发现个坑爹的事，这本书已经有第七版了，然而我看的是第六版，尴尬啊。
 
-数据库的最基本用法之一就是查询，也就是通过 SQL 查询需要的数据。SQL 是一种声明式编程语言（declarative programming language）这种语言只描述「做什么」而不管怎么做。与之相对的是命令式编程语言（Imperative programming language）不仅要描述「做什么」还要描述「怎么做」，比如 C 语言。
+数据库最基本的用法之一是查询，也就是通过 SQL 查询需要的数据。SQL 是一种声明式编程语言（declarative programming language）这种语言只描述「做什么」而不管怎么做。与之相对的是命令式编程语言（Imperative programming language）不仅要描述「做什么」还要描述「怎么做」，比如 C 语言。
 
 由于 SQL 只描述「做什么」剩下的工作全部由数据库完成，数据库执行 SQL 可以粗略的分三步
 
@@ -14,11 +14,13 @@
 
 代数大意是研究数学符号和处理这些符号的规则，这个词来自穆罕默德写的一本书的标题。这个默罕默德和那个宣称自己是最后一任先知的默罕默德应该不是同一个人。
 
-关系（relation）在数学概念上是有序对的集合，类似 {(12121, Wu, Finance, 90000), (15151, Mozart, Music, 40000)} 这样的结构，集合里的每个元素叫做 4-元组（4-tuple），4 表示元组里面的元素数量。
+关系（relation）在数学概念上是有序对的集合，类似 {(12121, Wu, Finance, 90000), (15151, Mozart, Music, 40000)} 这样的结构，集合里的每个元素叫做元组（tuple），例子里每个元组有 4 个数据叫 4-tuple。
 
-有序对的元素分别来自各自的集合，比如 12121 和 15151 来自同一个集合，可以叫它 ID 集合，这个集合也叫作域（domain），类似的还有 name 集合，department 集合，salary 集合。我们说 12121, Wu, Finance, 90000 有关系就是指他们构成的元组在关系的集合里。这和数据库的表很像了，后面有时用「表」来指代关系，用「行」来指代元组，用「字段」指代域。
+有序对的数据来自各自的集合，比如 12121 和 15151 来自同一个集合，可以叫它 ID 集合，也可以叫它域（domain），类似的还有 name 集合，department 集合，salary 集合。
 
-有意思的是函数也是一种关系，比如函数 f(x) = x + 1 可以看做是 {..., (0, 1), (1, 2), ...} 的集合，也就是元组 (x, f(x)) 的集合。
+我们说 12121, Wu, Finance, 90000 有关系就是指他们构成的元组在关系的集合里。这和数据库的表很像，后面有时用「表」来指代关系，用「行」来指代元组，用「字段」指代域。
+
+有意思的是函数也是一种关系，比如函数 f(x) = x + 1 可以看做是 {..., (0, 1), (1, 2), ...} 的集合，也就是元组 (x, f(x)) 构成的集合。
 
 初等代数操作数是自然数，操作符是加减乘除，关系代数也一样，只不过操作数是关系，操作符也不太一样。
 
@@ -27,7 +29,7 @@ $$
 \begin{array}{c:l}
 操作名 & 符号 \\
 \hline
-\text{选择操作} & \sigma_{dept_name="Physics"}(instructor) \\
+\text{选择操作} & \sigma_{dept\_name="Physics"}(instructor) \\
 \hdashline
 \text{投影操作} & \Pi_{ID, name, salary/100}(instructor) \\
 \hdashline
@@ -35,15 +37,17 @@ $$
 \hdashline
 \text{join} & instructor \Join_\theta teaches \equiv \sigma_\theta(instructor \times teaches) \\
 \hdashline
-\text{left join} & instructor ⟕ teaches \text{ 右、全关联同理} \\
+\text{left join} & instructor ⟕ \; teaches \text{ 右、全关联同理} \\
+\hdashline
+\text{聚合} & _G \gamma_A(r) \text{ 对关系 r 根据字段 G 分组，根据函数 A 聚合} \\
 \hdashline
 \text{赋值} & course\_Fall\_2017 \leftarrow \Pi_{course\_id}(\sigma_{semester = "Fall" \wedge year = "2017"} (course)) \\
 \hdashline
 \text{重命名} & \rho_{x(A_1, A_2, ..., A_n)}(E) \\
 \hdashline
-\text{复合操作} & \Pi_{name}(\sigma_{dept_name="Physics"}(instructor)) \\
+\text{复合操作} & \Pi_{name}(\sigma_{dept\_name="Physics"}(instructor)) \\
 \hdashline
-\text{集合} & \text{交并差和普通集合一样} \\
+\text{集合} & \cap， \cup， - \text{ 和普通集合操作一样} \\
 \hdashline
 ...
 \end{array}
@@ -51,7 +55,7 @@ $$
 
 关系代数和 SQL 有点像，但又不完全一样，比如 where 子句对应选择操作，select 子句对应投影操作。
 
-然后是一些等价规则，图片右边有等式成立的额外条件，不感兴趣直接用绯红之王看。
+然后是一些等价规则,类似初等代数里的各种律。图片右边有等式成立的额外条件，不感兴趣直接用绯红之王看。
 
 $$
 \def\arraystretch{2}
@@ -99,13 +103,15 @@ E_1 ⟕ \; E_2 &\equiv E_2 ⟖ \; E_1 \\
 $$
 
 
-有了这些操作符和等价规则，一条 SQL 就可以被解析为代数表达式的集合，每条表达式都是等价的。每条表达式都是一个执行计划。
+有了这些操作符和等价规则，一条 SQL 就可以被解析为代数表达式的集合，每条表达式都是等价的，每条表达式都是一个执行计划。
 
 比如
 ```
 select name, title from instructor 
 natural join teaches 
-natural join (select course_id, title from course) 
+natural join (
+   select course_id, title 
+   from course) 
 where instructor.dept_name = 'Music';
 
 -- natural join 意思是两张表相同名字的字段值相等。
@@ -114,13 +120,13 @@ where instructor.dept_name = 'Music';
 可以被解析为​​
 
 $$
-\Pi_{name, title} (\sigma_{dept_name = "Music"} (instructor \Join (teaches, \Join \Pi_{course_id, title} (course))))
+\Pi_{name, title} (\sigma_{dept_name = "Music"} (instructor \Join (teaches \Join \Pi_{course_id, title} (course))))
 $$
 
 然后根据等价规则可以转化为
 
 $$
-\Pi_{name, title} ((\sigma_{dept_name = "Music"} (instructor) \Join (teaches, \Join \Pi_{course_id, title} (course))))
+\Pi_{name, title} ((\sigma_{dept_name = "Music"} (instructor) \Join (teaches \Join \Pi_{course_id, title} (course))))
 $$
 
 ![](https://files.mdnice.com/user/18103/cb3a5608-7c08-43b6-aaa9-fec7e1662b90.jpg)
@@ -129,19 +135,19 @@ $$
 
 根据等价规则变换出的表达式数量是非常夸张的，n 张表的自然连接有 (2(n - 1))! / (n - 1)! 种链接顺序。这个数字怎么算的可以搜关键词 Catalan numbers，或者看《离散数学》第 8 版 8.1.2 章节例题 5，给这帮数学大佬跪了。
 
-然后有了优化过程，为了挑选合适的执行计划就需要评估执行计划，直接评估时间不现实，转而评估其他指标，比如可能涉及的行数。
+然后有了优化过程，通过评估执行计划选择耗时最少或接近最少的。
 
-评估需要一些额外的信息，保存在数据目录（catalog）里，常用的是 
+直接评估时间不太现实，一般评估其他指标，比如可能涉及的行数。评估需要一些额外的信息，保存在数据目录（catalog）里，常用的有
 
-+ n, 表行数量
-+ b, 表保存的「块」数量
-+ l, 每一行的大小
-+ f, 每「块」里面有几行
-+ V(A, r), 表 r 的字段 A 有多少个不同的数值
++ n : 表行数量，count(*)
++ b : 表保存的「块」数量
++ l : 每一行的大小
++ f : 每「块」里面有几行
++ V(A, r) : 表 r 的字段 A 有多少个不同的数值，count(distinct A)
 
-一般来说 b = ⌈ n / f ⌉，有些数据库为了估计更准还会保存直方图，也就是字段一定范围内的行数。没有直方图的时候通常就假设字段值是均匀分布的。这些数据通常不会很精准，估算够用就成。
+一般来说 b = ⌈ n / f ⌉，有些数据库为了估计更准还会保存直方图，也就是字段一定范围内的行数。没有直方图的时候通常假设字段值是均匀分布的。这些额外信息通常不会很精准，估算够用就成，不然费资源。
 
-下面是摘抄的估算公式
+下面是摘抄的估算公式，有直方图信息的可以变换为更加精确的估算公式
 
 $$
 \def\arraystretch{2}
@@ -172,18 +178,18 @@ $$
 
 ![](https://files.mdnice.com/user/18103/4b93eb56-1964-4bf5-a79a-f7b1e1d41910.png)
 
-优化过程也会加入启发式（Heuristics）规则，这个有点像经验规则。比如 
+优化器还会加入启发式（Heuristics）规则帮助减少计算量，这个有点像经验规则，比如 
 
 + 尽早执行选择操作，大概率能减少行数
-+ 尽早执行投射操作，大概率减少元组大小
++ 尽早执行投射操作，大概率减少一行大小
 
-还有更多别的规则，每个数据库各自关各自的，八仙过海各显神通了。
+还有别的启发式规则，每种数据库实现各自管各自的，八仙过海各显神通。
 
-最后是执行计划，选择合适的算法，不同的操作符对应一系列不同的算法，选择操作根据是否主索引、是否辅助索引等有十几个算法可以选择，每种算法各自的消耗也不一样。
+最后是执行计划，选择合适的算法，不同的操作符对应一系列不同的算法。
 
-选择算法有最普通的线性查询，和链表的搜索是一个算法 O(n) 的复杂度。也有基于索引的复杂算法。
+选择操作根据是否有主索引、是否有辅助索引等情况有十几个算法可以选择，每种算法的消耗也不一样。最普通的线性查找，和链表搜索是一个算法，O(n) 的复杂度。
 
-排序根据内存是否能放下整个排序内容选择算法，当能全部数据能加载到内存时选择标准的排序算法就好，当不能加载全部数据时用一种外部排序归并算法。这个算法排序先一部分数据然后协会磁盘，然后继续下一块
+排序操作根据内存是否能放下整个排序内容选择算法。当全部数据能加载到内存时选择标准的排序算法就好，不行时用一种外部排序归并算法。这个算法排序先一部分数据然后写回磁盘，然后继续下一部分
 
 ![](https://files.mdnice.com/user/18103/93d65fdf-1031-4a7d-a9f1-98327f90b949.png)
 ![](https://files.mdnice.com/user/18103/39a90cc9-29f5-4597-ba75-a4b03c33b845.png)
@@ -195,18 +201,18 @@ $$
 
 其他还有 merge-join 算法、hash-join 算法，各自都有各自的优点。
 
-其他操作也各自都有一系列算法，数据库系统会挑选合适的算法用于计算。
+其他的操作也都有一系列算法，数据库系统会挑选合适的算法用于计算。
 
 表达式计算有两种方式，一种是计算表达式然后结果保存到临时表，供后续表达式计算使用，这种方式叫物化（Materialization）。另一种方法是流水线（pipelining）这种方式把表达式计算串起来，计算出结果后直接交给下个表达式用于运算。
 
 流水线又有两种实现，一种是需求驱动的流水线（demand-driven pipeline），一种是生产者驱动的流水线（producer-driven pipeline）。
 
-需求驱动的流水线有点像迭代器，从根往叶子执行，表达式不断向子表达式请求需要的数据。生产者驱动的流水线刚好反过来，从叶子往根执行。子表达式不停的产生数据，直到用于保存中间数据的 buffer 满了，然后等待 buffer 有空位再执行，类似 producer-consumer 模型。
+需求驱动的流水线有点像迭代器，从根往叶子执行，表达式不断向子表达式请求需要的数据。生产者驱动的流水线刚好反过来，从叶子往根执行。子表达式不停的产生数据，直到用于保存中间数据的 buffer 满了，上层表达式从 buffer 取出数据执行，直到 buffer 空了，类似 producer-consumer 模型。
 
-粗略来看数据库操作很像多个链表之间的操作，只是这个数据量变得非常大，又需要保持很好的性能，因此增加了亿点点细节。
+粗略来看数据库操作很像多个链表的操作，只是数据量变得非常大，又需要保持很好的性能，因此增加了亿点点细节。
 
-推荐感兴趣的小伙伴看原书，具体又详细，能解不少以前的疑惑。注意下版本要看第七版 2019 年的。
+感兴趣的小伙伴还是看原书吧，写的真棒，解了我不少疑惑，注意下版本，要看 2019 年的第七版。
 
-这个网站 https://db-book.com/university-lab-dir/sqljs.html 可以里有预先录入的数据，可以直接执行 sql，其实这个网站是为了这本书建立的。
+这个网站 https://db-book.com/university-lab-dir/sqljs.html 有书本里配套的数据库表结构和数据，可以直接执行 sql，这个网站是为了这本书建立的。
 
 封面图：Photo by Emiliano Arano from Pexels
