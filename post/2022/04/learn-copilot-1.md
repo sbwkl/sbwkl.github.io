@@ -2,19 +2,19 @@
 
 Copilot (https://github.com/github/copilot-docs) 是代码自动补全插件，与传统不同，它通过 AI 识别程序员的意图来自动补全代码，官方简介是 Your AI pair programmer。
 
-Copilot 是基于 OpenAI Codex (https://openai.com/blog/openai-codex) 开发的，后者是 openAI 公司用包括 github 在内的数十亿行源码训练的模型。
+Copilot 基于 OpenAI Codex (https://openai.com/blog/openai-codex) 开发，后者是 openAI 公司用包括 github 在内的数十亿行源码训练的模型。
 
-Copilot 目前是免费的，需要申请资格。顺着文档步骤做就行，其中有一步就是申请资格，蛮快的，我从申请到通过大约过了 3 天。
+Copilot 目前免费，需要申请资格。顺着文档步骤做就行，其中有一步就是申请资格，蛮快的，我从申请到通过大约过了 3 天。
 
-整体使用下来还是蛮舒服的，对我来说有三种场景特别容易用上。
+整体使用下来还是蛮舒服的，对我来说有三种场景能用上。
 
-一种是自动补全基础操作。最近因为工作原因要写点 python 和 node 代码，这俩语法我都不太熟悉，要花很多时间查谷歌，也就是面向 google 编程。用了插件以后遇到不会的语法只要写注释，然后等插件补全即可。
+一种是语言基础操作。最近因为工作需要写 python 和 node 代码，这俩语法我都不太熟悉，有事没事都要查谷歌，也就是面向 google 编程。用了插件以后遇到不会的语法只要写注释，然后等插件补全即可。
 
-比如带索引的 for 循环，关键字我总记不住，放以前都谷歌的。
+比如带索引的 for 循环，关键字记不住，放以前都谷歌的。
 
 ![](https://files.mdnice.com/user/18103/7839eea2-4c66-46ea-93ce-3df84b58c94c.png)
 
-一种是补全工具类，最近写了不少时间操作，别吐槽没有指定时区
+一种是工具类，最近写了不少时间操作，别吐槽没有指定时区
 
 ![](https://files.mdnice.com/user/18103/42401736-b988-4abc-9ba3-43421f2538f5.png)
 
@@ -22,13 +22,13 @@ Copilot 目前是免费的，需要申请资格。顺着文档步骤做就行，
 
 ![](https://files.mdnice.com/user/18103/71c18100-86b8-49f9-82d6-614c00f73eb4.png)
 
-还有一种是补全重复代码。比如下面这个代码，从第二句 set_not_null_field 开始只要负责按 Tab 就行。
+还有一种是重复代码。比如下面这个代码，从第二句 set_not_null_field 开始只要负责按 Tab 就行。
 
 ![](https://files.mdnice.com/user/18103/6bad71e4-d484-470a-b0fc-5bb72756cf15.png)
 
 也许有小伙伴会说你这个例子写个 for 循环不是更好么，写那么多重复代码丢不丢人。
 
-阿哲，菜是原罪。
+阿哲，没办法，太菜了。
 
 另外还发现了一些有意思的特性，比如
 
