@@ -14,9 +14,11 @@ Copilot 目前免费，需要申请使用资格。顺着文档步骤做就行，
 
 ![](https://files.mdnice.com/user/18103/7839eea2-4c66-46ea-93ce-3df84b58c94c.png)
 
-shell 的判断
+shell if 判断
 
-![](https://mmbiz.qlogo.cn/mmbiz_png/DgmZWOnCpQOHgenvsIJxozKT2j28n6TmQnC81YIfbtiaOabyWmm9HzwAuOgLYsic4G6E0CVbGPOPfkXvN6TkklJg/0?wx_fmt=png)
+![](https://files.mdnice.com/user/18103/763ebf6c-8d87-4ae8-9db8-64e2073fe0b6.png)
+
+熟悉语法的人可能觉得没啥用，对我还是挺有用的，有时候语言换来换去，都不知道自己在写哪个语言的语法了。
 
 一种是工具类，最近写了不少时间操作，别吐槽没有指定时区
 
