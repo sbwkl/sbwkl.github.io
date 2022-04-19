@@ -1,18 +1,22 @@
 # Copilot 使用体验
 
-Copilot (https://github.com/github/copilot-docs) 是代码自动补全插件，与传统不同，它通过 AI 识别程序员的意图来自动补全代码，官方简介是 Your AI pair programmer。
+Copilot (https://github.com/github/copilot-docs) 是代码自动补全插件，与传统不同，它通过 AI 识别程序员的意图来补全代码，官方简介是 Your AI pair programmer。
 
 Copilot 基于 OpenAI Codex (https://openai.com/blog/openai-codex) 开发，后者是 openAI 公司用包括 github 在内的数十亿行源码训练的模型。
 
-Copilot 目前免费，需要申请资格。顺着文档步骤做就行，其中有一步就是申请资格，蛮快的，我从申请到通过大约过了 3 天。
+Copilot 目前免费，需要申请使用资格。顺着文档步骤做就行，其中有一步就是申请资格，蛮快的，我从申请到通过大约过了 3 天。
 
 整体使用下来还是蛮舒服的，对我来说有三种场景能用上。
 
-一种是语言基础操作。最近因为工作需要写 python 和 node 代码，这俩语法我都不太熟悉，有事没事都要查谷歌，也就是面向 google 编程。用了插件以后遇到不会的语法只要写注释，然后等插件补全即可。
+一种是语言基础操作。最近需要写 python、node 和 shell 代码，这些语法我都不太熟悉，有事没事都要查谷歌，属实面向 google 编程。用了插件以后遇到不会的语法只要写注释，然后等插件补全即可。
 
 比如带索引的 for 循环，关键字记不住，放以前都谷歌的。
 
 ![](https://files.mdnice.com/user/18103/7839eea2-4c66-46ea-93ce-3df84b58c94c.png)
+
+shell 的判断
+
+![](https://mmbiz.qlogo.cn/mmbiz_png/DgmZWOnCpQOHgenvsIJxozKT2j28n6TmQnC81YIfbtiaOabyWmm9HzwAuOgLYsic4G6E0CVbGPOPfkXvN6TkklJg/0?wx_fmt=png)
 
 一种是工具类，最近写了不少时间操作，别吐槽没有指定时区
 
