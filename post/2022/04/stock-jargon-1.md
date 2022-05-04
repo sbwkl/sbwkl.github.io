@@ -192,6 +192,15 @@ Wind 的价格看着就不是给普通老百姓用的，应该是给专业人士
 
 老巴说的对，只投资自己熟悉的领域。那么多花里胡哨的东西，能搞得清楚才有鬼嘞。
 
+一些链接，每个交易所都披露了很多信息，就是读起来麻烦。
+
++ 上交所：http://www.sse.com.cn
++ 深交所：http://www.szse.cn
++ 北交所：http://www.bse.cn
++ 中证指数：https://www.csindex.com.cn
++ 中华指数：https://www.cesc.com
++ 指数编制文档：http://www.sse.com.cn/market/sseindex/calculation/c/5267799.pdf
+
 *投资有风险，入市需谨慎*
 
 *投资有风险，入市需谨慎*
