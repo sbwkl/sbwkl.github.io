@@ -17,22 +17,22 @@ flowchart LR
     Scheduler --read/write--> G(("storage"))
 ```
 
-为了实现特定的调度，需要设计不同的协议。协议可以理解为一组定义的规则，比如靠右行驶、红灯停、绿灯行，硬要反过来也不是不行，只是会特别诡异。
+为了实现特定的调度，需要设计不同的协议。协议可以理解为一组定义的规则，比如靠右行驶、红灯停、绿灯行，硬要反过来也不是不行，只是会比较诡异。
 
-并发控制系统控制事务的先后顺序，生成合理的调度。又因为事务的主要操作是 read/write，所以讨论调度简化为讨论事务的 read/write 的顺序。
+并发控制系统控制事务的先后顺序，生成合理的调度。又因为事务的主要操作是 read/write，所以讨论调度简化为讨论事务的 read/write 顺序。
 
 接下来汇总书里的协议，在此之前先解释一些概念，事务、ACID、隔离等级这些就不解释了，八股文都背过。
 
-+ 串行（Serial）：事务按照顺序一个一个串行执行。
++ 串行（Serial）：事务按照顺序一个一个串行执行
 + 可串行化（Serializability）：一组事务虽然并发执行，但是结果和事务串行执行是一致的。交叉执行的主要是每个事务里的 read/write 操作
 + 死锁（Deadlock）：打架的时候互相扯头发，谁先放手谁是狗
 + 可恢复性（Recoverable）：事务 T<sub>j</sub> 读取 T<sub>i</sub> 写入的数据，那么 T<sub>i</sub> 要先提交
-+ 级联（Cascadeless）：事务 T<sub>j</sub> 读取 T<sub>i</sub> 写入的数据，那么 T<sub>i</sub> 要在 T<sub>j</sub> 读这个数据之前提交。无级联的调度一定具有可恢复性。
-+ 饿死（Starvation）：事务因为某些原因老被插队，导致迟迟不能完成，等锁或者冲突被重启都可能导致饿死。
++ 级联（Cascadeless）：事务 T<sub>j</sub> 读取 T<sub>i</sub> 写入的数据，那么 T<sub>i</sub> 要在 T<sub>j</sub> 读这个数据之前提交。无级联的调度一定具有可恢复性
++ 饿死（Starvation）：事务因为某些原因老被插队，导致迟迟不能完成，等锁或者冲突被重启都可能导致饿死
 
-事务产生调度最好具有可串行化，可恢复性，不会死锁，不会级联回滚，不会饿死，但历史告诉我们通常没这等好事。
+并发控制系统产生调度最好具有可串行化，可恢复性，不会死锁，不会级联回滚，不会饿死，但历史告诉我们通常没这等好事。
 
-O 支持，X 不支持，? 代表我不知道，可左右滑动。
+O 支持，X 不支持，? 代表我不知道，表格可左右滑动。
 
 |协议|可串行|免死锁|可恢复|无级联|免饿死|
 |--|:--:|:--:|:--:|:--:|:--:|
@@ -43,7 +43,7 @@ O 支持，X 不支持，? 代表我不知道，可左右滑动。
 |TSO                    |O|O|X|X|X|
 |Thomas' Write rule     |O|O|X|X|X|
 |Validation-Based       |?|O|O|O|X|
-|Multiversion-TSO       |O|X|X|X|?|
+|Multiversion-TSO       |O|O|X|X|?|
 |Multiversion-2PL       |O|X|O|O|X|
 |SI                     |X|O|O|O|?|
 |Crabbing               |O|X|?|?|?|
@@ -105,7 +105,7 @@ O 支持，X 不支持，? 代表我不知道，可左右滑动。
 + 数据项可以随时解锁
 + 事务对数据项加锁和解锁后，不能再对这个数据项加锁
 
-树形协议不保证可恢复性和无级联回滚，通过改良可支持。
+树形协议不保证可恢复性和无级联回滚，改良可支持。
 
 **TSO**
 
@@ -122,11 +122,11 @@ O 支持，X 不支持，? 代表我不知道，可左右滑动。
 
 + 事务 T 发出 read(Q)
   + if TS(T) < W-timestamp(Q) 拒绝，T 回滚
-  + if TS(T) >= W-timestamp(Q) 执行 read 操作 R-timestamp(Q) = max(R-timestamp(Q), TS(T))
+  + if TS(T) >= W-timestamp(Q) 执行 read，设置 R-timestamp(Q) = max(R-timestamp(Q), TS(T))
 + 事务 T 发出 write(Q)
   + if TS(T) < R-timestamp(Q) 拒绝，T 回滚
   + elif TS(T) < W-timestamp(Q) 拒绝，T 回滚
-  + else 执行 write 操作 W-timestamp(Q) = TS(T)
+  + else 执行 write，设置 W-timestamp(Q) = TS(T)
 
 TSO 可能会饿死，比如长事务要更新某个值，但是一堆短事务频繁读这个值。
 
@@ -143,11 +143,11 @@ TSO 不保证可恢复性和无级联的，有几种改良手段。
 
 + 事务 T 发出 read(Q)
   + if TS(T) < W-timestamp(Q) 拒绝，T 回滚
-  + if TS(T) >= W-timestamp(Q) 执行 read 操作 R-timestamp(Q) = max(R-timestamp(Q), TS(T))
+  + if TS(T) >= W-timestamp(Q) 执行 read，设置 R-timestamp(Q) = max(R-timestamp(Q), TS(T))
 + 事务 T 发出 write(Q)
   + if TS(T) < R-timestamp(Q) 拒绝，T 回滚
-  + **elif TS(T) < W-timestamp(Q) T 尝试写入的值已经过时，忽略 write 操作**
-  + else 执行 write 操作 W-timestamp(Q) = TS(T)
+  + **elif TS(T) < W-timestamp(Q) T 尝试写入的值已经过时，忽略 write**
+  + else 执行 write，设置 W-timestamp(Q) = TS(T)
 
 TSO 改版，只有加粗这一条不一样，它直接丢弃写操作而 TSO 是回滚。
 
@@ -199,10 +199,10 @@ TSO 改版，只有加粗这一条不一样，它直接丢弃写操作而 TSO �
 
 协议内容
 
-+ 事务 T<sub>i</sub> 发出 read(Q) 操作
++ 事务 T<sub>i</sub> 发出 read(Q)
   + 返回最大的 W-timestamp(Q) <= TS(T<sub>i</sub>) 的 Q<sub>k</sub> 内容
   + R-timestamp(Q<sub>k</sub>) = max(R-timestamp(Q<sub>k</sub>), TS(T<sub>i</sub>))
-+ 事务 T<sub>i</sub> 发出 write(Q) 操作
++ 事务 T<sub>i</sub> 发出 write(Q)
   + if TS(T<sub>i</sub>) < R-timestamp(Q<sub>k</sub>) 回滚事务 T<sub>i</sub>
   + elif TS(T<sub>i</sub>) = W-timestamp(Q<sub>k</sub>) 覆盖 Q<sub>k</sub> 的内容
   + else 创建新的 Q 版本
@@ -266,7 +266,7 @@ T<sub>i</sub> 和 T<sub>j</sub> 并发的条件，满足一个就是并发。
 
 一个事务从开始到提交的这段时间内，有别的事务开始了，那么就并发了。
 
-先提交者获胜。方框的字母代表更新的数据项，圆圈代表提交，菱形代表中止。都改了数据项 X，先提交的那个事务赢了，另一个中止。
+**先提交者获胜**。方框的字母代表更新的数据项，圆圈代表提交，菱形代表中止。都改了数据项 X，先提交的那个事务赢了，另一个中止。
 
 ```mermaid
 flowchart LR
@@ -284,7 +284,7 @@ T2["*"] -->T2A["A"] --> T2X["X"] --> T2G((" "))
 
 
 
-先更新者获胜。方框的字母代表数据项，圆圈代表提交，菱形代表中止。都改了数据项 X，先改了 X 的那个事务赢了，另一个中止。
+**先更新者获胜**。方框的字母代表数据项，圆圈代表提交，菱形代表中止。都改了数据项 X，先改了 X 的那个事务赢了，另一个中止。
 
 ```mermaid
 flowchart LR
@@ -296,7 +296,7 @@ T2["*"] -->T2A["A"] --> T2X["X"] --> T2G{" "}
 
 + 事务 T 获得写锁
   + if 这个数据项被其他并发事务更新，事务 T 中止
-  + else 事务 T 执行操作
+  + else 事务 T 执行
 + 事务 T 无法获得写锁，T<sub>j</sub> 持有写锁，等待 T<sub>j</sub> 提交或中止
   + if T<sub>j</sub> 中止，事务 T 拿到锁，执行前面的动作
   + if T<sub>j</sub> 提交，事务 T 中止
@@ -325,7 +325,7 @@ T2["*"] -->T2A["A"] --> T2X["X"] --> T2G{" "}
 
 上面这个例子叫做写偏斜（write skew），指的是一对事务，读的数据项是对方写的，并且写的数据项没有交集。
 
-根据业务情况酌情考虑是否使用快照隔离，介意的有几种改良方案，视具体数据库支持
+有几种改良方案支持可串行化，视具体数据库支持
 
 + 用快照隔离改良型，可串行化快照隔离（Serializable Snapshot Isolation）简称 SSI
 + 一些系统支持不同的事务不同的隔离等级
@@ -379,14 +379,14 @@ update instructor set dept_name = 'Music'
 
 好像有把幻想现象叫做的幻读的，我试了下 mysql 在 rr 隔离级别下，类似 id > 10 这样的范围查询不会发生幻想现象，可能哪个版本支持了？
 
-类似概念还有脏读，不可重复读，这些是因为在较低的隔离级别下的正常现象，如果业务场景不允许这些情况，最简单的办法就是调高隔离级别，不过 mysql 默认就是 rr 没这些问题。
+类似概念还有脏读，不可重复读，这些是在较低隔离级别下的正常现象，如果业务场景不允许这些情况，最简单的办法就是调高隔离级别，不过 mysql 默认就是 rr 没这些问题。
 
 
 **Crabbing**
 
 另一种索引用的协议，中文名蟹行协议
 
-+ 查找值，拿到根节点共享锁，沿着 B+ 树向下遍历，拿到所有相关子节点共享锁，然后释放根节点共享锁，重复直至叶子节点。
++ 查找值，拿到根节点共享锁，沿着 B+ 树向下遍历，拿到所有相关子节点共享锁，然后释放根节点共享锁，重复直至叶子节点
 + 插入/删除值
   + 采用查找值的方式找到叶子节点
   + 拿到叶子节点排它锁，插入/删除值
@@ -406,7 +406,7 @@ B-link 树的内部节点在 B+ 树的基础上多维护一个指向右兄弟的
   + 如果需要分裂/合并/重分配，拿到父节点排它锁，然后执行分裂/合并/重分配
   + 向上递归处理分裂/合并/重分配，如果不需要则释放锁
 
-和蟹行协议的区别是先释放锁再加锁，这会有异常情况，比如父节点已经被分裂/合并/重分配弄得不存在，这个协议需要侦测这些问题并解决。
+和蟹行协议的区别是先释放锁再加锁，这会导致异常情况，比如父节点已经被分裂/合并/重分配弄得不存在，这个协议需要侦测这些问题并解决。
 
 协议整完了，插播一个尴尬的事，在 mysql 上验证隔离等级时，突发奇想要改表结构，然后通过 Navicat 添加了一个字段，一点保存，啪，卡住，未响应。淡定淡定常有的事，熟练的调出任务管理器结束进程。
 
@@ -457,7 +457,8 @@ SELECT VERSION();
 通过这个 sql 可以得到一些信息，```INNODB_TRX``` 是事务表，```PROCESSLIST``` 是线程表，这个 sql 展示正在运行的的事务对应的线程的状态。如果这个线程是 Sleep 的那可能就是它占着茅坑不拉屎。
 
 ```
-select  p.*,t.* from information_schema.INNODB_TRX t
+select p.*, t.* 
+from information_schema.INNODB_TRX t
 left join information_schema.`PROCESSLIST` p
 on t.trx_mysql_thread_id = p.id
 where t.trx_state = 'RUNNING'
