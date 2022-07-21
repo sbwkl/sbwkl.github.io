@@ -66,3 +66,14 @@ undo-list 为空恢复工作结束，事务可以正常开始执行。
 
 实际在并发情况下恢复系统会更加复杂
 
+
+ARIES 恢复算法
+
+1. 用日志顺序号（LSN）标识日志记录，每个页维护页日志顺序号（PageLSN）
+2. 支持物理逻辑（physiological）redo 操作
+3. 使用脏页表（dirty page table）记录脏页，就是内存和磁盘数据不一样的页
+4. 使用模糊检查点（fuzzy-checkpointing）机制
+
+
+
+
