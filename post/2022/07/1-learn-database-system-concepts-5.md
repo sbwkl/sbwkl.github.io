@@ -13,8 +13,8 @@
 已提交的事务不能回滚，如果硬要达到回滚的效果，执行补偿事务（compensating transaction）“回滚”，类似 git 的 revert 命令。
 
 ```mermaid
-stateDiagram-v2
-    state "Partially committed" as PC
+  stateDiagram-v2
+    PC : Partially committed
     Active --> PC
     Active --> Failed
     PC --> Committed
