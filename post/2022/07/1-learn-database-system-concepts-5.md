@@ -14,7 +14,7 @@
 
 ```mermaid
 stateDiagram-v2
-    PC: Partially committed
+    state "Partially committed" as PC
     Active --> PC
     Active --> Failed
     PC --> Committed
