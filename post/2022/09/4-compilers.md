@@ -1,6 +1,6 @@
 # 《编译原理》 day 3
 
-今天是阅读《编译原理》的逻辑第 3 天，看到一个叫产生式的东西，以 Java 的 if 语句为例，大概长这个样子
+今天是阅读《编译原理》的逻辑第 3 天，看到一个叫产生式（production）的东西，很有意思，以 Java 的 if 语句为例，大概长这个样子
 
 ```
 stmt -> if ( expr ) stmt else stmt
@@ -19,29 +19,41 @@ list -> list + digit | list - digit | digit
 digit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 ```
 
-竖线表示「或」的关系，这里有 12 个终结符，0~9,+,-
+竖线表示「或」的关系，这里有 12 个终结符：0~9 + -
 
-这两个（或者说 13 个）能够表示所有 10 以内的加减表达式。
+产生式 + 终结符集合 + 非终结符集合 + 开始符号 = grammer（文法）
 
+从开始符号开始不断用产生式带入，所能产生的所有终结符号串的集合叫做这个文法的语言
 
-看了语法的定义。
+上面这个例子能够表示 10 以内所有的加减表达式。比如表达式：9 - 5 + 2
 
+![](4-parse-tree-1.png)
 
+上图这种树状结构叫 parse tree（分析树）
 
-<!-- 第二章（A Simple Syntax-Directed Translator） -->
+产生式的定义需要小心二义性，比如上面的两个产生式，如果图方便这么定义
 
-在第一章中介绍了 Lexical, Syntax, Semantic，分别翻译成词法，语法，语义，越来越大。
+```
+string -> string + string | string - string | digit
+digit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+```
 
-Syntax 描述程序的正确形式，Semantic 描述程序的含义。使用 semantic 来描述语言难度太大，于是选择用 syntax 来描述，用 context-free grammars 描述，这个翻译叫上下文无关文法。
+还是这个表达式 9 - 5 + 2 则会有两棵分析树
 
-context-free grammer 由四部分组成
+![](4-parse-tree-2.png)
 
-1. 终结符号集合
-2. 非终结符号集合
-3. 产生式集合
-4. 指定一个非终结符当做开始
+这样的文法需要避免
 
-以 Java 为例，比如 if-else 语法，一般这么写（省略了花括号）， if ( expr ) stmt else stmt，if-else 语句本身又是句子
+运算符的结合性和优先级，当一个操作数左右两边都有操作符，比如 （+ 5 +）操作数属于左边的叫左结合，属于右边的叫右结合，+=*/ 都是左结合的。
 
-if, else 是终结符号，stmt 是非终结符号，产生式 
+根据小学数学，*/ 的优先级要高于 +=，文法的产生式可以这么设计
 
+```
+expr -> expr + term | expr - term | term
+term -> term * factor | term / factor | factor
+factor -> digit | (expr)
+```
+
+其实我也不知道它是怎么设计出来的，但这三个产生式确实能正常工作，越往下优先级越高。
+
+封面图：Twiter 心臓弱眞君 @xinzoruo
