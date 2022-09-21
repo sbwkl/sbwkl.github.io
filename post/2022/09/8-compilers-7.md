@@ -44,11 +44,11 @@ rest -> + term { print('+') } rest
 按照非终结符写方法，终结符调用 `match` 方法的方式，写出来的伪代码长这样。
 
 ```
-void expr () {
+void expr() {
     term(); rest();
 }
 
-void rest () {
+void rest() {
     if ( lookahead == '+' )  {
         match('+'); term(); print('+'); rest();
     } else if ( lookahead == '-' ) {
@@ -68,8 +68,11 @@ void term() {
 }
 ```
 
-然后意外收获又来了，对于一个递归方法，如果最后一句是调用自己，这种情况叫做 tail recursive（尾递归），对于没有入参的方法，尾递归可以改为跳转到方法开头。
+然后意外收获又来了，对于一个递归方法，如果最后一句是调用自己，这种情况叫做 tail recursive（尾递归），对于没有入参的方法，尾递归可以改为跳转到方法开头，于是 rest 方法可以改写成 
 
+```
+
+```
 
 
 更加详细的递归转迭代可以看看这篇：https://www.baeldung.com/cs/convert-recursion-to-iteration
