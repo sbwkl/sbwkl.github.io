@@ -15,23 +15,27 @@
 
 词法分析涉及的几个相似的术语，但凡涉及名词解释，还是原文好理解。
 
-1. Token：A token is a pair consisting of a token name and an optional attribute value. The token name is an abstract symbol representing a kind of lexical unit
-2. Pattern: A pattern is a description of the form that the lexemes of a token may take
-3. Lexeme: A lexeme is a sequence of characters in the source program that matches the pattern for a token and is identified by the lexical analyzer as an instance of that token
+> 1. A token is a pair consisting of a token name and an optional attribute value. The token name is an abstract symbol representing a kind of lexical unit
+> 2. A pattern is a description of the form that the lexemes of a token may take
+> 3. A lexeme is a sequence of characters in the source program that matches the pattern for a token and is identified by the lexical analyzer as an instance of that token
 
-Token 这个词我花了好长时间适应，在我概念里 Token 就是调用第三方服务时的认证信息，和这里的描述完全时两个东西。
+Token 这个词我花了好长时间适应，在我概念里 Token 就是调用第三方服务时的认证信息，和这里的描述完全是两个东西。
 
 一些能覆盖大多数语言的 Token 分类
 
 1. 一个关键字一个 Token， 比如 if，else
 2. 一组运算符一个 Token，比如 >，!=
-3. 所有的标识符一个 Token，比如变量名、方法名
+3. 所有的标识符一个 Token，比如变量名、方法名，虽然多，都是一类 Token
 4. 一个或多个常量 Token，比如数字
 5. 一个标点符号一个 Token，比如括号，逗号这些
 
 ![](13-token-1.png)
 
-对于代码片段 `printf("Total = %d\n", score);`
+对于代码片段 
+
+```
+printf("Total = %d\n", score);
+```
 
 `printf` 这个字符串是词素，匹配标识符 Token，score 同理。
 
@@ -39,9 +43,7 @@ Token 这个词我花了好长时间适应，在我概念里 Token 就是调用�
 
 `"Total = %d\n"` 匹配常量 Token
 
-词法分析器有时会遇到输入无法与任何 Token 匹配，这时就卡住了。最简单的恢复策略是恐慌模式，不断删除字符，直到可以匹配为止，这策略有够暴力的。
-
-讲道理我没法理解为啥它能在实际中工作。
+词法分析器有时会遇到输入无法与任何 Token 匹配，这时就卡住了。最简单的恢复策略是恐慌模式，不断删除字符，直到可以匹配为止，这策略有够暴力的。讲道理我没法理解为啥它能在实际中工作。
 
 其他的恢复动作还有
 
@@ -52,4 +54,4 @@ Token 这个词我花了好长时间适应，在我概念里 Token 就是调用�
 
 这些动作咋都这么可疑捏，这不是把源代码都改掉了么，这尼玛也能工作，理解不能。
 
-
+封面图：Twiter 心臓弱眞君 @xinzoruo
