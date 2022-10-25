@@ -16,7 +16,7 @@
 + Implementing L-Attributed SDD's on an LL Grammar: LL 文法的 L 属性 SDD，使用栈实现
 + Implementing L-Attributed SDD's on an LL Grammar, Bottom-Up: LL 文法的 L 属性 SDD 转成 LR 再用栈实现，它到最后都没告诉我为啥要这么干
 
-这章感觉没有前几章惊艳，看下来没有主线，平铺的形式介绍各种算法，也许结合后面的章节才能展现它真正的威力。
+这章感觉没有前几章惊艳，看下来缺个主线，平铺的形式介绍各种算法，也许结合后面的章节才能展现它真正的威力。
 
 词法、语法、语义概念上一个比一个大，语义没法形式化表示，词法能表达的概念又太小。
 
