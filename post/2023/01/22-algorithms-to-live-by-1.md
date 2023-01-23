@@ -39,7 +39,7 @@ w 是事件发生的概率，n 是试验总次数。
 
 **正态分布<sup>[2]</sup>**
 
-![](https://files.mdnice.com/user/18103/10b8d6fd-1752-4209-ba1d-7febfd14568c.png)
+![](22-1.png)
 
 上学的时候就觉得这名字很怪，直到看到它的英文 normal distribution，啊哈，原来是这个意思。
 
@@ -49,7 +49,7 @@ w 是事件发生的概率，n 是试验总次数。
 
 **幂律分布<sup>[4]</sup>**
 
-![](https://files.mdnice.com/user/18103/e9cee35b-4789-47cd-b813-5cba72af1112.png)
+![](22-2.png)
 
 幂律分布有个巨大的头和很长的尾巴，类似常说的二八原则。
 
@@ -63,7 +63,7 @@ w 是事件发生的概率，n 是试验总次数。
 
 **厄兰分布<sup>[6]</sup>**
 
-![](https://files.mdnice.com/user/18103/4b9851d2-b618-4b55-9e91-34bdc138f4ad.png)
+![](22-3.png)
 
 <!-- 这个分布有点像歪了的正则分布。 -->
 

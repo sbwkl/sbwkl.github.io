@@ -26,5 +26,6 @@ https://en.wikipedia.org/wiki/Travelling_salesman_problem
 
 这个解可能不是最优的，但总比解不出来要好。
 
+![a](23-1.png)
 
-
+![b](23-2.png)
