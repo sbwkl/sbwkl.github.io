@@ -1,3 +1,5 @@
+[《算法之美》 day 7](post/2023/01/24-algorithms-to-live-by-7.md)
+
 [《算法之美》 day 6](post/2023/01/23-algoritmss-to-live-by-1.md)
 
 [《算法之美》 day 5](post/2023/01/22-algorithms-to-live-by-1.md)
