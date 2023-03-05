@@ -7,11 +7,11 @@
 以前没注意，概率还是有公理的。样本空间 S，无限不相交的事件 A<sub>1</sub>, A<sub>2</sub>,... 有三条公理
 
 $$
-\begin{aligned}
+\begin{alignedat}{0}
 & \text{1. } P(A_i)                       & \ge 0 \\
 & \text{2. } P(S)                         & = 1 \\
 & \text{3. } P(\bigcup_{i=1}^{\infty}A_i) & = \sum_{i=1}^\infty P(A_i)
-\end{aligned}
+\end{alignedat}
 $$
 
 可能是上学那会儿根本分不清公理、定理、定律啥的，反正只管记就完事了。
