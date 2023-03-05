@@ -7,11 +7,11 @@
 以前没注意，概率还是有公理的。样本空间 S，无限不相交的事件 A<sub>1</sub>, A<sub>2</sub>,... 有三条公理
 
 $$
-\begin{array}{cc}
-\text{1. } & P(A_i)                       & \ge 0 \\
-\text{2. } & P(S)                         & = 1 \\
-\text{3. } & P(\bigcup_{i=1}^{\infty}A_i) & = \sum_{i=1}^\infty P(A_i)
-\end{array}
+\begin{aligned}
+& \text{1. } P(A_i)                       & \ge 0 \\
+& \text{2. } P(S)                         & = 1 \\
+& \text{3. } P(\bigcup_{i=1}^{\infty}A_i) & = \sum_{i=1}^\infty P(A_i)
+\end{aligned}
 $$
 
 可能是上学那会儿根本分不清公理、定理、定律啥的，反正只管记就完事了。
@@ -51,7 +51,10 @@ $$
 直觉的话可能会觉得要很多，50，100 or 183，但实际上它的概率
 
 $$
-p = 1 - \frac {P(365, n)} {365^n} = 1 - \frac {365!} {(365 - n)! 365^n}
+\begin{aligned}
+p &= 1 - \frac {P(365, n)} {365^n} \\
+  &= 1 - \frac {365!} {(365 - n)! 365^n}
+\end{aligned}
 $$
 
 365<sup>n</sup> 表示所有可能的结果，P(365, n) 表示生日不在同一天的结果。
