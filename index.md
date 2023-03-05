@@ -1,3 +1,13 @@
+[《概率统计》 day 3](post/2023/03/02-probability-and-statistics-03.md)
+
+[《概率统计》 day 2](post/2023/02/27-probability-and-statistics-02.md)
+
+[《概率统计》 day 1](post/2023/02/25-probability-and-statistics-01.md)
+
+[《好好学习》 day 6](post/2023/02/23-study-6.md)
+
+[《好好学习》 day 5](post/2023/02/19-study-5.md)
+
 [《好好学习》 day 4](post/2023/02/17-study-4.md)
 
 [《好好学习》 day 3](post/2023/02/13-study-3.md)
