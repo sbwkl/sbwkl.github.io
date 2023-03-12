@@ -221,3 +221,16 @@ Theorem 2.1.2
 $$
 P(A_1 \cap A_2 \cap ... \cap A_n) = P(A_1)P(A_2 | A_1)P(A_3 | A_1 \cap A_2) ... P(A_n | A_1 \cap A_2 \cap ... \cap A_{n - 1})
 $$
+
+THeorem 2.1.3
+
+$$
+P(A_1 \cap A_2 \cap ... \cap A_n | B) = P(A_1 | B) P(A_2 | A_1 \cap B) ... P(A_n|A_1 \cap A_2 \cap ... \cap A_{n-1} \cap B)
+$$
+
+Theorem 2.1.4
+
+$$
+B_i \text{ partition of the space S} \\
+P(A) = \sum_{j=1}^{k}P(B_j)P(A | B_j)
+$$
