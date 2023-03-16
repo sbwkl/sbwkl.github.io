@@ -230,7 +230,38 @@ $$
 
 Theorem 2.1.4
 
+B<sub>i</sub> is partition of the space S
+
 $$
-B_i \text{ partition of the space S} \\
+P(A) = \sum_{j=1}^{k}P(B_j \cap A)
+$$
+
+$$
 P(A) = \sum_{j=1}^{k}P(B_j)P(A | B_j)
 $$
+
+$$
+P(A|C) = \sum_{k}^{j=1}P(B_j|C)P(A|B_j \cap C)
+$$
+
+Theorem 2.2.1
+
+A, B independent
+
+$$
+P(A \cap B^c) = P(A)P(B^c)
+$$
+
+Theorem 2.2.2
+
+A<sub>i</sub> i = 1, 2, ..., k 独立，当且仅当任何两个不相交的子集满足
+
+$$
+P(A_{i_1} \cap ... \cap A_{i_m} | A_{j_1} \cap ... \cap A_{J_l}) = P(A_{i_1} \cap ... \cap A_{i_m})
+$$
+
+Theorem 2.2.3
+
+Let n > 1 and let A<sub>1</sub>, . . . , A<sub>n</sub> be events that are mutually exclusive. The events are
+also mutually independent if and only if all the events except possibly one of them
+has probability 0.
