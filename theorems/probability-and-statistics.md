@@ -241,7 +241,7 @@ P(A) = \sum_{j=1}^{k}P(B_j)P(A | B_j)
 $$
 
 $$
-P(A|C) = \sum_{k}^{j=1}P(B_j|C)P(A|B_j \cap C)
+P(A|C) = \sum_{j=1}^{k}P(B_j|C)P(A|B_j \cap C)
 $$
 
 Theorem 2.2.1
@@ -265,3 +265,19 @@ Theorem 2.2.3
 Let n > 1 and let A<sub>1</sub>, . . . , A<sub>n</sub> be events that are mutually exclusive. The events are
 also mutually independent if and only if all the events except possibly one of them
 has probability 0.
+
+Theorem 2.2.4
+
+Suppose that A1, A2, and B are events such that Pr(A1 ∩ B) > 0. Then A1 and A2 are
+conditionally independent given B if and only if Pr(A2|A1 ∩ B) = Pr(A2|B).
+
+Theorem 2.3.1
+
+$$
+P(B_i|A) = \frac{P(B_i)P(A|B_i)}{\sum_{j=1}^{k}P(B_j)P(A|B_j)}
+$$
+
+$$
+P(B_i|A \cap C) = \frac{P(B_i|C)P(A|B_i \cap C)}{\sum_{j=1}^{k}P(B_j|C)P(A|B_j \cap C)}
+$$
+
