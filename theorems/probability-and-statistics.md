@@ -281,3 +281,17 @@ $$
 P(B_i|A \cap C) = \frac{P(B_i|C)P(A|B_i \cap C)}{\sum_{j=1}^{k}P(B_j|C)P(A|B_j \cap C)}
 $$
 
+Gambler’s Ruin problem Eq 2.4.6, Eq 2.4.7
+
+p = 0.5
+
+$$
+a_i = \frac{i}{k}
+$$
+
+p ≠ 0.5
+
+$$
+a_i = \frac{(\frac{1-p}{p})^i - 1}{(\frac{1-p}{p})^k - 1}
+$$
+
