@@ -295,3 +295,56 @@ $$
 a_i = \frac{(\frac{1-p}{p})^i - 1}{(\frac{1-p}{p})^k - 1}
 $$
 
+Cumulative Distribute Function Eq 3.3.2
+
+$$
+F(x) = P(X \le x) \text{ for -∞ < x < ∞}
+$$
+
+非递减、负无穷 0、正无穷 1
+
+$$
+F(x^{-}) = \lim_{\substack{y->x\\ y\lt x}} F(y) \\
+F(x^{+}) = \lim_{\substack{y->x\\ y\gt x}} F(y)
+$$
+
+$$
+F(x) = F(x^{+})
+$$
+
+Theorem 3.3.1
+
+$$
+P(X \gt x) = 1 - F(x)
+$$
+
+Theorem 3.3.2
+
+$$
+P(x_1 \lt X \le x_2) = F(x_2) - F(x_1)
+$$
+
+Theorem 3.3.3
+
+$$
+P(X \lt x) = F(x^{-})
+$$
+
+Theorem 3.3.4
+
+$$
+P(X=x) = F(x) - F(x^{-})
+$$
+
+Theorem 3.3.5
+
+X 是连续分布
+
+$$
+F(x) = \int_{-∞}^{x}f(t)dt
+$$
+
+$$
+\frac{dF(x)}{dx} = f(x)
+$$
+
