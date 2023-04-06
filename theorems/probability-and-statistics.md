@@ -571,11 +571,11 @@ $$
 
 for −∞ < x < ∞.
 
-For values of y such that f2(y) = 0, we are free to define g1(x|y) however we wish, so long as g1(x|y) is a p.d.f. as a function of x.
+For values of y such that f2(y) = 0, we are free to define g1(x\|y) however we wish, so long as g1(x\|y) is a p.d.f. as a function of x.
 
 **Theorem 3.6.1**
 
-For each y, g1(x|y) defined in Definition 3.6.2 is a p.d.f. as a function of x.
+For each y, g1(x\|y) defined in Definition 3.6.2 is a p.d.f. as a function of x.
 
 **Definition 3.6.3**
 
@@ -583,7 +583,7 @@ Conditional p.f. or p.d.f. from Mixed Distribution. Let X be discrete and let Y 
 
 **Theorem 3.6.2**
 
-Multiplication Rule for Distributions. Let X and Y be random variables such that X has p.f. or p.d.f. f1(x) and Y has p.f. or p.d.f. f2(y). Also, assume that the conditional p.f. or p.d.f. of X given Y = y is g1(x|y) while the conditional p.f. or p.d.f. of Y given X = x is g2(y|x). Then for each y such that f2(y) > 0 and each x,
+Multiplication Rule for Distributions. Let X and Y be random variables such that X has p.f. or p.d.f. f1(x) and Y has p.f. or p.d.f. f2(y). Also, assume that the conditional p.f. or p.d.f. of X given Y = y is g1(x\|y) while the conditional p.f. or p.d.f. of Y given X = x is g2(y\|x). Then for each y such that f2(y) > 0 and each x,
 
 (Eq 3.6.7)
 
