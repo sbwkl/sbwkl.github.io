@@ -348,3 +348,254 @@ $$
 \frac{dF(x)}{dx} = f(x)
 $$
 
+**Definition 3.3.2**
+
+Quantiles/Percentiles. Let X be a random variable with c.d.f. F. For each p strictly
+between 0 and 1, define F −1(p) to be the smallest value x such that F (x) ≥ p. Then
+F −1(p) is called the p quantile of X or the 100p percentile of X. The function F −1
+defined here on the open interval (0, 1) is called the quantile function of X.
+
+**Definition 3.3.3**
+
+Median/Quartiles. The 1/2 quantile or the 50th percentile of a distribution is called its
+median. The 1/4 quantile or 25th percentile is the lower quartile. The 3/4 quantile or
+75th percentile is called the upper quartile
+
+**Definition 3.4.1**
+
+Joint/Bivariate Distribution. Let X and Y be random variables. The joint distribution
+or bivariate distribution of X and Y is the collection of all probabilities of the form
+Pr[(X, Y ) ∈ C]for all sets C of pairs of real numbers such that {(X, Y ) ∈ C} is an event.
+
+**Definition 3.4.2**
+
+Discrete Joint Distribution. Let X and Y be random variables, and consider the ordered
+pair (X, Y ). If there are only finitely or at most countably many different possible
+values (x, y) for the pair (X, Y ), then we say that X and Y have a discrete joint
+distribution.
+
+**Therorem 3.4.1**
+
+Suppose that two random variables X and Y each have a discrete distribution. Then
+X and Y have a discrete joint distribution.
+
+**Definition 3.4.3**
+
+Joint Probability Function, p.f. The joint probability function, or the joint p.f., of X and
+Y is defined as the function f such that for every point (x, y) in the xy-plane,
+
+f (x, y) = Pr(X = x and Y = y).
+
+**Theorem 3.4.2**
+
+Let X and Y have a discrete joint distribution. If (x, y) is not one of the possible
+values of the pair (X, Y ), then f (x, y) = 0. Also,
+
+$$
+\sum_{All (x, y)}^{}f(x, y) = 1
+$$
+
+Finally, for each set C of ordered pairs,
+
+$$
+P[(X, Y) \in C] = \sum_{(x, y) \in C}^{}f(x, y)
+$$
+
+**Definition 3.4.4**
+
+Continuous Joint Distribution/Joint p.d.f./Support. Two random variables X and Y have
+a continuous joint distribution if there exists a nonnegative function f defined over
+the entire xy-plane such that for every subset C of the plane,
+
+(Eq 3.4.1)
+
+$$
+P[(X, Y) \in C] = \int_{C}^{} \int f(x, y)
+$$
+
+if the integral exists. The function f is called the joint probability density function
+(abbreviated joint p.d.f.) of X and Y . The closure of the set {(x, y) : f (x, y) > 0} is
+called the support of (the distribution of) (X, Y ).
+
+**Theorem 3.4.3**
+
+A joint p.d.f. must satisfy the following two conditions:
+f (x, y) ≥ 0 for −∞ < x < ∞ and −∞ < y < ∞,
+and
+
+$$
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x, y)dx dy = 1
+$$
+
+Any function that satisfies the two displayed formulas in Theorem 3.4.3 is the joint
+p.d.f. for some probability distribution.
+
+**Theorem 3.4.4**
+
+For every continuous joint distribution on the xy-plane, the following two statements hold:
+
++ i. Every individual point, and every infinite sequence of points, in the xy-plane has probability 0.
++ ii. Let f be a continuous function of one real variable defined on a (possibly unbounded) interval (a, b). The sets {(x, y) : y = f (x), a < x < b} and {(x, y) : x = f (y), a < y < b} have probability 0.
+
+**Definition 3.4.5**
+
+Joint p.f./p.d.f. Let X and Y be random variables such that X is discrete and Y is continuous. Suppose that there is a function f (x, y) defined on the xy-plane such that, for every pair A and B of subsets of the real numbers,
+
+(Eq 3.4.4)
+
+$$
+P(X \in A \text{ and } Y \in B) = \int_{B} \sum_{x \in A}f(x, y)dy
+$$
+
+if the integral exists. Then the function f is called the joint p.f./p.d.f. of X and Y.
+
+Clearly, Definition 3.4.5 can be modified in an obvious way if Y is discrete and X is continuous. Every joint p.f./p.d.f. must satisfy two conditions. If X is the discrete random variable with possible values x1, x2, . . . and Y is the continuous random variable, then f (x, y) ≥ 0 for all x, y and
+
+(Eq 3.4.5)
+
+$$
+\int_{-\infty}^{\infty}\sum_{i=1}^{\infty}f(x_i, y) = 1
+$$
+
+Because f is nonnegative, the sum and integral in Eqs. (3.4.4) and (3.4.5) can be done in whichever order is more convenient.
+
+**Definition 3.4.6**
+
+Joint (Cumulative) Distribution Function/c.d.f. The joint distribution function or joint cumulative distribution function (joint c.d.f.) of two random variables X and Y is defined as the function F such that for all values of x and y (−∞ < x < ∞ and −∞ < y < ∞)
+
+F (x, y) = Pr(X ≤ x and Y ≤ y)
+
+It is clear from Definition 3.4.6 that F (x, y) is monotone increasing in x for each fixed y and is monotone increasing in y for each fixed x.
+
+(Eq 3.4.6)
+
+Pr(a < X ≤ b and c < Y ≤ d) = F(b, d) − F(a, d) − F (b, c) + F(a, c).
+
+**Theorem 3.4.5**
+
+Let X and Y have a joint c.d.f. F. The c.d.f. F1 of just the single random variable X can be derived from the joint c.d.f. F as F1(x) = limy→∞ F (x, y). Similarly, the c.d.f. F2 of Y equals F2(y) = limx→∞ F (x, y), for 0 < y < ∞.
+
+**Definition 3.5.1**
+
+Marginal c.d.f./p.f./p.d.f. Suppose that X and Y have a joint distribution. The c.d.f. of X derived by Theorem 3.4.5 is called the marginal c.d.f.of X. Similarly, the p.f. or p.d.f. of X associated with the marginal c.d.f. of X is called the marginal p.f. or marginal p.d.f. of X.
+
+**Theorem 3.5.1**
+
+If X and Y have a discrete joint distribution for which the joint p.f. is f , then the marginal p.f. f1 of X is
+
+$$
+f_1(x) = \sum_{All y}f(x, y)
+$$
+
+**Theorem 3.5.2**
+
+If X and Y have a continuous joint distribution with joint p.d.f. f , then the marginal p.d.f. f1 of X is
+
+(Eq 3.5.2)
+
+$$
+f_1(x) = \int_{-\infty}^{\infty}f(x, y)dy
+$$
+
+for −∞ < x < ∞.
+
+**Theorem 3.5.3**
+
+Let f be the joint p.f./p.d.f. of X and Y , with X discrete and Y continuous. Then the marginal p.f. of X is
+
+$$
+f_1(x) = P(X = x) = \int_{-\infty}^{\infty}f(x, y)dy
+$$
+
+for all x
+
+**Definition 3.5.2**
+
+Independent Random Variables. It is said that two random variables X and Y are independent if, for every two sets A and B of real numbers such that {X ∈ A} and {Y ∈ B} are events,
+
+(Eq 3.5.5)
+
+Pr(X ∈ A and Y ∈ B) = Pr(X ∈ A) Pr(Y ∈ B)
+
+**Theorem 3.5.4**
+
+Let the joint c.d.f. of X and Y be F, let the marginal c.d.f. of X be F1, and let the marginal c.d.f. of Y be F2. Then X and Y are independent if and only if, for all real numbers x and y, F (x, y) = F1(x)F2(y).
+
+**Theorem 3.5.5**
+
+Suppose that X and Y are random variables that have a joint p.f., p.d.f., or p.f./p.d.f. f. Then X and Y will be independent if and only if f can be represented in the following form for −∞ < x < ∞ and −∞ < y < ∞:
+
+(Eq 3.5.7)
+
+$$
+f(x, y) = h_1(x)h_2(y)
+$$
+
+where h1 is a nonnegative function of x alone and h2 is a nonnegative function of y alone.
+
+**Corollary 3.5.1**
+
+Two random variables X and Y are independent if and only if the following factorization is satisfied for all real numbers x and y:
+
+(Eq 3.5.9)
+
+$$
+f(x, y) = f_1(x)f_2(y)
+$$
+
+**Theorem 3.5.6**
+
+Let X and Y have a continuous joint distribution. Suppose that {(x, y) : f (x, y) > 0} is a rectangular region R (possibly unbounded) with sides (if any) parallel to the coordinate axes. Then X and Y are independent if and only if Eq. (3.5.7) holds for all (x, y) ∈ R.
+
+**Definition 3.6.1**
+
+Conditional Distribution/p.f. Let X and Y have a discrete joint distribution with joint p.f. f . Let f2 denote the marginal p.f. of Y. For each y such that f2(y) > 0, define
+
+(Eq 3.6.2)
+
+$$
+g_1(x | y) = \frac{f(x, y)}{f_2(y)}
+$$
+
+Then g1 is called the conditional p.f. of X given Y. The discrete distribution whose p.f. is g1(.|y) is called the conditional distribution of X given that Y = y.
+
+**Definition 3.6.2**
+
+Conditional p.d.f. Let X and Y have a continuous joint distribution with joint p.d.f. f and respective marginals f1 and f2. Let y be a value such that f2(y) > 0. Then the conditional p.d.f. g1 of X given that Y = y is defined as follows:
+
+(Eq 3.6.4)
+
+$$
+g_1(x | y) = \frac{f(x, y)}{f_2(y)}
+$$
+
+for −∞ < x < ∞.
+
+For values of y such that f2(y) = 0, we are free to define g1(x|y) however we wish, so long as g1(x|y) is a p.d.f. as a function of x.
+
+**Theorem 3.6.1**
+
+For each y, g1(x|y) defined in Definition 3.6.2 is a p.d.f. as a function of x.
+
+**Definition 3.6.3**
+
+Conditional p.f. or p.d.f. from Mixed Distribution. Let X be discrete and let Y be continuous with joint p.f./p.d.f. f . Then the conditional p.f. of X given Y = y is defined by Eq. (3.6.2), and the conditional p.d.f. of Y given X = x is defined by Eq. (3.6.3)
+
+**Theorem 3.6.2**
+
+Multiplication Rule for Distributions. Let X and Y be random variables such that X has p.f. or p.d.f. f1(x) and Y has p.f. or p.d.f. f2(y). Also, assume that the conditional p.f. or p.d.f. of X given Y = y is g1(x|y) while the conditional p.f. or p.d.f. of Y given X = x is g2(y|x). Then for each y such that f2(y) > 0 and each x,
+
+(Eq 3.6.7)
+
+$$
+f(x, y) = g_1(x|y)f_2(y)
+$$
+
+where f is the joint p.f., p.d.f., or p.f./p.d.f. of X and Y. Similarly, for each x such that f1(x) > 0 and each y,
+
+(Eq 3.6.8)
+
+$$
+f(x, y) = f_1(x)g_2(y|x)
+$$
+
