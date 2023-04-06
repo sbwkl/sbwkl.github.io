@@ -557,7 +557,7 @@ $$
 g_1(x | y) = \frac{f(x, y)}{f_2(y)}
 $$
 
-Then g1 is called the conditional p.f. of X given Y. The discrete distribution whose p.f. is g1(.|y) is called the conditional distribution of X given that Y = y.
+Then g1 is called the conditional p.f. of X given Y. The discrete distribution whose p.f. is g1(.\|y) is called the conditional distribution of X given that Y = y.
 
 **Definition 3.6.2**
 
