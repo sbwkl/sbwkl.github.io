@@ -599,3 +599,101 @@ $$
 f(x, y) = f_1(x)g_2(y|x)
 $$
 
+**Theorem 3.6.3**
+
+Law of Total Probability for Random Variables. If f2(y) is the marginal p.f. or p.d.f. of a random variable Y and g1(x\|y) is the conditional p.f. or p.d.f. of X given Y = y, then the marginal p.f. or p.d.f. of X is
+
+(Eq 3.6.11)
+
+$$
+f_1(x) = \sum_y g_1(x|y)f_2(y)
+$$
+
+if Y is discrete. If Y is continuous, the marginal p.f. or p.d.f. of X is
+
+(Eq 3.6.12)
+
+$$
+f_1(x) = \int_{-\infty}^{\infty}g_1(x|y)f_2(y)dy
+$$
+
+**Theorem 3.6.4**
+
+Bayes’ Theorem for Random Variables. If f2(y) is the marginal p.f. or p.d.f. of a random variable Y and g1(x|y) is the conditional p.f. or p.d.f. of X given Y = y, then the conditional p.f. or p.d.f. of Y given X = x is
+
+(Eq 3.6.13)
+
+$$
+g_2(y|x) = \frac{g_1(x|y)f_2(y)}{f_1(x)}
+$$
+
+where f1(x) is obtained from Eq. (3.6.11) or (3.6.12). Similarly, the conditional p.f. or p.d.f. of X given Y = y is
+
+(Eq 3.6.14)
+
+$$
+g_1(x|y) = \frac{g_2(y|x)f_1(x)}{f_2(y)}
+$$
+
+where f2(y) is obtained from Eq. (3.6.11) or (3.6.12) with x and y switched and with the subscripts 1 and 2 switched
+
+**Theorem 3.6.5**
+
+Independent Random Variables. Suppose that X and Y are two random variables having a joint p.f., p.d.f., or p.f./p.d.f. f . Then X and Y are independent if and only if for every value of y such that f2(y) > 0 and every value of x,
+
+(Eq 3.6.17)
+
+$$
+g_1(x|y) = f_1(x)
+$$
+
+**Definition 3.7.1**
+
+Joint Distribution Function/c.d.f. The joint c.d.f. of n random variables X1, . . . , Xn is the function F whose value at every point (x1, . . . , xn) in n-dimensional space Rn is specified by the relation
+
+(Eq 3.7.1)
+
+$$
+F(x_1, ..., x_n) = P(X_1 \le x_1, X_2 \le x_2, ..., X_n \le x_n)
+$$
+
+Every multivariate c.d.f. satisfies properties similar to those given earlier for univariate and bivariate c.d.f.’s.
+
+**Definition 3.7.2**
+
+Joint Discrete Distribution/p.f. It is said that n random variables X1, . . . , Xn have a discrete joint distribution if the random vector (X1, . . . , Xn) can have only a finite number or an infinite sequence of different possible values (x1, . . . , xn) in Rn. The joint p.f. of X1, . . . , Xn is then defined as the function f such that for every point (x1, . . . , xn) ∈ Rn
+
+$$
+f(x_1, ..., x_n) = P(X_1 = x_1, ..., X_n = x_n)
+$$
+
+**Theorem 3.7.1**
+
+If X has a joint discrete distribution with joint p.f. f , then for every subset C ⊂ Rn,
+
+$$
+P(X \in C) = \sum_{X \in C} f(x)
+$$
+
+**Definition 3.7.3**
+
+Continuous Distribution/p.d.f. It is said that n random variables X1, . . . , Xn have a continuous joint distribution if there is a nonnegative function f defined on Rn such that for every subset C ⊂ Rn,
+
+(Eq 3.7.2)
+
+$$
+P[(X_1, ..., X_n) \in C] = \int ··· \int f(x_1, ..., x_n)dx_1···dx_n
+$$
+
+if the integral exists. The function f is called the joint p.d.f. of X1, . . . , Xn.
+
+**Theorem 3.7.2**
+
+If the joint distribution of X1, . . . , Xn is continuous, then the joint p.d.f. f can be derived from the joint c.d.f. F by using the relation
+
+$$
+f(x_1, ..., x_n) = \frac{∂^nF(x_1, ..., x_n)}{∂x_1···∂x_n}
+$$
+
+at all points (x1, . . . , xn) at which the derivative in this relation exists.
+
