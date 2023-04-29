@@ -619,7 +619,7 @@ $$
 
 **Theorem 3.6.4**
 
-Bayes’ Theorem for Random Variables. If f2(y) is the marginal p.f. or p.d.f. of a random variable Y and g1(x|y) is the conditional p.f. or p.d.f. of X given Y = y, then the conditional p.f. or p.d.f. of Y given X = x is
+Bayes’ Theorem for Random Variables. If f2(y) is the marginal p.f. or p.d.f. of a random variable Y and g1(x\|y) is the conditional p.f. or p.d.f. of X given Y = y, then the conditional p.f. or p.d.f. of Y given X = x is
 
 (Eq 3.6.13)
 
@@ -696,4 +696,77 @@ f(x_1, ..., x_n) = \frac{∂^nF(x_1, ..., x_n)}{∂x_1···∂x_n}
 $$
 
 at all points (x1, . . . , xn) at which the derivative in this relation exists.
+
+**Theorem 3.7.3**
+
+Let F denote the joint c.d.f. of X1, ..., Xn, and let Fi denote the marginal univariate c.d.f. of Xi for i = 1, ..., n. The variables X1 ,..., Xn are independent if and only if,
+
+$$
+F(x_1, x_2, ..., x_n) = F_1(x_1)F_2(x_2)...F_n(x_n) \\
+\text{for all points (} x_1, x_2, ..., x_n) \in R^n
+$$
+
+**Theorem 3.7.4**
+
+If X1, ..., Xn have a continuous, discrete, or mixed joint distribution for which the joint p.d.f., joint p.f., or joint p.f./p.d.f. is f , and if fi is the marginal univariate p.d.f. or p.f. of Xi (i = 1, ..., n), then X1, ..., Xn are independent if and only if the following relation is satisﬁed at all points (x1, x2, ..., xn) ∈ Rn :
+
+$$
+f(x_1, X_2, ..., x_n) = f_1(x_1)f_2(x_2)...f_n(x_n)
+$$
+
+**Definition 3.7.6**
+
+Random Samples/i.i.d./Sample Size
+
+independent and identically distributed
+
+$$
+g(x_1, x_2, ..., x_n) = f(x_1)f(x_2)...f(x_n)
+$$
+
+**Definition 3.7.7**
+
+Condition p.f., p.d.f., or p.f./p.d.f.
+
+$$
+g_1(\vec{y}|\vec{z}) = \frac{f(\vec{y}, \vec{z})}{f_2(\vec{z})}\text{ for y } \in R^k
+$$
+
+$$
+f(\vec{y}, \vec{z}) = g_1(\vec{y}|\vec{z})f_2(\vec{z})
+$$
+
+**Theorem 3.7.5**
+
+Multivariate Law of Total Probability and Bayes' Theorem
+
+$$
+f_1(\vec{y}) = \underbrace{\int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty}}_{n - k} g_1(\vec{y}|\vec{z})f_2(\vec{z})dz
+$$
+
+$$
+g_2(\vec{z}|\vec{y}) = \frac{g_1(\vec{y}|\vec{z})f_2(\vec{z})}{f_1(\vec{y})}
+$$
+
+**Definition 3.7.8**
+
+Conditionally Independent Random Variables
+
+**X** conditionally independent given **Z**
+
+$$
+g(\vec{x}|\vec{z}) = \prod_{i=1}^{n}g_i(x_i|\vec{z})
+$$
+
+Conditional Version of Past and Future Theorem
+
+Eq 3.7.16
+
+$$
+f_1(\vec{y}|\vec{w}) = \underbrace{\int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty}}_{n-k} g_1(\vec{y}|\vec{z}, \vec{w})f_2(\vec{z}|\vec{w})
+$$
+
+$$
+g_2(\vec{z}|\vec{y}, \vec{w}) = \frac{g_1(\vec{y}|\vec{z}, \vec{w})f_2(\vec{z}|\vec{w})}{f_1(\vec{y}|\vec{w})}
+$$
 
