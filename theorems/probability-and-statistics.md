@@ -758,9 +758,9 @@ $$
 g(\vec{x}|\vec{z}) = \prod_{i=1}^{n}g_i(x_i|\vec{z})
 $$
 
-Conditional Version of Past and Future Theorem
-
 Eq 3.7.16
+
+Conditional Version of Past and Future Theorem
 
 $$
 f_1(\vec{y}|\vec{w}) = \underbrace{\int_{-\infty}^{\infty} \dots \int_{-\infty}^{\infty}}_{n-k} g_1(\vec{y}|\vec{z}, \vec{w})f_2(\vec{z}|\vec{w})
