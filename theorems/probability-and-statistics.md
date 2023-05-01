@@ -711,7 +711,7 @@ $$
 If X1, ..., Xn have a continuous, discrete, or mixed joint distribution for which the joint p.d.f., joint p.f., or joint p.f./p.d.f. is f , and if fi is the marginal univariate p.d.f. or p.f. of Xi (i = 1, ..., n), then X1, ..., Xn are independent if and only if the following relation is satisﬁed at all points (x1, x2, ..., xn) ∈ Rn :
 
 $$
-f(x_1, X_2, ..., x_n) = f_1(x_1)f_2(x_2)...f_n(x_n)
+f(x_1, x_2, ..., x_n) = f_1(x_1)f_2(x_2)...f_n(x_n)
 $$
 
 **Definition 3.7.6**
