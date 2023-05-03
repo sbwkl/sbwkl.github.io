@@ -53,7 +53,7 @@ $$
 
 Y = F(x)
 
-Y 是 X 的 c.d.f. 俄罗斯套娃
+Y 是 X 的 c.d.f.
 
 $$
 G(y) = P(Y \le y) = P(X \le x) = y
@@ -65,7 +65,7 @@ $$
 
 Y = r(X)
 
-函数 r 可导，而且是 one-to-one function
+函数 r 可导，而且是 one-to-one function，s(y) 是 r 的逆函数 x = s(y)
 
 $$
 g(y) = f[s(y)]|\frac{ds(y)}{dy}|
