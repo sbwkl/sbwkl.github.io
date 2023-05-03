@@ -770,3 +770,97 @@ $$
 g_2(\vec{z}|\vec{y}, \vec{w}) = \frac{g_1(\vec{y}|\vec{z}, \vec{w})f_2(\vec{z}|\vec{w})}{f_1(\vec{y}|\vec{w})}
 $$
 
+**Theorem 3.8.1**
+
+Function of a Discrete Random Variable
+
+$$
+g(y) = P(Y=y) = P(r(X) = y) = \sum_{x:r(x) = y} f(x)
+$$
+
+**Theorem 3.8.2**
+
+Linear Function
+
+Y = aX + b (a ≠ 0)
+
+$$
+g(y) = \frac{1}{|a|}f(\frac{y-b}{a})
+$$
+
+**Theorem 3.8.3**
+
+Probability Intergal Transformation
+
+if Y = F(x)
+
+then Y is the uniform distribution on the interval [0, 1]
+
+**Corollary 3.8.1**
+
+if Y uniform distribution on the interval [0, 1], quantile funtion F<sup>-1</sub>
+
+then X = F<sup>-1</sup>(Y) has c.d.f. F
+
+**Theorem 3.8.4**
+
+if X has p.d.f. f and P(a < X < b) = 1, Y = r(X), r(x) is differentiable and one-to-one, (α, β) is image of interval (a, b), s(y) be the inverse function of r(x)
+
+then p.d.f. of Y is
+
+$$
+g(y) = f[s(y)]|\frac{ds(y)}{dy}|
+$$
+
+**Theorem 3.9.1**
+
+Functions of Discrete Random Variables
+
+$$
+Y_m = r_m(X_1, ..., X_m)
+$$
+
+$$
+g(y_1, ..., y_m) = \sum_{x_1, ..., x_n \in A}f(x_1, ..., x_n)
+$$
+
+**Theorem 3.9.2**
+
+Binomial and Bernoulli Distributions
+
+if X are i.i.d. bernoulli distribution
+
+Y = X_1 + ... + X_n
+
+then Y is binomial distribution
+
+**Theorem 3.9.3**
+
+Brute-Force Distributions of a Function
+
+**X** = (X_1, ..., X_n)
+
+Y = r(**X**)
+
+A_y = {**x**: r(**x**) ≤ y}
+
+$$
+G(y) = \int_{A_y} \dots \int f(\vec{x}) d\vec{x}
+$$
+
+**Theorem 3.9.4**
+
+Linear Function of Two Random Variable
+
+if
+
+$$
+Y = a_1X_1 + a_2X_2 + b
+$$
+
+then
+
+$$
+g(y) = \int_{-\infty}^{\infty}f(\frac{y - b - a_2x_2}{a_1}, x_2)\frac{1}{|a|}dx_2
+$$
+
