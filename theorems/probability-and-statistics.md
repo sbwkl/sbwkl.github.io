@@ -864,3 +864,69 @@ $$
 g(y) = \int_{-\infty}^{\infty}f(\frac{y - b - a_2x_2}{a_1}, x_2)\frac{1}{|a|}dx_2
 $$
 
+**Definition 3.9.1**
+
+Convolution
+
+Y = X<sub>1</sub> + X<sub>2</sub>
+
+$$
+g(y) = f_1(y - z)f_2(z)dz
+$$
+
+$$
+g(y) = f_1(z)f_2(y - z)dz
+$$
+
+Eq 3.9.8
+
+Y<sub>n</sub> = max{X<sub>1</sub>, ..., X<sub>n</sub>}
+
+Y<sub>1</sub> = min{X<sub>1</sub>, ..., X<sub>n</sub>}
+
+$$
+G_n(y) = [F(y)]^n
+$$
+
+$$
+g_n(y) = n[F(y)]^{n-1}f(y)
+$$
+
+$$
+G_1(y) = 1 - [1 - F(y)]^n
+$$
+
+$$
+g_1(y) = n[1 - F(y)]^{n-1}f(y)
+$$
+
+$$
+G(y_1, y_n) = [F(y_n)]^n - [F(y_n) - F(y_1)]^n
+$$
+
+**Theorem 3.9.6**
+
+if
+
+$$
+\boldsymbol{Y} = \boldsymbol{A}\boldsymbol{X}
+$$
+
+then
+
+$$
+g(\boldsymbol{y}) = \frac{1}{|det \boldsymbol{A}|}f(\boldsymbol{A}^{-1}\boldsymbol{y})
+$$
+
+**Theorem 3.10.1**
+
+$$
+P(X_1 = x_1, ..., X_n = x_n) \\
+= P(X_1 = x_1)P(X_2 = x_2|X_1 = x_1)...P(X_n = x_n|X_{n-1} = x_{x - 1})
+$$
+
+$$
+P(X_{n+1} = x_{n+1}, ..., X_{n+m} = x_{n+m}|X_n = x_n) \\
+= P(X_{n+1} = x_{n+1}|X_n=x_n)P(X_{n+2} = x_{n+2}|X_{n+1} = x_{n+1})...P(X_{n+m} = x_{n+m}|X_{n+m-1} = x_{x+m-1})
+$$
+
