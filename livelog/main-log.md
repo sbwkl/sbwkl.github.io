@@ -5,6 +5,15 @@
 怎样解决，有什么启示？
 ```
 
+**2023-005-17 周三 小雨 20℃**
+
+```
+spring-boot 读取 jar 包文件
+
+获得 Resource 文件后不要使用 getFile 使用 getInputStream 更佳
+getFile 容易 FileNotFoundException
+```
+
 **2023-03-30 周四 阴 12℃**
 
 ```
