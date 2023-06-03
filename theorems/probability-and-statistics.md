@@ -350,10 +350,7 @@ $$
 
 **Definition 3.3.2**
 
-Quantiles/Percentiles. Let X be a random variable with c.d.f. F. For each p strictly
-between 0 and 1, define F −1(p) to be the smallest value x such that F (x) ≥ p. Then
-F −1(p) is called the p quantile of X or the 100p percentile of X. The function F −1
-defined here on the open interval (0, 1) is called the quantile function of X.
+Quantiles/Percentiles. Let X be a random variable with c.d.f. F. For each p strictly between 0 and 1, define $F^{−1}(p)$ to be the smallest value x such that F (x) ≥ p. Then $F^{−1}(p)$ is called the p quantile of X or the 100p percentile of X. The function $F^{−1}$ defined here on the open interval (0, 1) is called the quantile function of X.
 
 **Definition 3.3.3**
 
@@ -938,5 +935,150 @@ $$
 
 $$
 g(j|i) = p_{ij}
+$$
+
+**Theorem 3.10.4**
+
+If there exists m such that every element of $\vec{P}^m$ is strictly positive, then
+
++ the Markov chain has a unique stationary distribution $\vec{v}$,
++ $\lim_{n→\infty} P$ n is a matrix with all rows equal to $\vec{v}$, and
++ no matter with what distribution the Markov chain starts, its istribution after n steps converges to v as n → ∞.
+
+**Theorem 4.1.1**
+
+$$
+E[r(x)] = \int_{-\infty}^\infty r(x)f(x)dx
+$$
+
+$$
+E[r(x)] = \sum_{all \ x} r(x)f(x)
+$$
+
+**Theorem 4.1.2**
+
+$Y = r(X_1, ..., X_n)$
+
+$$
+E(Y) = \int \dots \int r(x_1, ..., x_n)f(x_1, ..., x_n)dx_1\dots dx_n
+$$
+
+$$
+E(Y) = \sum_{All \ x_1, ..., x_n} r(x_1, ..., x_n)f(x_1, ..., x_n)
+$$
+
+**Theorem 4.2.1**
+
+if $Y = aX + b$ then $E(Y) = aE(x) + b$
+
+**Theorem 4.2.2**
+
+If there exists a constant such that Pr(X ≥ a) = 1, then E(X) ≥ a. If there exists a constant b such that Pr(X ≤ b) = 1, then E(X) ≤ b.
+
+**Theorem 4.2.3**
+
+Suppose that E(X) = a and that either Pr(X ≥ a) = 1 or Pr(X ≤ a) = 1. Then Pr(X = a) = 1.
+
+**Theorem 4.2.4**
+
+If $X_1, . . . , X_n$ are n random variables such that each expectation $E(X_i)$ is finite (i = 1, . . . , n), then
+
+$$
+E(X_1 + ... + X_n) = E(X_1) + ... + E(X_n)
+$$
+
+**Corollary 4.2.2**
+
+Assume that $E(X_i)$ is finite for i = 1, . . . , n. For all constants $a_1, . . . , a_n$ and b,
+
+$$
+E(a_1X_1 + . . . + a_nX_n + b) = a_1E(X_1) + . . . + a_nE(X_n) + b
+$$
+
+**Definition 4.2.1**
+
+Convex Functions. A function g of a vector argument is convex if, for very α ∈ (0, 1), and every x and y, 
+
+g[αx + (1 − α)y] ≤ αg(x) + (1 − α)g(y).
+
+**Theorem 4.2.5**
+
+Jensen’s Inequality. Let g be a convex function, and let X be a random vector with finite mean. Then E[g(X)] ≥ g(E(X)).
+
+**Theorem 4.2.6**
+
+If $X_1, . . . , X_n$ are n independent random variables such that each expectation $E(X_i)$ is finite (i = 1, . . . , n), then
+
+$$
+E(\prod_{i=1}^{n}X_i)=\prod_{i=1}^{n}E(X_i)
+$$
+
+**Theorem 4.2.7**
+
+Integer-Valued Random Variables. Let X be a random variable that can take only the values 0, 1, 2, . . . . Then
+
+$$
+E(X) = \sum_{i=1}^nP(X \ge n)
+$$
+
+**Theorem 4.2.8**
+
+General Nonnegative Random Variable. Let X be a nonnegative random variable with c.d.f. F. Then
+
+$$
+E(X) = \int_{0}^\infty[1-F(x)]dx
+$$
+
+**Theorem 4.3.1**
+
+Alternative Method for Calculating the Variance. For every random variable X, $Var(X) = E(X^2) − [E(X)]^2$
+
+**Theorem 4.3.3**
+
+Var(X) = 0 if and only if there exists a constant c such that Pr(X = c) = 1
+
+**Theorem 4.3.4**
+
+For constants a and b, let $Y = aX + b$. Then $Var(Y) = a^2 Var(X)$,
+and $σ_Y = |a|σ_X$
+
+**Theorem 4.3.5**
+
+If $X_1, . . . , X_n$ are independent random variables with finite means, then $Var(X_1 + . . . + X_n) = Var(X_1) + . . . + Var(X_n)$.
+
+**Corollary 4.3.1**
+
+If $X_1, . . . , X_n$ are independent random variables with finite means, and if $a_1, . . . , a_n$ and b are arbitrary constants, then $Var(a_1X_1 + . . . + a_nX_n + b) = a_1^2 Var(X_1) + . . . + a_n^2 Var(X_n)$.
+
+**Theorem 4.4.1**
+
+If $E(|X|^k) \lt \infty$ for some positive integer k, then $E(|X|^j) \lt \infty$ for every positive integer j such that j < k
+
+**Definition 4.4.2**
+
+Moment Generating Function. Let X be a random variable. For each real number t, define
+
+$$
+\psi(t) = E(e^{tX})
+$$
+
+**Theorem 4.4.2**
+
+Let X be a random variables whose m.g.f. ψ(t) is finite for all values of t in some open interval around the point t = 0. Then, for each integer n > 0, the nth moment of X, $E(X^n)$ is finite and equals the nth derivative $\psi^{(n)}(t)$ at t = 0. That is, $E(X^n) = \psi^{(n)}(0)$ for n = 1, 2, ...
+
+**Theorem 4.4.3**
+
+Let X be a random variable for which the m.g.f. is $\psi_1$; let Y = aX + b, where a and b are given constants; and let $\psi_2$ denote the m.g.f. of Y. Then for every value of t such that $\psi_1(at)$ is finite,
+
+$$
+\psi_2(t) = e^{bt}\psi_1(at)
+$$
+
+**Theorem 4.4.4**
+
+Suppose that $X_1, . . . , X_n$ are n independent random variables; and for i = 1, ..., n, let $\psi_i$ denote the m.g.f. of $X_i$. Let $Y = X_1 + . . . + X_n$, and let the m.g.f. of Y be denoted by $\psi$. Then for every value of t such that $\psi_i(t)$ is finite for i = 1, ..., n
+
+$$
+\psi(t) = \prod_{i=1}^{n}\psi_i(t)
 $$
 
