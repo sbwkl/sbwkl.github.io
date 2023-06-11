@@ -30,16 +30,34 @@ $M.S.E.$ 全称 Mean Squared Error，翻译过来叫均方误差。这个在线�
 
 $M.A.E.$ 全称 Mean Absolute Error，翻译过来叫平均绝对误差
 
-协方差 
+协方差 covariance
+
+相关 correlation
+
+两个新概念，衡量两个随机变量线性依赖的程度。
 
 $Cov(X, Y)=E[(X-\mu_X)(Y-\mu_Y)]$
 
-$Cov(X, Y)=E(XY) - E(X)E(Y)$
-
+这么看的话 $Var(X) = Cov(X, X)$
 
 $\rho(X,Y)=\frac{Cov(X,Y)}{\sigma_X\sigma_Y}$
 
+
 $[E(UV)]^2 \le E(U^2)E(V^2)$
+
+$\rho(X,Y)$ 的取值在 [-1, 1] 之间，
+
+$Cov(X, Y)=E(XY) - E(X)E(Y)$
+
+所以如果 X, Y 独立，那么 Cov(X, Y) = 0，但反过来不一定成立。
+
+比如 X = -1, 0, 1，$Y = X^2$ 那么 Cov(X, Y) = 0
+
+实际上如果 X 在 x = 0 对称，Y 是 X 的偶数次幂，那么协方差都是零。
+
+所以协方差也不是万能的。
+
+
 
 $Var(X+Y)=Var(X) + Var(Y) + 2Cov(X,Y)$
 

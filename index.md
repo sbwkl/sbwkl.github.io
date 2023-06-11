@@ -1,3 +1,35 @@
+[《概率统计》 day 19](post/2023/06/06-probability-and-statistics-19.md)
+
+[《概率统计》 day 18](post/2023/05/23-probability-and-statistics-18.md)
+
+[《概率统计》 day 17](post/2023/05/15-probability-and-statistics-17.md)
+
+[《概率统计》 day 16](post/2023/05/12-probability-and-statistics-16.md)
+
+[《概率统计》 day 15](post/2023/05/04-probability-and-statistics-15.md)
+
+[《概率统计》 day 14](post/2023/05/03-probability-and-statistics-14.md)
+
+[《概率统计》 day 13](post/2023/04/30-probability-and-statistics-13.md)
+
+[《概率统计》 day 12](post/2023/04/25-probability-and-statistics-12.md)
+
+[《概率统计》 day 11](post/2023/04/20-probability-and-statistics-11.md)
+
+[《概率统计》 day 10](post/2023/04/11-probability-and-statistics-10.md)
+
+[《概率统计》 day 9](post/2023/03/31-probability-and-statistics-09.md)
+
+[《概率统计》 day 8](post/2023/03/27-probability-and-statistics-08.md)
+
+[《概率统计》 day 7](post/2023/03/15-probability-and-statistics-07.md)
+
+[《概率统计》 day 6](post/2023/03/14-probability-and-statistics-06.md)
+
+[《概率统计》 day 5](post/2023/03/10-probability-and-statistics-05.md)
+
+[《概率统计》 day 4](post/2023/03/08-probability-and-statistics-04.md)
+
 [《概率统计》 day 3](post/2023/03/02-probability-and-statistics-03.md)
 
 [《概率统计》 day 2](post/2023/02/27-probability-and-statistics-02.md)
