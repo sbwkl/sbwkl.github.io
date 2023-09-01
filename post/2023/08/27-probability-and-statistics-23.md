@@ -15,7 +15,7 @@ $$
 证明秀我一脸
 
 $$
-\int_{-infty}_{infty} f(x|\mu, \sigma^2)dx = 1
+\int_{-\infty}^{\infty} f(x|\mu, \sigma^2)dx = 1
 $$
 
 令 $y = \frac{x-\mu}{\sigma}$，$dy=d(x-\mu)/\sigma = \frac{1}{\sigma}dx$
@@ -23,16 +23,16 @@ $$
 于是转化为求积分
 
 $$
-\int_{-infty}_{infty}\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2}
+\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2}
 $$
 
 接着画风开始骚起来了
 
-让 $I=\int_{-infty}_{infty}e^{-\frac{1}{2}y^2}dy$ 然后
+让 $I=\int_{-\infty}^{\infty}e^{-\frac{1}{2}y^2}dy$ 然后
 
 $$
-I^2 = \int_{-infty}_{infty}e^{-\frac{1}{2}y^2}dy \int_{-infty}_{infty}e^{-\frac{1}{2}z^2}dz \\
-= \int_{-infty}_{infty} \int_{-infty}_{infty} e^{-\frac{1}{2}(y^2 + z^2)}dydz
+I^2 = \int_{-\infty}^{\infty}e^{-\frac{1}{2}y^2}dy \int_{-\infty}^{\infty}e^{-\frac{1}{2}z^2}dz \\
+= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-\frac{1}{2}(y^2 + z^2)}dydz
 $$
 
 还能这么玩哒。
@@ -43,21 +43,21 @@ $$
 I^2 = \int_0^{2\pi}\int_{0}^{\infty}e^{-\frac{1}{2}r}rdrdθ
 $$
 
-这里 $dydz = rdrdθ$ 想了半天没明白，查了资料才知道 dydz 不是普通乘积，而应该叫楔形积，记为 $dy \and dz$ 更合适
+这里 $dydz = rdrdθ$ 想了半天没明白，查了资料才知道 dydz 不是普通乘积，而应该叫楔形积，记为 $dy \wedge dz$ 更合适
 
 至于楔形积是什么，没继续深入，似乎和线性代数有关，那将来一定会再相见。
 
 它的运算规则是
 
 $$
-dy \and \dz = - (dz \and dy) \\
-dy \and dy = 0
+dy \wedge dz = - (dz \wedge dy) \\
+dy \wedge dy = 0
 $$
 
 所以
 
 $$
-dydz = d(r cos \theta) \and d(r sin \theta) = ...
+dydz = d(r cos \theta) \wedge d(r sin \theta) = ...
 $$
 
 以上内容来自知乎老哥，虽然一直逼乎逼乎的叫，但真遇到问题，还得是它。
@@ -73,6 +73,8 @@ $$
 
 标准正态分布
 
+这个符号和那个三叉戟好像
+
 标准正态分布的作用应该是简化计算，但我都有计算机了，那还不随便拿个 python 库就行。
 
 
@@ -83,4 +85,3 @@ The
 
 
 [为什么 dxdy=rdrdθ](https://www.zhihu.com/question/368888687)
-
