@@ -6,9 +6,9 @@ $$
 f(x|\mu, \sigma^2) = \frac{1}{\sqrt{2\pi}\sigma}e^{[-\frac{1}{2}(\frac{x - \mu}{\sigma})^2]}
 $$
 
-它的原名 normal distribution 好理解很多，正态真有点意义不明，同理的还有正则，正字辈的多少有点神秘。
+它的原名 normal distribution 好理解很多，正态真有点意义不明，同理的还有正则，正字辈的多少带点神秘。
 
-概率密度函数的积分要等于一，为了证明 $\int_{-\infty}^{\infty} f(x|\mu, \sigma^2)dx = 1$。
+概率密度函数的积分要等于一，为了证明 $\int_{-\infty}^{\infty} f(x|\mu, \sigma^2)dx = 1$
 
 令 $y = \frac{x-\mu}{\sigma}$ 那么 $dy = \frac{1}{\sigma}dx$
 
@@ -92,7 +92,7 @@ $$
 
 老祖宗也有本书《营造法式》里面定义各种建筑标准，只管按比例造就完事了，古代版乐高。
 
-现在都普及计算机了，计算的事随便按两下就好。不过实际用下来对于求 $P(X \ge x)$ 先转成标准不容易出错。
+现在人手一台电脑，计算的事随便按两下就好。不过实际用下来对于求 $P(X \ge x)$ 还是先转成标准正态分布不容易出错。
 
 + [1]为什么 $dxdy=rdrdθ$：*https://www.zhihu.com/question/368888687*
 
