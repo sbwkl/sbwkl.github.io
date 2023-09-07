@@ -1116,7 +1116,7 @@ $$
 
 $X_i$ gamma distribution with $α_i$, $β$ and independent, then the sum of $X_1 + X_2 + ... + X_k$ is gamma distribution with $α_1 + α_2 + ... + α_k$, $β$
 
-**Definition**
+**Definition 5.7.3**
 
 Exponential Distributions
 
@@ -1132,3 +1132,18 @@ $$
 E(X \ge t+h|X\ge t) = E(X\ge h)
 $$
 
+**Theorem 5.7.10**
+
+$X_i$ exponential distribution with β then $Y_1 = min(X_1, ..., X_n)$ is exponential distribution with nβ
+
+**Theorem 5.7.11**
+
+$X_i$ exponential distribution with β and $Z_1 \le Z_2 \le ... \le Z_n$ small to large of $X_i$. For each k = 2, 3, ..., n, $Y_k = Z_k - Z_{k-1}$ then $Y_k$ is exponential distribution with $(n + 1 - k)β$
+
+**Theorem 5.7.12**
+
+Times between Arrivals in a Poisson Process. Suppose that arrivals occur according to a Poisson process with rate β. Let $Z_k$ be the time until the k-th arrival for k = 1, 2, .... Deﬁne $Y_1 = Z_1$ and $Y_k = Z_k − Z_{k−1}$ for k ≥ 2. Then $Y_1, Y_2$, ... are i.i.d. and they each have the exponential distribution with parameter β.
+
+**Corollary 5.7.1**
+
+Time until k th Arrival. In the situation of Theorem 5.7.12, the distribution of $Z_k$ is the gamma distribution with parameters k and β.
