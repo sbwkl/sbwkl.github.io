@@ -1082,3 +1082,53 @@ $$
 \psi(t) = \prod_{i=1}^{n}\psi_i(t)
 $$
 
+// 往上漏了很多定理没抄
+
+**Definition 5.7.2**
+
+Gamma Distributions
+
+$$
+f(x|α, β) = \frac{β^α}{Γ(α)}x^{α-1}e^{-βx}
+$$
+
+**Theorem 5.7.5**
+
+$$
+E(X^k) = \frac{Γ(α + k)}{β^kΓ(α)} = \frac{α(α+1)...(α+k-1)}{β^k}
+$$
+
+$$
+E(X) = \frac{α}{β}
+$$
+
+$$
+Var(X) = \frac{α}{β^2}
+$$
+
+**Theorem 5.7.6**
+
+$$
+\psi(t) = (\frac{β}{β - t})^α
+$$
+
+**Theorem 5.7.7**
+
+$X_i$ gamma distribution with $α_i$, $β$ and independent, then the sum of $X_1 + X_2 + ... + X_k$ is gamma distribution with $α_1 + α_2 + ... + α_k$, $β$
+
+**Definition**
+
+Exponential Distributions
+
+$$
+f(x|β) = f(x|1, β) = βe^{-βx}
+$$
+
+**Theorem 5.7.9**
+
+Memoryless Property of Exponential Distributions
+
+$$
+E(X \ge t+h|X\ge t) = E(X\ge h)
+$$
+
