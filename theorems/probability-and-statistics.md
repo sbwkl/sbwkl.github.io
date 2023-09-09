@@ -1147,3 +1147,40 @@ Times between Arrivals in a Poisson Process. Suppose that arrivals occur accordi
 **Corollary 5.7.1**
 
 Time until k th Arrival. In the situation of Theorem 5.7.12, the distribution of $Z_k$ is the gamma distribution with parameters k and β.
+
+**Definition 5.8.1**
+
+The Beta Function
+
+Pisitive α, β
+
+$$
+B(α, β) = \int_0^1 x^{α - 1}(1-x)^{β - 1}dp
+$$
+
+**Therorem 5.8.1**
+
+$$
+B(α, β) = \frac{Γ(α)Γ(β)}{Γ(α + β)}
+$$
+
+**Definition 5.8.2**
+
+Beta Distribution
+
+$$
+f(x|α, β) = \frac{Γ(α + β)}{Γ(α)Γ(β)}x^{α - 1}(1-x)^{β-1}
+$$
+
+**Theorem 5.8.2**
+
+P has beta distribution $α, β$ and the condition distribution of X given P = p is binomial distribution with n and p. Then the condition distribution of P give X = x is the beta distribution with $α + x, β + n - x$.
+
+**Theorem 5.8.3**
+
+Moments of beta distribution
+
+$$
+E(X^k) = \frac{α(α+1)...(α + k - 1)}{(α + β)(α + β + 1)...(α + β + k - 1)}
+$$
+
