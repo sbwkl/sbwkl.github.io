@@ -135,7 +135,7 @@ $$
 f(x|\alpha, \beta) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}
 $$
 
-当时用的均匀分布 $f(p) = 1$，是 $\alpha=\beta=1$ 的特殊情况。
+当时用的均匀分布 $f(p) = 1$，是 $\alpha=\beta=1$ 的特殊形式。
 
 如果 $P$ 是参数 $\alpha, \beta$ 的贝塔分布，n 次试验，观察到 x 次成功后的条件概率 $f(p|X=x)$ 是 $\alpha + x$, $\beta  + n - x$ 的贝塔分布，大幅简化了计算过程。
 
