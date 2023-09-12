@@ -1192,3 +1192,25 @@ $$
 
 $x_1 + x_2 + ... + x_k = n$
 
+**Theorem 5.9.1**
+
+$\vec{X} = (X_1, X_2)$ has the multinomial distribution with n and $\vec{p}=(p_1, p_2)$. Then $X_1$ has the binomial distribution with n and $p_1$, and $X_2 = n - X_1$
+
+**Corollary 5.9.1**
+
+$\vec{X} = (X_1, ..., X_k)$ has the multinomial distribution with n and $\vec{p}=(p_1, ..., p_k)$. Then $X_i$ has the binomial distribution with n and $p_i$.
+
+**Corollary 5.9.2**
+
+$\vec{X} = (X_1, ..., X_k)$ has the multinomial distribution with n and $\vec{p}=(p_1, ..., p_k)$ with $k>2$. Let $l < k$, and let $i_1, ..., i_l$ be distinct elements of the set {1, ..., k}. The distribution of $Y=X_{i_1} + ... + X_{i_l}$ is the binomial distribution with parameters n and $p_{i_1} + ... p_{i_l}$.
+
+**Theorem 5.9.2**
+
+$\vec{X}$ have the multinomial distribution with n and $\vec{p}$. Then
+
+$$
+E(X_i) = np_i \\
+Var(X_i) = np_i(1-p_i) \\
+Cov(X_i, X_j) = -np_ip_j
+$$
+
