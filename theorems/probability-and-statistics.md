@@ -1214,3 +1214,36 @@ Var(X_i) = np_i(1-p_i) \\
 Cov(X_i, X_j) = -np_ip_j
 $$
 
+**Theorem 5.10.1**
+
+$Z_1, Z_2$ standard normal distribution, $\mu_1, \mu_2, \sigma_1, \sigma_2, \rho$ constants such that $-\infty \lt \mu_i \lt \infty, \sigma_i \gt 0, -1 \lt \rho \lt 1$, define two random variables
+
+(Eq 5.10.1)
+
+$$
+X_1 = \sigma_1Z_1 + \mu_1
+$$
+$$
+X_2 = \sigma_2(\rho Z_1 + (1 - \rho^2)^{1/2}Z_2) + \mu_2
+$$
+
+The joint p.d.f. is
+
+(Eq 5.10.2)
+
+$$
+f(x_1, x_2) = \frac{1}{2\pi(1-\rho^2)^{1/2}\sigma_1 \sigma_2}exp(-\frac{1}{2(1-\rho^2)}[(\frac{x_1-\mu_1}{\sigma_1})^2-2\rho(\frac{x_1-\mu_1}{\sigma_1})(\frac{x_2-\mu_2}{\sigma_2}) + (\frac{x_2-\mu_2}{\sigma_2})^2])
+$$
+
+**Theorem 5.10.2**
+
+Inverse of Theorem 5.10.1
+
+$X_1, X_2$ has joint distribution 5.10.1, then exist $Z_1, Z_2$, $X_i$ has $\mu_i$ and $\sigma_i$ and correlation $\rho$.
+
+**Definition 5.10.1**
+
+Bivariate Normal Distributions
+
+When joint p.d.f. of two random variables $X_1, X_2$ is of the form in Eq. (5.10.2), it is said that $X_1, X_2$ have the bivariate normal distribution with means $\mu_i$, variances $\sigma_i^2$, and correlation $\rho$.
+
