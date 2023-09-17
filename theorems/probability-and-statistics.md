@@ -1247,3 +1247,21 @@ Bivariate Normal Distributions
 
 When joint p.d.f. of two random variables $X_1, X_2$ is of the form in Eq. (5.10.2), it is said that $X_1, X_2$ have the bivariate normal distribution with means $\mu_i$, variances $\sigma_i^2$, and correlation $\rho$.
 
+**Theorem 5.10.4**
+
+$X_1, X_2$ have the bivariate normal distribution. The conditional distribution of $X_2$ given that $X_1 = x_1$ is the normal distribution with mean and variance given by
+
+$$
+E(X_2|x_1) = \mu_2 + \rho\sigma_2(\frac{x_1-\mu_1}{\sigma_1})
+$$
+
+$$
+Var(X_2|x_1) = (1-\rho^2)\sigma_2^2
+$$
+
+**Theorem 5.10.5**
+
+Linear Combination of Bivariate Normals
+
+$X_1, X_2$ have bivariate normal distribution. Let $Y = a_1X_1 + a_2X_2 + b$, where $a_1, a_2, b$ are arbitrary given constants. Then $Y$ has the normal distribution with mean $a_1\mu_1 + a_2\mu_2 + b$ and variance $a_1^2\sigma_1^2 + a_2^2\sigma_2^2 + 2a_1a_2\rho\sigma_1\sigma_2$
+
