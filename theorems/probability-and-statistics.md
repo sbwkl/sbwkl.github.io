@@ -1265,3 +1265,26 @@ Linear Combination of Bivariate Normals
 
 $X_1, X_2$ have bivariate normal distribution. Let $Y = a_1X_1 + a_2X_2 + b$, where $a_1, a_2, b$ are arbitrary given constants. Then $Y$ has the normal distribution with mean $a_1\mu_1 + a_2\mu_2 + b$ and variance $a_1^2\sigma_1^2 + a_2^2\sigma_2^2 + 2a_1a_2\rho\sigma_1\sigma_2$
 
+**Theorem 6.2.1**
+
+Markov Inequality
+
+$P(X\ge0)$, then for any $t \gt 0$
+
+$$
+P(X\ge t) \le \frac{E(X)}{t}
+$$
+
+**Theorem 6.2.2**
+
+Chebyshev Inequality
+
+Let X be a random variable that Var(X) exists. Then for every number $t \gt 0$
+
+$$
+P(|X - E(X)| \ge t) \le \frac{Var(X)}{t^2}
+$$
+
+**Theorem 6.2.3**
+
+$X_i$ random sample with mean $\mu$ and variance $\sigma^2$. Let $\bar{X_n}$ be the sample mean. Then $E(\bar{X_n}) = \mu$ and $Var(\bar{X_n}) = \sigma^2/n$
