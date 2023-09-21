@@ -1288,3 +1288,32 @@ $$
 **Theorem 6.2.3**
 
 $X_i$ random sample with mean $\mu$ and variance $\sigma^2$. Let $\bar{X_n}$ be the sample mean. Then $E(\bar{X_n}) = \mu$ and $Var(\bar{X_n}) = \sigma^2/n$
+
+**Definition 6.2.1**
+
+Convergence in Probability
+
+A sequence $Z_1, Z_2, ...$ of random variables converges to b in probability if for every number $\epsilon \gt 0$,
+
+$$
+\lim_{n->\infty} P(|Z_n-b| \lt \epsilon) = 1
+$$
+
+This property is denoted by
+
+$$
+Z_n \xrightarrow{p} b
+$$
+
+and is sometimes stated simply as $Z_n$ converges to b in probability.
+
+**Therorem 6.2.4**
+
+Low of Large Numbers
+
+Suppose that $X_1, ..., X_n$ form a random sample from a distribution for which the mean is $\mu$ and for which the variance is finite. Let $\bar{X}_n$ denote the sample mean. Then
+
+$$
+\bar{X}_n \xrightarrow{p} \mu
+$$
+
