@@ -1293,10 +1293,10 @@ $X_i$ random sample with mean $\mu$ and variance $\sigma^2$. Let $\bar{X_n}$ be 
 
 Convergence in Probability
 
-A sequence $Z_1, Z_2, ...$ of random variables converges to b in probability if for every number $\epsilon \gt 0$,
+A sequence $Z_1, Z_2, ...$ of random variables converges to $b$ in probability if for every number $\epsilon \gt 0$
 
 $$
-\lim_{n->\infty} P(|Z_n-b| \lt \epsilon) = 1
+\lim_{n->\infty} P(|Z_n -b| \lt \epsilon) = 1
 $$
 
 This property is denoted by
@@ -1307,13 +1307,35 @@ $$
 
 and is sometimes stated simply as $Z_n$ converges to b in probability.
 
-**Therorem 6.2.4**
+**Theorem 6.2.4**
 
-Low of Large Numbers
+Law of Large Numbers
 
-Suppose that $X_1, ..., X_n$ form a random sample from a distribution for which the mean is $\mu$ and for which the variance is finite. Let $\bar{X}_n$ denote the sample mean. Then
+Suppose that $X_1, ..., X_n$ form a random sample from a distribution for which the mean is $\mu$ and for which the variance is finite. Let $\bar{X_n}$ denote the sample mean. Then
 
 $$
 \bar{X}_n \xrightarrow{p} \mu
+$$
+
+**Theorem 6.2.5**
+
+Continues Functions of Random Variables
+
+if $Z_n \xrightarrow{p} b$, and if $g(z)$ is a function that is continues at $z = b$, then $g(Z_n) \xrightarrow{p}g(b)$.
+
+**Theorem 6.2.6**
+
+Histograms
+
+Let $X_1, X_2, ...$ be a sequence of i.i.d. random variables. Let $c_1 \lt c_2$ be two constants. Define $Y_i = 1$ if $c_1 \le Y_i \lt c_2$ and $Y_i = 0$ if not. Then $\bar{Y_n} = \frac{1}{n}\sum_{i=1}^{n}Y_i$ is proportion of $X_1, X_2, ...$ that lie in the interval $[c_1, c_2)$, and $\bar{Y_n} \xrightarrow{p}P(c_1 \le X_i \lt c_2)$.
+
+**Theorem 6.2.7**
+
+Chernoff Bounds
+
+Let X be a random variable with moment generating function $\psi$. Then, for every real t,
+
+$$
+P(X \ge t) \le \min_{s \gt 0}exp(-st)\psi(t)
 $$
 
