@@ -1082,7 +1082,190 @@ $$
 \psi(t) = \prod_{i=1}^{n}\psi_i(t)
 $$
 
-// 往上漏了很多定理没抄
+**Theorem 4.4.5**
+
+If the m.g.f.’s of two random variables $X_1$ and $X_2$ are ﬁnite and identical for all values of t in an open interval around the point t = 0, then the probability distributions of $X_1$ and $X_2$ must be identical.
+
+**Theorem 4.4.6**
+
+If $X_1$ and $X_2$ are independent random variables, and if X i has the binomial distribution with parameters $n_i$ and $p(i = 1, 2)$, then $X_1 + X_2 has$ the binomial distribution with parameters $n_1 + n_2$ and p.
+
+**Definition 4.5.1**
+
+Median
+
+Let $X$ be a random variable. Every number $m$ with the following property is called a median of the distribution of X: $Pr(X ≤ m) ≥ 1/2$ and $Pr(X ≥ m) ≥ 1/2$.
+
+**Theorem 4.5.1**
+
+One-to-One Function
+
+Let $X$ be a random variable that takes values in an interval I of real numbers. Let r be a one-to-one function deﬁned on the interval I. If m is a median of X, then r(m) is a median of r(X).
+
+**Definition 4.5.2**
+
+Mean Squared Error/M.S.E.
+
+The number $E[(X − d)^2 ]$ is called the mean squared error (M.S.E.) of the prediction d.
+
+**Theorem 4.5.2**
+
+Let $X$ be a random variable with ﬁnite variance $σ^2$, and let $μ = E(X)$. For every number d, 
+
+Eq(4.5.1)
+
+$$E[(X − μ) 2 ] ≤ E[(X − d) 2 ]$$.
+
+Furthermore, there will be equality in the relation (4.5.1) if and only if d = μ.
+
+**Definition 4.5.3**
+
+Mean Absolute Error/M.A.E.
+
+The number $E(|X − d|)$ is called the mean absolute error (M.A.E.) of the prediction d.
+
+**Theorem 4.5.3**
+
+Let X be a random variable with ﬁnite mean, and let m be a median of the distribution of X. For every number d,
+
+Eq(4.5.4)
+$$E(|X − m|) ≤ E(|X − d|)$$
+
+Furthermore, there will be equality in the relation (4.5.4) if and only if d is also a median of the distribution of X.
+
+**Definition 4.6.1**
+
+Covariance
+
+Let X and Y be random variables having ﬁnite means. Let $E(X) = μ_X$ and $E(Y) = μ_Y$ The covariance of X and Y , which is denoted by Cov(X, Y), is deﬁned as
+
+Eq.(4.6.1)
+
+$$
+Cov(X, Y) = E[(X − μ_X)(Y − μ_Y)]
+$$
+
+if the expectation in Eq.(4.6.1) exists
+
+**Theorem 4.6.1**
+
+For all random variables X and Y such that $σ_X^2 < ∞$ and $σ_Y^2 < ∞$,
+
+Eq.(4.6.2)
+
+$$
+Cov(X, Y) = E(XY) − E(X)E(Y).
+$$
+
+**Definition 4.6.2**
+
+Correlation
+
+Let X and Y be random variables with ﬁnite variances $σ_X^2$ and $σ_Y^2$, respectively. Then the correlation of X and Y, which is denoted by ρ(X, Y), is deﬁned as follows:
+
+Eq.(4.6.3)
+
+$$
+\rho(X, Y) = \frac{Cov(X, Y)}{\sigma_X\sigma_Y}
+$$
+
+**Theorem 4.6.2**
+
+Schwarz Inequality
+
+For all random variables U and V such that E(U V) exists,
+
+Eq.(4.6.4)
+
+$$
+[E(U V)]^2 ≤ E(U^2)E(V^2).
+$$
+
+**Theorem 4.6.3**
+
+Cauchy-Schwarz Inequality
+
+Let X and Y be random variables with ﬁnite variance. Then
+
+Eq.(4.6.9)
+
+$$
+[Cov(X, Y)]^2 ≤ σ_X^2 σ_Y^2
+$$
+
+Eq.(4.6.10)
+
+$$
+−1 ≤ ρ(X, Y ) ≤ 1
+$$
+
+**Definition 4.6.3**
+
+Positively/Negatively Correlated/Uncorrelated
+
+It is said that X and Y are positively correlated if ρ(X, Y) > 0, that X and Y are negatively correlated if ρ(X, Y) < 0, and that X and Y are uncorrelated if ρ(X, Y ) = 0.
+
+**Theorem 4.6.4**
+
+If X and Y are independent random variables with $0 < σ_X^2 < ∞$ and $0 < σ_Y^2 < ∞$, then
+
+$$Cov(X, Y ) = ρ(X, Y ) = 0$$
+
+**Theorem 4.6.5**
+
+Suppose that X is a random variable such that $0 < σ_X^2 < ∞$, and $Y = aX + b$ for some constants a and b, where a = 0. If a > 0, then ρ(X, Y) = 1. If a < 0, then ρ(X, Y) = −1.
+
+**Theorem 4.6.6**
+
+If X and Y are random variables such that $Var(X) < ∞$ and $Var(Y) < ∞$, then
+
+Eq.(4.6.11)
+
+$$Var(X + Y) = Var(X) + Var(Y) + 2 Cov(X, Y)$$
+
+**Corollary 4.6.1**
+
+Let a, b, and c be constants. Under the conditions of Theorem 4.6.6,
+
+Eq.(4.6.12)
+
+$$
+Var(aX + bY + c) = a^2 Var(X) + b^2 Var(Y) + 2ab Cov(X, Y).
+$$
+
+**Theorem 4.6.7**
+
+If $X_1 , ... , X_n$ are random variables such that $Var(X_i) < ∞$ for i = 1, ..., n, then
+
+Eq.(4.6.14)
+
+$$
+Var(\sum_{i=1}^{n}X_i) = \sum_{i=1}^{n}Var(X_i) + 2\sum_{i<}\sum_j Cov(X_i, X_j).
+$$
+
+**Corollary 4.6.2**
+
+If $X_1, ..., X_n$ are uncorrelated random variables (that is, if $X_i$ and $X_j$ are uncorrelated whenever $i \ne j$), then
+
+Eq.(4.6.15)
+
+$$
+Var(\sum_{i=1}^nX_i) = \sum_{i=1}^nVar(X_i).
+$$
+
+**Definition 4.7.1**
+
+Conditional Expectation/Mean
+
+Let X and Y be random variables such that the mean of Y exists and is ﬁnite. The conditional expectation (or conditional mean) of Y given X = x is denoted by E(Y|x) and is deﬁned to be the expectation of the conditional distribution of Y given X = x.
+
+**Definition 4.7.2**
+
+Conditional Means as Random Variables
+
+Let $h(x)$ stand for the function of x that is denoted $E(Y|x)$ in either (4.7.1) or (4.7.2). Deﬁne the symbol $E(Y|X)$ to mean $h(X)$ and call it the conditional mean of Y given X.
+
+//上面还有很多漏了
 
 **Definition 5.7.2**
 
@@ -1338,4 +1521,26 @@ Let X be a random variable with moment generating function $\psi$. Then, for eve
 $$
 P(X \ge t) \le \min_{s \gt 0}exp(-st)\psi(t)
 $$
+
+**Theorem 6.3.1**
+
+Centeral Limit Theorem
+
+If the random variable $X_1, ..., X_n$ form a random sample of size n from a given distribution with mean $\mu$ and variance $\sigma^2 (0 \lt \sigma^2 \lt \infty)$, then for each fixed number x
+
+$$
+\lim_{n->\infty} p[\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \le x] = \Phi(x)
+$$
+
+**Definition 6.3.1**
+
+Convergence in Distribution/Asymptotic Distribution
+
+Let $X_1, X_2, ...$ be a sequence of random variables, and for n = 1, 2, ..., Let $F_n$ denote the c.d.f. of $X_n$. Also let $F^*$ be a c.d.f. Then it is said that the sequence $X_1, X_2, ...$ converages in probability to $F^*$ if
+
+$$
+\lim_{n->\infty} F_n(x) = F^*(x)
+$$
+
+for all x at which $F^*(x)$ is continuous.
 
