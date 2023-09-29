@@ -1267,6 +1267,44 @@ Let $h(x)$ stand for the function of x that is denoted $E(Y|x)$ in either (4.7.1
 
 //上面还有很多漏了
 
+**Theorem 5.3.4**
+
+Closeness of Binomial and Hypergeometric Distributions
+
+Let 0 < p < 1, and let n be a positive integer. Let Y have the binomial distribution with parameters n and p. For each positive integer T , let $A_T$ and $B_T$ be integers such that $\lim_{T→∞} A_T = ∞$, $\lim_{T→∞} B_T = ∞$, and $\lim_{T→∞} A_T /(A_T + B_T) = p$. Let $X_T$ have the hypergeometric distribution with parameters $A_T, B_T$, and n. For each ﬁxed n and each x = 0, ..., n,
+
+Eq.(5.3.9)
+
+$$
+\lim_{T→∞}\frac{Pr(Y = x)}{Pr(X_T = x)} = 1
+$$
+
+//上面还有很多漏了
+
+**Theorem 5.4.5**
+
+Closeness of Binomial and Poisson Distributions
+
+For each integer n and each 0 < p < 1, let $f (x|n, p)$ denote the p.f. of the binomial distribution with parameters n and p. Let $f (x|λ)$ denote the p.f. of the Poisson distribution with mean λ. Let ${p_n}_{n=1}^∞$ be a sequence of numbers between 0 and 1 such that $\lim_{n→∞} np_n = λ$. Then
+
+$$
+\lim_{n→∞}f(x|n, p_n) = f(x|λ),
+$$
+
+for all x = 0, 1, ...
+
+**Theorem 5.4.6**
+
+Closeness of Hypergeometric and Poisson Distributions
+
+Let λ > 0. Let Y have the Poisson distribution with mean λ. For each positive integer $T$, let $A_T, B_T$, and $n_T$ be integers such that $\lim_{T→∞} A_T = ∞$, $\lim_{T→∞} B_T = ∞$, $\lim_{T→∞} n_T = ∞$, and $\lim_{T→∞} n_T A_T/(A_T + B_T ) = λ$. Let $X_T$ have the hypergeometric distribution with parameters $A_T, B_T$, and $n_T$. For each ﬁxed x = 0, 1, ...,
+
+$$
+\lim_{T→∞}\frac{Pr(Y = x)}{Pr(X_T = x)} = 1.
+$$
+
+//上面还有很多漏了
+
 **Definition 5.7.2**
 
 Gamma Distributions
