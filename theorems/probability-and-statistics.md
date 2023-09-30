@@ -1582,3 +1582,65 @@ $$
 
 for all x at which $F^*(x)$ is continuous.
 
+**Theorem 6.3.2**
+
+Delta method
+
+Let $Y_1, Y_2, ...$ be a sequence of random variables and let $F^*$ be a continuous c.d.f. Let $\theta$ be a real number, and let $a_1, a_2, ...$ be a sequence of positive numbers that increase to $\infty$. Supporse that $a_n(Y_n-\theta)$ converages in distribution to $F^*$. Let $\alpha$ be a function with continuous derivative such that $\alpha^{'}(\theta) \ne 0$. Then $a_n[\alpha(Y_n)-\alpha(\theta)]/\alpha^{'}(\theta)$ converges in distribution to $F^*$.
+
+**Corollary 6.3.1**
+
+Delta Method for Average of a Random Sample
+
+Let $X_1, X_2, ...$ be a sequence of i.i.d. random variables from a distribution with mean μ and ﬁnite variance $σ^2$. Let α be a function with continuous derivative such that $α^{'}(μ) \ne 0$. Then the asymptotic distribution of
+
+$$
+\frac{\sqrt{n}}{σ α^{'}(μ)}[α(\bar{X}_n) − α(μ)]
+$$
+
+is the standard normal distribution.
+
+Eq.(6.3.8)
+
+$$
+Y_n=\frac{\sum_{i=1}^nX_i - \sum_{i=1}^n\mu_i}{(\sum_{i=1}^n\sigma_i^2)^{1/2}}
+$$
+
+**Theorem 6.3.3**
+
+Suppose that the random variables $X_1, X_2, ...$ are independent and that $E(|X_i − μ_i|^3 ) < ∞$ for i = 1, 2, . . . Also, suppose that
+
+Eq.(6.3.9)
+
+$$
+\lim_{n->\infty} \frac{\sum_{i=1}^nE(|X_i - \mu_i|^3)}{(\sum_{i=1}^n\sigma_i^2)^{3/2}} = 0
+$$
+
+Finally, Let the random variable $Y_n$ be as defined in Eq.(6.3.8). Then, for each fixed number x
+
+Eq.(6.3.10)
+
+$$
+\lim_{n->\infty} P(Y_n \le x) = \Phi(x)
+$$
+
+**Theorem 6.3.4**
+
+Suppose that the random variables $X_1, ..., X_n$ are independent and $X_i$ has the Bernoulli distribution with parameter $p_i$ (i = 1, 2, ...). Suppose also that the inﬁnite series $\sum_{i=1}^∞ p_i(1 − p_i )$ is divergent, and let
+
+Eq.(6.3.11)
+
+$$
+Y_n = \frac{\sum_{i=1}^nX_i - \sum_{i=1}^n p_i}{(\sum_{i=1}^n p_i(1-p_i))^{1/2}}
+$$
+
+Then for every fixed number x
+
+$$
+\lim_{n->\infty}P(Y_n \le x) = \Phi(x)
+$$
+
+**Theorem 6.3.5**
+
+The sequence of c.d.f.’s $F_1, F_2, ...$ must converge to the c.d.f. $F^∗$ if the corresponding sequence of m.g.f.’s $ψ_1, ψ_2, ...$ converges to the m.g.f. $ψ^∗$.
+
