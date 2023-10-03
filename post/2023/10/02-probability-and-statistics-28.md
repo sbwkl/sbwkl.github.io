@@ -22,10 +22,9 @@ $$
 
 等式左边是后验分布，$\vec{x}$ 是可观察的随机变量。
 
-等式右边 $\xi(\theta)$ 是先验分布，$f_n(\vec{x}|\theta)$ 
-改了个名，叫似然函数。
+等式右边 $\xi(\theta)$ 是先验分布，$f_n(\vec{x}|\theta)$ 改了个名，叫似然函数。
 
-$g_n(\vec{x}) = \int_\Omega f_n(\vec{x}|\theta) \xi(\theta)d\theta$ 不急着暴力解，可以先看看 $f_n(\vec{x}|\theta) \xi(\theta)$ 长得像什么分布，套公式。
+$g_n(\vec{x}) = \int_\Omega f_n(\vec{x}|\theta) \xi(\theta)d\theta$ 看着巨复杂，可以先观察 $f_n(\vec{x}|\theta) \xi(\theta)$ 长得像什么分布，然后套公式。
 
 系数 $1/g_n(\vec{x})$ 是个和 $\theta$ 无关的常量，所以上面的式子可以写成
 
@@ -33,7 +32,7 @@ $$
 \xi(\theta|\vec{x}) \propto f_n(\vec{x}|\theta) \xi(\theta)
 $$
 
-意思是两者等比例成长。
+意思两者等比例成长。
 
 预测下一次试验的分布
 
@@ -43,11 +42,11 @@ $$
 
 还是抛硬币游戏，这次怀疑硬币有诈，假定出现正面概率 $\theta$ 是 [0, 1] 的均匀分布 $\xi(\theta) = 1$，计算 $n$ 次试验之后 $\theta$ 的分布。
 
-每次试验 $X_i$ 是伯努利分布 $f(x|\theta) = \theta^x(1-\theta)^{1-x}$
+每次试验 $X_i$ 都是伯努利分布 $f(x_i|\theta) = \theta^{x_i}(1-\theta)^{1-x_i}$
 
 统计 $Y=\sum_{i=1}^n X_i$ 代表正面次数
 
-似然函数 $f_n(\vec{x}|\theta) = \theta^{y}(1-\theta)^{n-y}$，这里二项式系数 $\binom{n}{x}$ 没了，应该是观测的时候顺序也固定了
+似然函数 $f_n(\vec{x}|\theta) = \theta^{y}(1-\theta)^{n-y}$，这里二项式系数 $\binom{n}{y}$ 没了，应该是顺序固定的意思。
 
 后验分布
 
@@ -61,30 +60,30 @@ $$
 \xi(\theta|\vec{x}) = \frac{\Gamma(n + 2)}{\Gamma(y + 1)\Gamma(n - y + 1)}\theta^y(1-\theta)^{n-y}
 $$
 
-$\theta$ 的后验分布是 $(y + 1, n - y + 1)$ 的贝塔分布，和之前硬算的一样。
+$\theta$ 的后验分布是 $(y + 1, n - y + 1)$ 的贝塔分布。
 
 第 $n + 1$ 次试验的分布是
 
 $$
 \begin{aligned}
 f(x_{n+1}|\vec{x}) &= \int_{\Omega} f(X_{n+1}|\theta)\xi(\theta|\vec{x})d\theta \\
-&=\frac{\Gamma(x+y+1)\Gamma(n-x-y+2)}{(n+2)\Gamma(y+1)\Gamma(n-y+1)}
+&=\frac{\Gamma(x_{n+1}+y+1)\Gamma(n-x_{n+1}-y+2)}{(n+2)\Gamma(y+1)\Gamma(n-y+1)}
 \end{aligned}
 $$
 
-现在试验 8 次观察到 3 次正面，那么
-
-$$
-\xi(\theta|\vec{x}) = \frac{\Gamma(10)}{\Gamma(4)\Gamma(6)}\theta^3(1-\theta)^5
-$$
-
-第 9 次是正面的概率是
+现在试验 8 次观察到 3 次正面，那么第 9 次是正面的概率是
 
 $$
 f(x_9 = 1|\vec{x}) = \frac{\Gamma(5)\Gamma(6)}{10\Gamma(4)\Gamma(6)} = 0.4
 $$
 
-$P(0.4 \le \theta \le 0.6|\vec{x}) = 0.3833$
+$\theta$ 的后验分布
+
+$$
+\xi(\theta|\vec{x}) = \frac{\Gamma(10)}{\Gamma(4)\Gamma(6)}\theta^3(1-\theta)^5
+$$
+
+$$P(0.4 \le \theta \le 0.6|\vec{x}) = 0.3833$$
 
 呃……如诈？
 
