@@ -1644,3 +1644,55 @@ $$
 
 The sequence of c.d.f.’s $F_1, F_2, ...$ must converge to the c.d.f. $F^∗$ if the corresponding sequence of m.g.f.’s $ψ_1, ψ_2, ...$ converges to the m.g.f. $ψ^∗$.
 
+**Definition 7.1.1**
+
+Statistical Model
+
+A statistical model consists of an identiﬁcation of random variables of interest (both observable and only hypothetically observable), a speciﬁcation of a joint distribution or a family of possible joint distributions for the observable random variables, the identiﬁcation of any parameters of those distributions that are assumed unknown and possibly hypothetically observable, and (if desired) a speciﬁcation for a (joint) distribution for the unknown parameter(s). When we treat the unknown parameter(s) θ as random, then the joint distribution of the observable random variables indexed by θ is understood as the conditional distribution of the observable random variables given θ.
+
+**Definition 7.1.2**
+
+Statistical Inference
+
+A statistical inference is a procedure that produces a probabilistic statement about some or all parts of a statistical model.
+
+**Definition 7.1.3**
+
+Parameter/Parameter space
+
+In a problem of statistical inference, a characteristic or combination of characteristics that determine the joint distribution for the random variables of interest is called a parameter of the distribution. The set $\Omega$ of all possible values of a parameter $θ$ or of a vector of parameters $(θ_1, ...,θ_k)$ is called the parameter space.
+
+**Definition 7.1.4**
+
+Statistic
+
+Suppose that the observable random variables of interest are $X_1, ...,X_n$. Let r be an arbitrary real-valued function of n real variables. Then the random variable $T = r(X_1, ..., X_n)$ is called a statistic.
+
+**Definition 7.2.1**
+
+Prior Distribution/p.f./p.d.f
+
+Suppose that one has a statistical model with parameter θ. If one treats θ as random, then the distribution that one assigns to θ before observing the other random variables of interest is called its prior distribution. If the parameter space is at most countable, then the prior distribution is discrete and its p.f. is called the prior p.f. of θ. If the prior distribution is a continuous distribution, then its p.d.f. is called the prior p.d.f. of θ. We shall commonly use the symbol ξ(θ) to denote the
+prior p.f. or p.d.f. as a function of θ.
+
+**Definition 7.2.2**
+
+Posterior Distribution/p.f./p.d.f.
+
+Consider a statistical inference problem with parameter $θ$ and random variables $X_1, ..., X_n$ to be observed. The conditional distribution of $θ$ given $X_1, ... , X_n$ is called the posterior distribution of $θ$. The conditional p.f. or p.d.f. of $θ$ given $X_1 = x_1, ..., X_n = x_n$ is called the posterior p.f. or posterior p.d.f. of $θ$ and is typically denoted $ξ(θ|x_1, ..., x_n)$.
+
+**Theorem 7.2.1**
+
+Suppose that the n random variables $X_1, ..., X_n$ form a random sample from a distribution for which the p.d.f. or the p.f. is $f(x|θ)$. Suppose also that the value of the parameter $θ$ is unknown and the prior p.d.f. or p.f. of $θ$ is $ξ(θ)$. Then the posterior p.d.f. or p.f. of $θ$ is
+
+$$
+ξ(θ|\vec{x}) = \frac{f(x_1|θ) ... f(x_n|θ)ξ(θ)}{g_n(\vec{x})}
+$$
+for $θ ∈ \Omega$, where $g_n$ is the marginal joint p.d.f. or p.f. of $X_1, ..., X_n$.
+
+**Definition 7.2.3**
+
+Likelihood Function
+
+When the joint p.d.f. or the joint p.f. $f_n(x|θ)$ of the observations in a random sample is regarded as a function of $θ$ for given values of $x_1, ..., x_n$, it is called the likelihood function.
+
