@@ -1696,3 +1696,41 @@ Likelihood Function
 
 When the joint p.d.f. or the joint p.f. $f_n(x|θ)$ of the observations in a random sample is regarded as a function of $θ$ for given values of $x_1, ..., x_n$, it is called the likelihood function.
 
+**Theorem 7.3.1**
+
+Suppose that $X_1, ..., X_n$ form a random sample from the Bernoulli distribution with parameter θ, which is unknown (0 < θ < 1). Suppose also that the prior distribution of θ is the beta distribution with parameters α > 0 and β > 0. Then the posterior distribution of θ given that $X_i = x_i (i = 1, ..., n)$ is the beta distribution with parameters $α + \sum_{i=1}^n x_i$ and $β + n − \sum_{i=1}^n x_i$.
+
+**Definition 7.3.1**
+
+Conjugate Family/Hyperparameters
+
+Let $X_1, X_2, ...$ be conditionally i.i.d. given θ with common p.f. or p.d.f. $f(x|θ)$. Let $\Psi$ be a family of possible distributions over the parameter space $\Omega$. Suppose that, no matter which prior distribution ξ we choose from $\Psi$, no matter how many observations $X = (X_1, ..., X_n)$ we observe, and no matter what are their observed values $x = (x_1, ..., x_n)$, the posterior distribution $ξ(θ|x)$ is a member of $\Psi$. Then $\Psi$ is called a conjugate family of prior distributions for samples from the distributions $f(x|θ)$. It is also said that the family $\Psi$ is closed under sampling from the distributions $f(x|θ)$. Finally, if the distributions in $\Psi$ are parametrized by further parameters, then the associated parameters for the prior distribution are called the prior hyperparameters and the associated parameters of the posterior distribution are called the posterior hyperparameters.
+
+**Theorem 7.3.2**
+
+Suppose that $X_1, ..., X_n$ form a random sample from the Poisson distribution with mean θ > 0, and θ is unknown. Suppose also that the prior distribution of θ is the gamma distribution with parameters α > 0 and β > 0. Then the posterior distribution of θ, given that $X_i = x_i (i = 1, ..., n)$, is the gamma distribution with parameters $α + \sum_{i=1}^n x_i$ and $β + n$.
+
+**Theorem 7.3.3**
+
+Suppose that $X_1, ..., X_n$ form a random sample from a normal distribution for which the value of the mean $θ$ is unknown and the value of the variance $σ^2 > 0$ is known. Suppose also that the prior distribution of $θ$ is the normal distribution with mean $μ_0$ and variance $v_0^2$. Then the posterior distribution of $θ$ given that $X_i = x_i (i = 1, ..., n)$ is the normal distribution with mean $μ_1$ and variance $v_1^2$ where
+
+$$
+\mu_1 = \frac{\sigma^2\mu_0 + n v_0^2 \bar{x}_n}{\sigma^2 + nv_0^2}
+$$
+
+and
+
+$$
+v_1^2 = \frac{\sigma^2 v_0^2}{\sigma^2 + nv_0^2}
+$$
+
+**Theorem 7.3.4**
+
+Suppose that $X_1, ..., X_n$ form a random sample from the exponential distribution with parameter $θ > 0$ that is unknown. Suppose also that the prior distribution of $θ$ is the gamma distribution with parameters $α > 0$ and $β > 0$. Then the posterior distribution of $θ$ given that $X_i = x_i(i = 1, ..., n)$ is the gamma distribution with parameters $α + n$ and $β + \sum_{i=1}^n x_i$.
+
+**Definition 7.3.2**
+
+Improper Prior
+
+Let $ξ$ be a nonnegative function whose domain includes the parameter space of a statistical model. Suppose that $ξ(θ)dθ = ∞$. If we pretend as if $ξ(θ)$ is the prior p.d.f. of $θ$, then we are using an improper prior for $θ$.
+
