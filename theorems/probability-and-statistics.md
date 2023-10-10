@@ -1265,6 +1265,38 @@ Conditional Means as Random Variables
 
 Let $h(x)$ stand for the function of x that is denoted $E(Y|x)$ in either (4.7.1) or (4.7.2). Deﬁne the symbol $E(Y|X)$ to mean $h(X)$ and call it the conditional mean of Y given X.
 
+**Theorem 4.7.1**
+
+Law of Total Probability for Expectations
+
+Let $X$ and $Y$ be random variables such that $Y$ has ﬁnite mean. Then
+
+Eq.(4.7.3)
+
+$$E[E(Y |X)] = E(Y )$$
+
+**Theorem 4.7.2**
+
+Let $X$ and $Y$ be random variables, and let $Z = r(X, Y)$ for some function $r$. The conditional distribution of $Z$ given $X = x$ is the same as the conditional distribution of $r(x, Y)$ given $X = x$.
+
+**Definition 4.7.3**
+
+Conditional Variance
+
+For every given value $x$, let $Var(Y|x)$ denote the variance of the conditional distribution of $Y$ given that $X = x$. That is,
+
+Eq.(4.7.5)
+
+$$Var(Y|x) = E\{[Y − E(Y|x)]^2|x\}$$
+
+We call $Var(Y|x)$ the conditional variance of $Y$ given $X = x$.
+
+**Theorem 4.7.3**
+
+The prediction $d(X)$ that minimizes $E\{[Y − d(X)]^2\}$ is $d(X) = E(Y|X)$
+
+
+
 //上面还有很多漏了
 
 **Theorem 5.3.4**
@@ -1733,4 +1765,124 @@ Suppose that $X_1, ..., X_n$ form a random sample from the exponential distribut
 Improper Prior
 
 Let $ξ$ be a nonnegative function whose domain includes the parameter space of a statistical model. Suppose that $ξ(θ)dθ = ∞$. If we pretend as if $ξ(θ)$ is the prior p.d.f. of $θ$, then we are using an improper prior for $θ$.
+
+**Definition 7.4.1**
+
+Estimator/Estimate
+
+Let $X_1, ..., X_n$ be observable data whose joint distribution is indexed by a parameter $θ$ taking values in a subset $\Omega$ of the real line. An estimator of the parameter $θ$ is a real-valued function $δ(X_1, ..., X_n)$. If $X_1 = x_1, ..., X_n = x_n$ are observed, then $δ(x_1, ..., x_n)$ is called the estimate of $θ$.
+
+**Definition 7.4.2**
+
+Loss Function
+
+A loss function is a real-valued function of two variables, $L(θ, a)$,where $θ ∈ \Omega$ and $a$ is a real number. The interpretation is that the statistician loses $L(θ, a)$ if the parameter equals $θ$ and the estimate equals $a$.
+
+**Definition 7.4.3**
+
+Bayes Estimator/Estimate
+
+Let $L(θ, a)$ be a loss function. For each possible value $x$ of $X$, let $δ^∗(x)$ be a value of a such that $E[L(θ, a)|x]$ is minimized. Then $δ^∗$ is called a Bayes estimator of $θ$. Once $X = x$ is observed, $δ^∗(x)$ is called a Bayes estimate of $θ$.
+
+**Definition 7.4.4**
+
+Squared Error Loss Function
+
+The loss function 
+
+Eq.(7.4.4)
+
+$$L(θ, a) = (θ − a)^2$$
+
+is called squared error loss.
+
+**Corollary 7.4.1**
+
+Let $θ$ be a real-valued parameter. Suppose that the squared error loss function (7.4.4) is used and that the posterior mean of $θ$, $E(θ |X)$, is ﬁnite. Then, a Bayes estimator of $θ$ is $δ^∗(X) = E(θ|X)$.
+
+**Definition 7.4.5**
+
+Absolute Error Loss Function
+
+The loss function
+
+Eq.(7.4.7)
+
+$$L(θ, a) = |θ − a|$$
+
+is called absolute error loss.
+
+**Corollary 7.4.2**
+
+When the absolute error loss function (7.4.7) is used, a Bayes estimator of a real-valued parameter is $δ^∗(X)$ equal to a median of the posterior distribution of $θ$.
+
+**Definition 7.4.6**
+
+Consistent Estimator
+
+A sequence of estimators that converges in probability to the unknown value of the parameter being estimated, as $n → ∞$, is called a consistent sequence of estimators.
+
+**Definition 7.4.7**
+
+Estimator/Estimate
+
+Let $X_1, ..., X_n$ be observable data whose joint distribution is indexed by a parameter $θ$ taking values in a subset $\Omega$ of k-dimensional space. Let $h$ be a function from $\Omega$ into d-dimensional space. Deﬁne $ψ = h(θ)$. An estimator of $ψ$ is a function $δ(X_1, ..., X_n)$ that takes values in d-dimensional space. If $X_1 = x_1, ..., X_n = x_n$ are observed, then $δ(x_1, ..., x_n)$ is called the estimate of $ψ$.
+
+**Definition 7.5.1**
+
+Likelihood Function
+
+When the joint p.d.f. or the joint p.f. $f_n(x|θ)$ of the observations in a random sample is regarded as a function of $θ$ for given values of $x_1, ..., x_n$, it is called the likelihood function.
+
+**Definition 7.5.2**
+
+Maximum Likelihood Estimator/Estimate
+
+For each possible observed vector $x$, let $δ(x) ∈ \Omega$ denote a value of $θ ∈ \Omega$ for which the likelihood function $f_n(x|θ)$ is a maximum, and let $\hat{θ̂} = δ(X)$ be the estimator of $θ$ deﬁned in this way. The estimator $\hat{θ̂}$ is called a maximum likelihood estimator of $θ$. After $X = x$ is observed, the value $δ(x)$ is called a maximum likelihood estimate of $θ$.
+
+**Theorem 7.6.1**
+
+Invariance Property of M.L.E.’s
+
+If $\hat{θ̂}$ is the maximum likelihood estimator of $θ$ and if $g$ is a one-to-one function, then $g(\hat{\theta)}$ is the maximum likelihood estimator of $g(θ)$
+
+**Definition 7.6.1**
+
+M.L.E. of a Function
+
+Let $g(θ)$ be an arbitrary function of the parameter, and let $G$ be the image of $\Omega$ under the function $g$. For each $t ∈ G$, deﬁne $G_t = {θ : g(θ) = t}$ and deﬁne 
+
+$$L^∗(t) = \max_{θ∈G_t} log f_n(\vec{x}|θ)$$
+
+Finally, deﬁne the M.L.E. of $g(θ)$ to be $\hat{t}$ where
+
+Eq.(7.6.1)
+
+$$L^∗(\hat{t}) = \max_{t∈G} L^∗(t)$$
+
+**Theorem 7.6.2**
+
+Let $\hat{θ}$ be an M.L.E. of $θ$, and let $g(θ)$ be a function of $θ$. Then an M.L.E. of $g(θ)$ is $g(\hat{θ})$.
+
+**Definition 7.6.2**
+
+Newton’s Method
+
+Let $f(θ)$ be a real-valued function of a real variable, and suppose that we wish to solve the equation $f(θ) = 0$. Let $θ_0$ be an initial guess at the solution. Newton’s method replaces the initial guess with the updated guess
+
+$$θ_1 = θ_0 − \frac{f(θ_0)}{f^{'}(θ_0)}$$
+
+**Definition 7.6.3**
+
+Method of Moments
+
+Assume that $X_1, ..., X_n$ form a random sample from a distribution that is indexed by a k-dimensional parameter $θ$ and that has at least $k$ ﬁnite moments. For $j = 1, ..., k$, let $μ_j(θ) = E(X_1^j|θ)$. Suppose that the function $μ(θ) = (μ_1(θ), ..., μ_k(θ))$ is a one-to-one function of $θ$. Let $M(μ_1,... ,μ_k)$ denote the inverse function, that is, for all $θ$, 
+
+$$θ = M(μ_1(θ), ..., μ_k(θ))$$
+
+Deﬁne the sample moments by $m_j = \frac{1}{n}\sum_{i=1}^n X_i^j$ for $j = 1, ..., k$. The method of moments estimator of $θ$ is $M(m_1, ..., m_j)$.
+
+**Theorem 7.6.3**
+
+Suppose that $X_1, X_2, ...$ are i.i.d. with a distribution indexed by a k-dimensional parameter vector $θ$. Suppose that the ﬁrst $k$ moments of that distribution exist and are ﬁnite for all $θ$. Suppose also that the inverse function M in Deﬁnition 7.6.3 is continuous. Then the sequence of method of moments estimators based on $X_1, ..., X_n$ is a consistent sequence of estimators of $θ$.
 
