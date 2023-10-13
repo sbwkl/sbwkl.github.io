@@ -14,6 +14,32 @@ or 结尾的很像叫他估算器
 
 损失函数
 
+$$L(\theta, a)$$
+
+$$
+E[L(\theta, a)] = \int_{\Omega}L(\theta, a)\xi(\theta)d\theta
+$$
+
+$$
+E[L(\theta, \delta^*(\vec{x}))|\vec{x}] = \min_{All \ a} E[L(\theta, a)|\vec{x}]
+$$
+
+$$
+L(\theta, a) = (\theta - a)^2
+$$
+
+$$
+L(\theta, a) = |\theta - a|
+$$
+
+最近刷一些文章，还有这种损失函数 $L(\theta, a) = ||\theta - a||_2$，搜了下，这种叫 $p-norm$
+
+$$
+||\vec{x}||_p = (\sum_{i=1}^n|x_i|^p)^{1/p}
+$$
+
+好神奇啊。
+
 
 
 封面图：Twitter 心臓弱眞君 @xinzoruo
