@@ -1088,7 +1088,7 @@ If the m.g.f.’s of two random variables $X_1$ and $X_2$ are ﬁnite and identi
 
 **Theorem 4.4.6**
 
-If $X_1$ and $X_2$ are independent random variables, and if X i has the binomial distribution with parameters $n_i$ and $p(i = 1, 2)$, then $X_1 + X_2 has$ the binomial distribution with parameters $n_1 + n_2$ and p.
+If $X_1$ and $X_2$ are independent random variables, and if $X_i$ has the binomial distribution with parameters $n_i$ and $p(i = 1, 2)$, then $X_1 + X_2 has$ the binomial distribution with parameters $n_1 + n_2$ and p.
 
 **Definition 4.5.1**
 
@@ -1110,11 +1110,11 @@ The number $E[(X − d)^2 ]$ is called the mean squared error (M.S.E.) of the pr
 
 **Theorem 4.5.2**
 
-Let $X$ be a random variable with ﬁnite variance $σ^2$, and let $μ = E(X)$. For every number d, 
+Let $X$ be a random variable with ﬁnite variance $σ^2$, and let $μ = E(X)$. For every number d
 
 Eq(4.5.1)
 
-$$E[(X − μ) 2 ] ≤ E[(X − d) 2 ]$$.
+$$E[(X − μ)^2 ] ≤ E[(X − d)^2]$$.
 
 Furthermore, there will be equality in the relation (4.5.1) if and only if d = μ.
 
