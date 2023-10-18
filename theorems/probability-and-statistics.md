@@ -1886,3 +1886,8 @@ Deﬁne the sample moments by $m_j = \frac{1}{n}\sum_{i=1}^n X_i^j$ for $j = 1, 
 
 Suppose that $X_1, X_2, ...$ are i.i.d. with a distribution indexed by a k-dimensional parameter vector $θ$. Suppose that the ﬁrst $k$ moments of that distribution exist and are ﬁnite for all $θ$. Suppose also that the inverse function M in Deﬁnition 7.6.3 is continuous. Then the sequence of method of moments estimators based on $X_1, ..., X_n$ is a consistent sequence of estimators of $θ$.
 
+
+
+**Corollary 7.7.1**
+
+A statistic $T = r(X)$ is sufﬁcient if and only if, no matter what prior distribution we use, the posterior distribution of $θ$ depends on the data only through the value of $T$.
