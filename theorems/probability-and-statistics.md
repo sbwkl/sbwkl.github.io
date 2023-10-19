@@ -1886,7 +1886,21 @@ Deﬁne the sample moments by $m_j = \frac{1}{n}\sum_{i=1}^n X_i^j$ for $j = 1, 
 
 Suppose that $X_1, X_2, ...$ are i.i.d. with a distribution indexed by a k-dimensional parameter vector $θ$. Suppose that the ﬁrst $k$ moments of that distribution exist and are ﬁnite for all $θ$. Suppose also that the inverse function M in Deﬁnition 7.6.3 is continuous. Then the sequence of method of moments estimators based on $X_1, ..., X_n$ is a consistent sequence of estimators of $θ$.
 
+**Definition 7.7.1**
 
+Sufficient Statistic
+
+Let $X_1, ..., X_n$ be a random sample from a distribution indexed by a parameter $θ$. Let $T$ be a statistic. Suppose that, for every $θ$ and every possible value $t$ of $T$, the conditional joint distribution of $X_1, ..., X_n$ given that $T = t$ (and $θ$) depends only on $t$ but not on $θ$. That is, for each $t$, the conditional distribution of $X_1, ..., X_n$ given $T = t$ and $θ$ is the same for all $θ$. Then we say that $T$ is a sufficient statistic for the parameter $θ$.
+
+**Theorem 7.7.1**
+
+Factorization Criterion
+
+Let $X_1, ..., X_n$ form a random sample from either a continuous distribution or a discrete distribution for which the p.d.f. or the p.f. is $f(x|θ)$, where the value of $θ$ is unknown and belongs to a given parameter space $\Omega$. A statistic $T = r(X_1, ..., X_n)$ is a sufficient statistic for $θ$ if and only if the joint p.d.f. or the joint p.f. $f_n(\vec{x}|θ)$ of $X_1, ..., X_n$ can be factored as follows for all values of $\vec{x} = (x_1, ..., x_n) ∈ R^n$ and all values of $θ ∈ \Omega$
+
+Eq.(7.7.1)
+
+$$f_n(\vec{x}|θ) = u(\vec{x})v[r(\vec{x}), θ]$$
 
 **Corollary 7.7.1**
 
