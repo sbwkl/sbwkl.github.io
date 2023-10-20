@@ -1905,3 +1905,50 @@ $$f_n(\vec{x}|θ) = u(\vec{x})v[r(\vec{x}), θ]$$
 **Corollary 7.7.1**
 
 A statistic $T = r(X)$ is sufﬁcient if and only if, no matter what prior distribution we use, the posterior distribution of $θ$ depends on the data only through the value of $T$.
+
+**Definition 7.8.1**
+
+Jointly Sufficient Statistics
+
+Suppose that for each $θ$ and each possible value $(t_1, ..., t_k)$ of $(T_1, ..., T_k)$, the conditional joint distribution of $(X_1, ..., X_n)$ given $(T_1, ..., T_k) = (t_1, ..., t_k)$ does not depend on $θ$. Then $T_1, ..., T_k$ are called jointly sufficient statistics for $θ$.
+
+**Theorem 7.8.1**
+
+Factorization Criterion for Jointly Sufficient Statistics
+
+Let $r_1, . . . , r_k$ be functions of $n$ real variables. The statistics $T_i = r_i(X), i = 1, . . . , k$, are jointly sufficient statistics for $θ$ if and only if the joint p.d.f. or the joint p.f. $f_n(\vec{x}|θ)$ can be factored as follows for all values of $x ∈ R^n$ and all values of $θ ∈ \Omega$:
+
+$$f_n(\vec{x}|θ) = u(\vec{x})v[r_1(\vec{x}), . . . , r_k(\vec{x}), θ]$$.
+
+Here the functions $u$ and $v$ are nonnegative, the function $u$ may depend on $x$ but does not depend on $θ$, and the function $v$ will depend on $θ$ but depends on $x$ only through the $k$ functions $r_1(\vec{x}), . . . , r_k(\vec{x})$
+
+**Definition 7.8.2**
+
+Order Statistics
+
+Suppose that $X_1, . . . , X_n$ form a random sample from some distribution. Let $Y_1$ denote the smallest value in the random sample, let $Y_2$ denote the next smallest value, let $Y_3$ denote the third smallest value, and so on. In this way, $Y_n$ denotes the largest value in the sample, and $Y_{n−1}$ denotes the next largest value. The random variables $Y_1, . . . , Y_n$ are called the order statistics of the sample.
+
+**Theorem 7.8.2**
+
+Order Statistics Are Sufficient in Random Samples
+
+Let $X_1, . . . , X_n$ form a random sample from a distribution for which the p.d.f. or the p.f. is $f (x|θ)$. Then the order statistics $Y_1, . . . , Y_n$ are jointly sufficient for $θ$.
+
+**Definition 7.8.3**
+
+Minimal (Jointly) Sufficient Statistic(s)
+
+A statistic $T$ is a minimal sufficient statistic if $T$ is sufficient and is a function of every other sufficient statistic. A vector $T =(T_1, . . . , T_k)$ of statistics are minimal jointly sufficient statistics if the coordinates of $T$ are jointly sufficient statistics and $T$ is a function of every other jointly sufficient statistics.
+
+**Theorem 7.8.3**
+
+M.L.E. and Sufficient Statistics
+
+Let $T = r(X_1, . . . , X_n)$ be a sufficient statistic for $θ$. Then the M.L.E. $\hat θ$ of $θ$ depends on the observations $X_1, . . . , X_n$ only through the statistic $T$. Furthermore, if $\hat θ$ is itself sufficient, then it is minimal sufficient.
+
+**Theorem 7.8.4**
+
+Bayes Estimator and Sufficient Statistics
+
+Let $T = r(X)$ be a sufficient statistic for $θ$. Then every Bayes estimator $\hat θ$ of $θ$ depends on the observations $X_1, . . . , X_n$ only through the statistic $T$. Furthermore, if $\hat θ$ is itself sufficient, then it is minimal sufficient.
+
