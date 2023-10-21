@@ -1952,3 +1952,31 @@ Bayes Estimator and Sufficient Statistics
 
 Let $T = r(X)$ be a sufficient statistic for $θ$. Then every Bayes estimator $\hat θ$ of $θ$ depends on the observations $X_1, . . . , X_n$ only through the statistic $T$. Furthermore, if $\hat θ$ is itself sufficient, then it is minimal sufficient.
 
+Eq.(7.9.3)
+
+$$δ_0 (T) = E[δ(X)|T]$$
+
+**Theorem 8.9.1**
+
+Let $δ(X)$ be an estimator, let $T$ be a sufﬁcient statistic for $θ$ , and let the estimator $δ_0 (T)$ be deﬁned as in Eq.(7.9.3). Then for every value of $θ ∈ \Omega$,
+
+Eq.(7.9.4)
+
+$$R(θ, δ_0 ) ≤ R(θ, δ)$$
+
+Furthermore, if $R(θ, δ) < ∞$, there is strict inequality in (7.9.4) unless $δ(X)$ is a function of $T$
+
+Eq.(7.9.1)
+
+$$R(θ, δ) = E_θ ([δ(X) − h(θ )]^2)$$
+
+Eq.(7.9.7)
+
+$$R(θ, δ) = E_θ (|δ(X) − θ |)$$
+
+**Definition 7.9.1**
+
+Inadmissible/Admissible/Dominates
+
+Suppose that $R(θ, δ)$ is deﬁned by either Eq.(7.9.1) or Eq.(7.9.7). It is said that an estimator $δ$ is inadmissible if there exists another estimator $δ_0$ such that $R(θ, δ_0 ) ≤ R(θ, δ)$ for every value of $θ ∈ \Omega$ and there is strict inequality in this relation for at least one value of $θ ∈ \Omega$. Under these conditions, it is also said that the estimator $δ_0$ dominates the estimator $δ$. An estimator $δ_0$ is admissible if there is no other estimator that dominates $δ_0$.
+
