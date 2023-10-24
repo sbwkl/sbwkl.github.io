@@ -1980,3 +1980,9 @@ Inadmissible/Admissible/Dominates
 
 Suppose that $R(θ, δ)$ is deﬁned by either Eq.(7.9.1) or Eq.(7.9.7). It is said that an estimator $δ$ is inadmissible if there exists another estimator $δ_0$ such that $R(θ, δ_0 ) ≤ R(θ, δ)$ for every value of $θ ∈ \Omega$ and there is strict inequality in this relation for at least one value of $θ ∈ \Omega$. Under these conditions, it is also said that the estimator $δ_0$ dominates the estimator $δ$. An estimator $δ_0$ is admissible if there is no other estimator that dominates $δ_0$.
 
+**Definition 8.1.1**
+
+Sampling Distribution
+
+Suppose that the random variables $\vec{X} = (X1, . . . , Xn)$ form a random sample from a distribution involving a parameter $θ$ whose value is unknown. Let $T$ be a function of $X$ and possibly $θ$. That is, $T = r(X_1, . . . , X_n, θ)$. The distribution of $T$ (given $θ$) is called the sampling distribution of $T$. We will use the notation $E_θ(T )$ to denote the mean of $T$ calculated from its sampling distribution.
+
