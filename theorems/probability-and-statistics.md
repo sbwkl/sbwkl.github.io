@@ -1986,3 +1986,31 @@ Sampling Distribution
 
 Suppose that the random variables $\vec{X} = (X1, . . . , Xn)$ form a random sample from a distribution involving a parameter $θ$ whose value is unknown. Let $T$ be a function of $X$ and possibly $θ$. That is, $T = r(X_1, . . . , X_n, θ)$. The distribution of $T$ (given $θ$) is called the sampling distribution of $T$. We will use the notation $E_θ(T )$ to denote the mean of $T$ calculated from its sampling distribution.
 
+**Definition 8.2.1**
+
+χ 2 Distributions
+
+For each positive number $m$, the gamma distribution with parameters $α = m/2$ and $β = 1/2$ is called the $χ^2$ distribution with m degrees of freedom.
+
+**Theorem 8.2.1**
+
+Mean and Variance
+
+If a random variable $X$ has the $χ^2$ distribution with $m$ degrees of freedom, then $E(X) = m$ and $Var(X) = 2m$.
+
+**Theorem 8.2.2**
+
+If the random variables $X_1 , . . . , X_k$ are independent and if $X_i$ has the $χ^2$ distribution with $m_i$ degrees of freedom $(i = 1, . . . , k)$, then the sum $X_1 + . . . + X_k$ has the $χ^2$ distribution with $m_1 + . . . + m_k$ degrees of freedom.
+
+**Theorem 8.2.3**
+
+Let $X$ have the standard normal distribution. Then the random variable $Y = X^2$ has the $χ^2$ distribution with one degree of freedom.
+
+**Corollary 8.2.1**
+
+If the random variables $X_1 , . . . , X_m$ are i.i.d. with the standard normal distribution, then the sum of squares $X_1^2 + . . . + X_m^2$ has the $χ^2$ distribution with $m$ degrees of freedom.
+
+**Theorem 8.3.1**
+
+Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\bar{X}_n$ and the sample variance $(1/n) \sum_{i=1}^n (X_i − \bar{X}_n)^2$ are independent random variables, $\bar{X}_n$ has the normal distribution with mean $μ$ and variance $σ^2 /n$, and $\sum_{i=1} (X_i − \bar{X}_n )^2 /σ^2$ has the $χ^2$ distribution with $n − 1$ degrees of freedom.
+
