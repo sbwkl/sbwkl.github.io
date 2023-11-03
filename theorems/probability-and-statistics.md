@@ -2014,3 +2014,81 @@ If the random variables $X_1 , . . . , X_m$ are i.i.d. with the standard normal 
 
 Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\bar{X}_n$ and the sample variance $(1/n) \sum_{i=1}^n (X_i − \bar{X}_n)^2$ are independent random variables, $\bar{X}_n$ has the normal distribution with mean $μ$ and variance $σ^2 /n$, and $\sum_{i=1} (X_i − \bar{X}_n )^2 /σ^2$ has the $χ^2$ distribution with $n − 1$ degrees of freedom.
 
+**Theorem 8.3.2**
+
+Determinant is 1
+
+If A is orthogonal, then |det A| = 1.
+
+**Theorem 8.3.3**
+
+Squared Length Is Preserved
+
+Consider two n-dimensional random vectors
+
+Eq.(8.3.4)
+
+$$
+\vec{X} = 
+\begin{bmatrix}
+X_1 \\
+... \\
+X_n
+\end{bmatrix}
+$$
+
+$$
+\vec{Y} = 
+\begin{bmatrix}
+Y_1 \\
+... \\
+Y_n
+\end{bmatrix}
+$$
+
+and suppose that $\vec{Y} = A\vec{X}$, where A is an orthogonal matrix. Then
+
+Eq.(8.3.5)
+
+$$
+\sum_{i=1}^n Y_i^2 = \sum_{i=1}^n X_i^2
+$$
+
+**Theorem 8.3.4**
+
+Suppose that the random variables, $X_1, . . . , X_n$ are i.i.d. and each has the standard normal distribution. Suppose also that A is an orthogonal n × n matrix, and $\vec{Y} = A\vec{X}$. Then the random variables $Y_1, . . . , Y_n$ are also i.i.d., each also has the standard normal distribution, and $\sum_{i=1}^n X_i^2 = \sum_{i=1}^n Y_i^2$
+
+**Definition 8.4.1**
+
+t Distributions
+
+Consider two independent random variables $Y$ and $Z$, such that $Y$ has the $χ^2$ distribution with $m$ degrees of freedom and $Z$ has the standard normal distribution. Suppose that a random variable $X$ is defined by the equation
+
+Eq.(8.4.1)
+
+$$
+X = \frac{Z}{(\frac{Y}{m})^{1/2}}
+$$
+
+Then the distribution of $X$ is called the t distribution with $m$ degrees of freedom
+
+**Theorem 8.4.1**
+
+Probability Density Function
+
+The p.d.f. of the t distribution with m degrees of freedom is
+
+$$
+\frac{\Gamma(\frac{m+1}{2})}{(m\pi)^{1/2}\Gamma(\frac{m}{2})}(1+\frac{x^2}{m})^{-(m+1)/2}
+$$
+
+**Theorem 8.4.2**
+
+Suppose that $X_1, . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Let $\bar{X}_n$ denote the sample mean, and define
+
+$$
+\sigma^{'} = [\frac{\sum_{i=1}^n(X_i - \bar{X}_n)^2}{n-1}]^{1/2}
+$$
+
+Then $n^{1/2}(\bar{X}_n − μ)/σ^{'}$ has the t distribution with n − 1 degrees of freedom.
+
