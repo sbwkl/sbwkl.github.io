@@ -1988,7 +1988,7 @@ Suppose that the random variables $\vec{X} = (X1, . . . , Xn)$ form a random sam
 
 **Definition 8.2.1**
 
-χ 2 Distributions
+$χ^2$ Distributions
 
 For each positive number $m$, the gamma distribution with parameters $α = m/2$ and $β = 1/2$ is called the $χ^2$ distribution with m degrees of freedom.
 
@@ -2018,7 +2018,7 @@ Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distributi
 
 Determinant is 1
 
-If A is orthogonal, then |det A| = 1.
+If $A$ is orthogonal, then $|det A| = 1$.
 
 **Theorem 8.3.3**
 
