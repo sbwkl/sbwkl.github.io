@@ -2018,7 +2018,7 @@ Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distributi
 
 Determinant is 1
 
-If $A$ is orthogonal, then $|det A| = 1$.
+If A is orthogonal, then \|det A\| = 1.
 
 **Theorem 8.3.3**
 
@@ -2029,7 +2029,7 @@ Consider two n-dimensional random vectors
 Eq.(8.3.4)
 
 $$
-\vec{X} = 
+\vec{X} =
 \begin{bmatrix}
 X_1 \\
 ... \\
@@ -2038,7 +2038,7 @@ X_n
 $$
 
 $$
-\vec{Y} = 
+\vec{Y} =
 \begin{bmatrix}
 Y_1 \\
 ... \\
