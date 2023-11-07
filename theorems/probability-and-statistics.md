@@ -1540,7 +1540,7 @@ $$
 
 **Theorem 6.2.3**
 
-$X_i$ random sample with mean $\mu$ and variance $\sigma^2$. Let $\bar{X_n}$ be the sample mean. Then $E(\bar{X_n}) = \mu$ and $Var(\bar{X_n}) = \sigma^2/n$
+$X_i$ random sample with mean $\mu$ and variance $\sigma^2$. Let $\overline{X_n}$ be the sample mean. Then $E(\overline{X_n}) = \mu$ and $Var(\overline{X_n}) = \sigma^2/n$
 
 **Definition 6.2.1**
 
@@ -1564,10 +1564,10 @@ and is sometimes stated simply as $Z_n$ converges to b in probability.
 
 Law of Large Numbers
 
-Suppose that $X_1, ..., X_n$ form a random sample from a distribution for which the mean is $\mu$ and for which the variance is finite. Let $\bar{X_n}$ denote the sample mean. Then
+Suppose that $X_1, ..., X_n$ form a random sample from a distribution for which the mean is $\mu$ and for which the variance is finite. Let $\overline{X_n}$ denote the sample mean. Then
 
 $$
-\bar{X}_n \xrightarrow{p} \mu
+\overline{X}_n \xrightarrow{p} \mu
 $$
 
 **Theorem 6.2.5**
@@ -1580,7 +1580,7 @@ if $Z_n \xrightarrow{p} b$, and if $g(z)$ is a function that is continues at $z 
 
 Histograms
 
-Let $X_1, X_2, ...$ be a sequence of i.i.d. random variables. Let $c_1 \lt c_2$ be two constants. Define $Y_i = 1$ if $c_1 \le Y_i \lt c_2$ and $Y_i = 0$ if not. Then $\bar{Y_n} = \frac{1}{n}\sum_{i=1}^{n}Y_i$ is proportion of $X_1, X_2, ...$ that lie in the interval $[c_1, c_2)$, and $\bar{Y_n} \xrightarrow{p}P(c_1 \le X_i \lt c_2)$.
+Let $X_1, X_2, ...$ be a sequence of i.i.d. random variables. Let $c_1 \lt c_2$ be two constants. Define $Y_i = 1$ if $c_1 \le Y_i \lt c_2$ and $Y_i = 0$ if not. Then $\overline{Y_n} = \frac{1}{n}\sum_{i=1}^{n}Y_i$ is proportion of $X_1, X_2, ...$ that lie in the interval $[c_1, c_2)$, and $\overline{Y_n} \xrightarrow{p}P(c_1 \le X_i \lt c_2)$.
 
 **Theorem 6.2.7**
 
@@ -1599,7 +1599,7 @@ Centeral Limit Theorem
 If the random variable $X_1, ..., X_n$ form a random sample of size n from a given distribution with mean $\mu$ and variance $\sigma^2 (0 \lt \sigma^2 \lt \infty)$, then for each fixed number x
 
 $$
-\lim_{n->\infty} p[\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \le x] = \Phi(x)
+\lim_{n->\infty} p[\frac{\overline{X}_n - \mu}{\sigma/\sqrt{n}} \le x] = \Phi(x)
 $$
 
 **Definition 6.3.1**
@@ -1627,7 +1627,7 @@ Delta Method for Average of a Random Sample
 Let $X_1, X_2, ...$ be a sequence of i.i.d. random variables from a distribution with mean μ and ﬁnite variance $σ^2$. Let α be a function with continuous derivative such that $α^{'}(μ) \ne 0$. Then the asymptotic distribution of
 
 $$
-\frac{\sqrt{n}}{σ α^{'}(μ)}[α(\bar{X}_n) − α(μ)]
+\frac{\sqrt{n}}{σ α^{'}(μ)}[α(\overline{X}_n) − α(μ)]
 $$
 
 is the standard normal distribution.
@@ -1747,7 +1747,7 @@ Suppose that $X_1, ..., X_n$ form a random sample from the Poisson distribution 
 Suppose that $X_1, ..., X_n$ form a random sample from a normal distribution for which the value of the mean $θ$ is unknown and the value of the variance $σ^2 > 0$ is known. Suppose also that the prior distribution of $θ$ is the normal distribution with mean $μ_0$ and variance $v_0^2$. Then the posterior distribution of $θ$ given that $X_i = x_i (i = 1, ..., n)$ is the normal distribution with mean $μ_1$ and variance $v_1^2$ where
 
 $$
-\mu_1 = \frac{\sigma^2\mu_0 + n v_0^2 \bar{x}_n}{\sigma^2 + nv_0^2}
+\mu_1 = \frac{\sigma^2\mu_0 + n v_0^2 \overline{x}_n}{\sigma^2 + nv_0^2}
 $$
 
 and
@@ -2012,7 +2012,7 @@ If the random variables $X_1 , . . . , X_m$ are i.i.d. with the standard normal 
 
 **Theorem 8.3.1**
 
-Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\bar{X}_n$ and the sample variance $(1/n) \sum_{i=1}^n (X_i − \bar{X}_n)^2$ are independent random variables, $\bar{X}_n$ has the normal distribution with mean $μ$ and variance $σ^2 /n$, and $\sum_{i=1} (X_i − \bar{X}_n )^2 /σ^2$ has the $χ^2$ distribution with $n − 1$ degrees of freedom.
+Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\overline{X}_n$ and the sample variance $(1/n) \sum_{i=1}^n (X_i − \overline{X}_n)^2$ are independent random variables, $\overline{X}_n$ has the normal distribution with mean $μ$ and variance $σ^2 /n$, and $\sum_{i=1} (X_i − \overline{X}_n )^2 /σ^2$ has the $χ^2$ distribution with $n − 1$ degrees of freedom.
 
 **Theorem 8.3.2**
 
@@ -2084,11 +2084,11 @@ $$
 
 **Theorem 8.4.2**
 
-Suppose that $X_1, . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Let $\bar{X}_n$ denote the sample mean, and define
+Suppose that $X_1, . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Let $\overline{X}_n$ denote the sample mean, and define
 
 $$
-\sigma^{'} = [\frac{\sum_{i=1}^n(X_i - \bar{X}_n)^2}{n-1}]^{1/2}
+\sigma^{'} = [\frac{\sum_{i=1}^n(X_i - \overline{X}_n)^2}{n-1}]^{1/2}
 $$
 
-Then $n^{1/2}(\bar{X}_n − μ)/σ^{'}$ has the t distribution with n − 1 degrees of freedom.
+Then $n^{1/2}(\overline{X}_n − μ)/σ^{'}$ has the t distribution with n − 1 degrees of freedom.
 
