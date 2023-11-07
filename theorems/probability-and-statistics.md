@@ -1918,7 +1918,7 @@ Factorization Criterion for Jointly Sufficient Statistics
 
 Let $r_1, . . . , r_k$ be functions of $n$ real variables. The statistics $T_i = r_i(X), i = 1, . . . , k$, are jointly sufficient statistics for $θ$ if and only if the joint p.d.f. or the joint p.f. $f_n(\vec{x} \vert θ)$ can be factored as follows for all values of $x ∈ R^n$ and all values of $θ ∈ \Omega$:
 
-$$f_n(\vec{x}|θ) = u(\vec{x})v[r_1(\vec{x}), . . . , r_k(\vec{x}), θ]$$.
+$$f_n(\vec{x}|θ) = u(\vec{x})v[r_1(\vec{x}), . . . , r_k(\vec{x}), θ]$$
 
 Here the functions $u$ and $v$ are nonnegative, the function $u$ may depend on $x$ but does not depend on $θ$, and the function $v$ will depend on $θ$ but depends on $x$ only through the $k$ functions $r_1(\vec{x}), . . . , r_k(\vec{x})$
 
