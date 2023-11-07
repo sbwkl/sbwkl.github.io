@@ -1618,7 +1618,7 @@ for all x at which $F^*(x)$ is continuous.
 
 Delta method
 
-Let $Y_1, Y_2, ...$ be a sequence of random variables and let $F^*$ be a continuous c.d.f. Let $\theta$ be a real number, and let $a_1, a_2, ...$ be a sequence of positive numbers that increase to $\infty$. Supporse that $a_n(Y_n-\theta)$ converages in distribution to $F^*$. Let $\alpha$ be a function with continuous derivative such that $\alpha^{'}(\theta) \ne 0$. Then $a_n[\alpha(Y_n)-\alpha(\theta)]/\alpha^{'}(\theta)$ converges in distribution to $F^*$.
+Let $Y_1, Y_2, ...$ be a sequence of random variables and let $F^{*}$ be a continuous c.d.f. Let $\theta$ be a real number, and let $a_1, a_2, ...$ be a sequence of positive numbers that increase to $\infty$. Supporse that $a_n(Y_n-\theta)$ converages in distribution to $F^*$. Let $\alpha$ be a function with continuous derivative such that $\alpha^{'}(\theta) \ne 0$. Then $a_n[\alpha(Y_n)-\alpha(\theta)]/\alpha^{'}(\theta)$ converges in distribution to $F^*$.
 
 **Corollary 6.3.1**
 
@@ -1640,7 +1640,7 @@ $$
 
 **Theorem 6.3.3**
 
-Suppose that the random variables $X_1, X_2, ...$ are independent and that $E(|X_i − μ_i|^3 ) < ∞$ for i = 1, 2, . . . Also, suppose that
+Suppose that the random variables $X_1, X_2, ...$ are independent and that $E(\vert X_i − μ_i \vert ^3 ) < ∞$ for i = 1, 2, . . . Also, suppose that
 
 Eq.(6.3.9)
 
@@ -1715,7 +1715,7 @@ Consider a statistical inference problem with parameter $θ$ and random variable
 
 **Theorem 7.2.1**
 
-Suppose that the n random variables $X_1, ..., X_n$ form a random sample from a distribution for which the p.d.f. or the p.f. is $f(x|θ)$. Suppose also that the value of the parameter $θ$ is unknown and the prior p.d.f. or p.f. of $θ$ is $ξ(θ)$. Then the posterior p.d.f. or p.f. of $θ$ is
+Suppose that the n random variables $X_1, ..., X_n$ form a random sample from a distribution for which the p.d.f. or the p.f. is $f(x \vert θ)$. Suppose also that the value of the parameter $θ$ is unknown and the prior p.d.f. or p.f. of $θ$ is $ξ(θ)$. Then the posterior p.d.f. or p.f. of $θ$ is
 
 $$
 ξ(θ|\vec{x}) = \frac{f(x_1|θ) ... f(x_n|θ)ξ(θ)}{g_n(\vec{x})}
@@ -1726,7 +1726,7 @@ for $θ ∈ \Omega$, where $g_n$ is the marginal joint p.d.f. or p.f. of $X_1, .
 
 Likelihood Function
 
-When the joint p.d.f. or the joint p.f. $f_n(x|θ)$ of the observations in a random sample is regarded as a function of $θ$ for given values of $x_1, ..., x_n$, it is called the likelihood function.
+When the joint p.d.f. or the joint p.f. $f_n(x \vert θ)$ of the observations in a random sample is regarded as a function of $θ$ for given values of $x_1, ..., x_n$, it is called the likelihood function.
 
 **Theorem 7.3.1**
 
@@ -1782,7 +1782,7 @@ A loss function is a real-valued function of two variables, $L(θ, a)$,where $θ
 
 Bayes Estimator/Estimate
 
-Let $L(θ, a)$ be a loss function. For each possible value $x$ of $X$, let $δ^∗(x)$ be a value of a such that $E[L(θ, a)|x]$ is minimized. Then $δ^∗$ is called a Bayes estimator of $θ$. Once $X = x$ is observed, $δ^∗(x)$ is called a Bayes estimate of $θ$.
+Let $L(θ, a)$ be a loss function. For each possible value $x$ of $X$, let $δ^∗(x)$ be a value of a such that $E[L(θ, a) \vert x]$ is minimized. Then $δ^∗$ is called a Bayes estimator of $θ$. Once $X = x$ is observed, $δ^∗(x)$ is called a Bayes estimate of $θ$.
 
 **Definition 7.4.4**
 
@@ -1798,7 +1798,7 @@ is called squared error loss.
 
 **Corollary 7.4.1**
 
-Let $θ$ be a real-valued parameter. Suppose that the squared error loss function (7.4.4) is used and that the posterior mean of $θ$, $E(θ |X)$, is ﬁnite. Then, a Bayes estimator of $θ$ is $δ^∗(X) = E(θ|X)$.
+Let $θ$ be a real-valued parameter. Suppose that the squared error loss function (7.4.4) is used and that the posterior mean of $θ$, $E(θ \vert X)$, is ﬁnite. Then, a Bayes estimator of $θ$ is $δ^∗(X) = E(θ \vert X)$.
 
 **Definition 7.4.5**
 
@@ -1832,13 +1832,13 @@ Let $X_1, ..., X_n$ be observable data whose joint distribution is indexed by a 
 
 Likelihood Function
 
-When the joint p.d.f. or the joint p.f. $f_n(x|θ)$ of the observations in a random sample is regarded as a function of $θ$ for given values of $x_1, ..., x_n$, it is called the likelihood function.
+When the joint p.d.f. or the joint p.f. $f_n(x \vert θ)$ of the observations in a random sample is regarded as a function of $θ$ for given values of $x_1, ..., x_n$, it is called the likelihood function.
 
 **Definition 7.5.2**
 
 Maximum Likelihood Estimator/Estimate
 
-For each possible observed vector $x$, let $δ(x) ∈ \Omega$ denote a value of $θ ∈ \Omega$ for which the likelihood function $f_n(x|θ)$ is a maximum, and let $\hat{θ̂} = δ(X)$ be the estimator of $θ$ deﬁned in this way. The estimator $\hat{θ̂}$ is called a maximum likelihood estimator of $θ$. After $X = x$ is observed, the value $δ(x)$ is called a maximum likelihood estimate of $θ$.
+For each possible observed vector $x$, let $δ(x) ∈ \Omega$ denote a value of $θ ∈ \Omega$ for which the likelihood function $f_n(x \vert θ)$ is a maximum, and let $\hat{θ̂} = δ(X)$ be the estimator of $θ$ deﬁned in this way. The estimator $\hat{θ̂}$ is called a maximum likelihood estimator of $θ$. After $X = x$ is observed, the value $δ(x)$ is called a maximum likelihood estimate of $θ$.
 
 **Theorem 7.6.1**
 
@@ -1876,7 +1876,7 @@ $$θ_1 = θ_0 − \frac{f(θ_0)}{f^{'}(θ_0)}$$
 
 Method of Moments
 
-Assume that $X_1, ..., X_n$ form a random sample from a distribution that is indexed by a k-dimensional parameter $θ$ and that has at least $k$ ﬁnite moments. For $j = 1, ..., k$, let $μ_j(θ) = E(X_1^j|θ)$. Suppose that the function $μ(θ) = (μ_1(θ), ..., μ_k(θ))$ is a one-to-one function of $θ$. Let $M(μ_1,... ,μ_k)$ denote the inverse function, that is, for all $θ$, 
+Assume that $X_1, ..., X_n$ form a random sample from a distribution that is indexed by a k-dimensional parameter $θ$ and that has at least $k$ ﬁnite moments. For $j = 1, ..., k$, let $μ_j(θ) = E(X_1^j \vert θ)$. Suppose that the function $μ(θ) = (μ_1(θ), ..., μ_k(θ))$ is a one-to-one function of $θ$. Let $M(μ_1,... ,μ_k)$ denote the inverse function, that is, for all $θ$,
 
 $$θ = M(μ_1(θ), ..., μ_k(θ))$$
 
@@ -1896,7 +1896,7 @@ Let $X_1, ..., X_n$ be a random sample from a distribution indexed by a paramete
 
 Factorization Criterion
 
-Let $X_1, ..., X_n$ form a random sample from either a continuous distribution or a discrete distribution for which the p.d.f. or the p.f. is $f(x|θ)$, where the value of $θ$ is unknown and belongs to a given parameter space $\Omega$. A statistic $T = r(X_1, ..., X_n)$ is a sufficient statistic for $θ$ if and only if the joint p.d.f. or the joint p.f. $f_n(\vec{x}|θ)$ of $X_1, ..., X_n$ can be factored as follows for all values of $\vec{x} = (x_1, ..., x_n) ∈ R^n$ and all values of $θ ∈ \Omega$
+Let $X_1, ..., X_n$ form a random sample from either a continuous distribution or a discrete distribution for which the p.d.f. or the p.f. is $f(x \vert θ)$, where the value of $θ$ is unknown and belongs to a given parameter space $\Omega$. A statistic $T = r(X_1, ..., X_n)$ is a sufficient statistic for $θ$ if and only if the joint p.d.f. or the joint p.f. $f_n(\vec{x} \vert θ)$ of $X_1, ..., X_n$ can be factored as follows for all values of $\vec{x} = (x_1, ..., x_n) ∈ R^n$ and all values of $θ ∈ \Omega$
 
 Eq.(7.7.1)
 
@@ -1916,7 +1916,7 @@ Suppose that for each $θ$ and each possible value $(t_1, ..., t_k)$ of $(T_1, .
 
 Factorization Criterion for Jointly Sufficient Statistics
 
-Let $r_1, . . . , r_k$ be functions of $n$ real variables. The statistics $T_i = r_i(X), i = 1, . . . , k$, are jointly sufficient statistics for $θ$ if and only if the joint p.d.f. or the joint p.f. $f_n(\vec{x}|θ)$ can be factored as follows for all values of $x ∈ R^n$ and all values of $θ ∈ \Omega$:
+Let $r_1, . . . , r_k$ be functions of $n$ real variables. The statistics $T_i = r_i(X), i = 1, . . . , k$, are jointly sufficient statistics for $θ$ if and only if the joint p.d.f. or the joint p.f. $f_n(\vec{x} \vert θ)$ can be factored as follows for all values of $x ∈ R^n$ and all values of $θ ∈ \Omega$:
 
 $$f_n(\vec{x}|θ) = u(\vec{x})v[r_1(\vec{x}), . . . , r_k(\vec{x}), θ]$$.
 
