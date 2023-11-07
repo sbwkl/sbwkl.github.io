@@ -2012,7 +2012,7 @@ If the random variables $X_1 , . . . , X_m$ are i.i.d. with the standard normal 
 
 **Theorem 8.3.1**
 
-Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean (暂时空着) and the sample variance (kong) are independent random variables, (kong) has the normal distribution with mean $μ$ and variance $σ^2 /n$, and (kong) has the $χ^2$ distribution with $n − 1$ degrees of freedom.
+Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\overline{X}_n$ and the sample variance (kong) are independent random variables, (kong) has the normal distribution with mean $μ$ and variance $σ^2 /n$, and (kong) has the $χ^2$ distribution with $n − 1$ degrees of freedom.
 
 **Theorem 8.3.2**
 
