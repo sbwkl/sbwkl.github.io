@@ -1932,7 +1932,7 @@ Suppose that $X_1, . . . , X_n$ form a random sample from some distribution. Let
 
 Order Statistics Are Sufficient in Random Samples
 
-Let $X_1, . . . , X_n$ form a random sample from a distribution for which the p.d.f. or the p.f. is $f (x|θ)$. Then the order statistics $Y_1, . . . , Y_n$ are jointly sufficient for $θ$.
+Let $X_1, . . . , X_n$ form a random sample from a distribution for which the p.d.f. or the p.f. is $f (x\vert θ)$. Then the order statistics $Y_1, . . . , Y_n$ are jointly sufficient for $θ$.
 
 **Definition 7.8.3**
 
@@ -1984,7 +1984,7 @@ Suppose that $R(θ, δ)$ is deﬁned by either Eq.(7.9.1) or Eq.(7.9.7). It is s
 
 Sampling Distribution
 
-Suppose that the random variables $\vec{X} = (X1, . . . , Xn)$ form a random sample from a distribution involving a parameter $θ$ whose value is unknown. Let $T$ be a function of $X$ and possibly $θ$. That is, $T = r(X_1, . . . , X_n, θ)$. The distribution of $T$ (given $θ$) is called the sampling distribution of $T$. We will use the notation $E_θ(T )$ to denote the mean of $T$ calculated from its sampling distribution.
+Suppose that the random variables $\vec{X} = (X_1, . . . , X_n)$ form a random sample from a distribution involving a parameter $θ$ whose value is unknown. Let $T$ be a function of $X$ and possibly $θ$. That is, $T = r(X_1, . . . , X_n, θ)$. The distribution of $T$ (given $θ$) is called the sampling distribution of $T$. We will use the notation $E_θ(T )$ to denote the mean of $T$ calculated from its sampling distribution.
 
 **Definition 8.2.1**
 
@@ -2012,7 +2012,7 @@ If the random variables $X_1 , . . . , X_m$ are i.i.d. with the standard normal 
 
 **Theorem 8.3.1**
 
-Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\overline{X}_n$ and the sample variance $(1/n) \sum_{i=1}^n (X_i − \overline{X}_n)^2$ are independent random variables, $\overline{X}_n$ has the normal distribution with mean $μ$ and variance $σ^2 /n$, and $\sum_{i=1} (X_i − \overline{X}_n )^2 /σ^2$ has the $χ^2$ distribution with $n − 1$ degrees of freedom.
+Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\overline{X}_n$ and the sample variance $(1/n)\sum_{i=1}^n (X_i − \overline{X}_n)^2$ are independent random variables, $\overline{X}_n$ has the normal distribution with mean $μ$ and variance $σ^2 /n$, and $\sum_{i=1} (X_i − \overline{X}_n )^2 /σ^2$ has the $χ^2$ distribution with $n − 1$ degrees of freedom.
 
 **Theorem 8.3.2**
 
