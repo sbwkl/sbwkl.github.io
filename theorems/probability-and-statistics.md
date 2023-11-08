@@ -1841,7 +1841,7 @@ for all x at which $F^*(x)$ is continuous.
 
 Delta method
 
-Let $Y_1, Y_2, ...$ be a sequence of random variables and let $F^{*}$ be a continuous c.d.f. Let $\theta$ be a real number, and let $a_1, a_2, ...$ be a sequence of positive numbers that increase to $\infty$. Supporse that $a_n(Y_n-\theta)$ converages in distribution to $F^*$. Let $\alpha$ be a function with continuous derivative such that $\alpha'(\theta) \ne 0$. Then $a_n[\alpha(Y_n)-\alpha(\theta)]/\alpha'(\theta)$ converges in distribution to $F^*$.
+Let $Y_1, Y_2, ...$ be a sequence of random variables and let $F^*$ be a continuous c.d.f. Let $\theta$ be a real number, and let $a_1, a_2, ...$ be a sequence of positive numbers that increase to $\infty$ . Supporse that $a_n(Y_n-\theta)$ converages in distribution to $F^*$ . Let $\alpha$ be a function with continuous derivative such that $\alpha'(\theta) \ne 0$ . Then $a_n[\alpha(Y_n)-\alpha(\theta)]/\alpha'(\theta)$ converges in distribution to $F^*$
 
 **Corollary 6.3.1**
 
@@ -2235,7 +2235,7 @@ If the random variables $X_1 , . . . , X_m$ are i.i.d. with the standard normal 
 
 **Theorem 8.3.1**
 
-Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean μ and variance $σ^2$. Then the sample mean $\overline{X}_n$ and the sample variance $1/n\sum_{i=1}^n (X_i−\overline{X}_n)^2$ are independent random variables, $\overline{X}_n$ has the normal distribution with mean μ and variance $σ^2/n$, and $\sum_{i=1}^n(X_i−\overline{X}_n)^2 /σ^2$ has the $χ^2$ distribution with n − 1 degrees of freedom.
+Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\overline{X}_n$ and the sample variance $1/n\sum_{i=1}^n(X_i−\overline{X}_n)^2$ are independent random variables, $\overline{X}_n$ has the normal distribution with mean $μ$ and variance $σ^2/n$, and $\sum_{i=1}^n(X_i−\overline{X}_n)^2 /σ^2$ has the $χ^2$ distribution with $n − 1$ degrees of freedom.
 
 **Theorem 8.3.2**
 
