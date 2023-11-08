@@ -1,19 +1,16 @@
-Theorem 1.4.1
+**Theorem 1.4.1**
 
-$$
-Let A, B, and C be events. \\
-Then A \subset S. \\
-if A \subset B and B \subset A, then A = B \\
-if A \subset B and B \subset C, then A \subset C.
-$$
+Let A, B, and C be events. Then $A \subset S$
 
-Theorem 1.4.2
+if $A \subset B$ and $B \subset A$, then $A = B$
 
-$$
-Let A be an event. Then \empty \subset A.
-$$
+if $A \subset B$ and $B \subset C$, then $A \subset C$
 
-Theorem 1.4.3
+**Theorem 1.4.2**
+
+Let A be an event. Then $\empty \subset A$
+
+**Theorem 1.4.3**
 
 $$
 (A^c)^c = A \\
@@ -21,7 +18,7 @@ $$
 S^c = \empty
 $$
 
-Theorem 1.4.4
+**Theorem 1.4.4**
 
 $$
 A \cup B = B \cup A \\
@@ -32,13 +29,13 @@ A \cup S = S \\
 if A \subset B, then A \cup B = B
 $$
 
-Theorem 1.4.6
+**Theorem 1.4.6**
 
 $$
 A \cup B \cup C = (A \cup B) \cup C = A \cup (B \cup C)
 $$
 
-Theorem 1.4.7
+**Theorem 1.4.7**
 
 $$
 A \cap B = B \cap A \\
@@ -49,13 +46,13 @@ A \cap S = A \\
 if A \subset B, then A \cap B = A
 $$
 
-Theorem 1.4.8
+**Theorem 1.4.8**
 
 $$
 A \cap B \cap C = (A \cap B) \cap C = A \cap (B \cap C)
 $$
 
-Theorem 1.4.9
+**Theorem 1.4.9**
 
 $$
 (A \cup B)^c = A^c \cap B^c
@@ -63,7 +60,7 @@ $$
 (A \cap B)^c = A^c \cup B^c
 $$
 
-Theorem 1.4.10
+**Theorem 1.4.10**
 
 $$
 A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
@@ -71,7 +68,7 @@ A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
 A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
 $$
 
-Theorem 1.4.11
+**Theorem 1.4.11**
 
 $$
 A = (A \cap B) \cup (A \cap B^c)
@@ -79,50 +76,51 @@ A = (A \cap B) \cup (A \cap B^c)
 A \cup B = B \cup (A \cap B^c)
 $$
 
-Theorem 1.5.1
+**Theorem 1.5.1**
 
 $$
 P(\empty) = 0
 $$
 
-Theorem 1.5.2
+**Theorem 1.5.2**
 
 for every disjoint event
+
 $$
 P(\bigcup_{i = 1}^{n}A_i) = \sum_{i=1}^{n}P(A_i)
 $$
 
-Theorem 1.5.3
+**Theorem 1.5.3**
 
 $$
 P(A^c) = 1 - P(A)
 $$
 
-Theorem 1.5.4
+**Theorem 1.5.4**
 
 $$
 if A \subset B, then P(A) \le P(B)
 $$
 
-Theorem 1.5.5
+**Theorem 1.5.5**
 
 $$
 0 \le P(A) \le 1
 $$
 
-Theorem 1.5.6
+**Theorem 1.5.6**
 
 $$
-P(A \cap B^c) = P(A) - P(A \cap B) 
+P(A \cap B^c) = P(A) - P(A \cap B)
 $$
 
-Theorem 1.5.7
+**Theorem 1.5.7**
 
 $$
 P(A \cup B) = P(A) + P(B) - P(A \cap B)
 $$
 
-Theorem 1.5.8
+**Theorem 1.5.8**
 
 $$
 P(\bigcup_{i = 1}^{n}A_i) \le \sum_{i = 1}^{n}P(A_i) 
@@ -131,14 +129,14 @@ P(\bigcup_{i = 1}^{n}A_i) \le \sum_{i = 1}^{n}P(A_i)
 P(\bigcap_{i = 1}^{n}A_i) \ge 1 - \sum_{i = 1}^{n}P(A_i^c)
 $$
 
-Theorem 1.7.1
+**Theorem 1.7.1**
 
 Multiplication Rule for Two-Part Experiments
 
 S = nm
 
 
-Theorem 1.7.2
+**Theorem 1.7.2**
 
 Multiplication Rule
 
@@ -146,54 +144,59 @@ $$
 S = n_1n_2...n_k
 $$
 
-Theorem 1.7.3
+**Theorem 1.7.3**
 
-P_{n, k} = n(n - 1)...(n - k + 1)
+$$P_{n, k} = n(n - 1)...(n - k + 1)$$
 
-
-Theorem 1.7.4
+**Theorem 1.7.4**
 
 $$
 P_{n, k} = \frac{n!}{(n - k)!}
 $$
 
-
-Theorem 1.7.5
+**Theorem 1.7.5**
 
 $$
-S_n = \frac{1}{2}log(2\pi) + (n + \frac{1}{2})log(n) - n \\
-\lim\limits_{n -> \infty} |S_n - log(n!)| = 0 \\
+S_n = \frac{1}{2}log(2\pi) + (n + \frac{1}{2})log(n) - n
+$$
+
+$$
+\lim\limits_{n -> \infty} |S_n - log(n!)| = 0
+$$
+
+$$
 \lim\limits_{n -> \infty}\frac{(2\pi)^{1/2}n^{n + 1/2} e^{-n}}{n!} = 1
 $$
 
-
-Theorem 1.8.1
+**Theorem 1.8.1**
 
 $$
 C_{n, k} = \frac{P_{n, k}}{k!} = \frac{n!}{k!(n - k)!}
 $$
 
-
-Theorem 1.8.2
+**Theorem 1.8.2**
 
 $$
 (x + y) = \sum{k = 0}{n}\binom{n}{k}x^ky^{n - k}
 $$
 
-Theorem 1.8.3
+**Theorem 1.8.3**
 
 $$
-\binom{n}{0} = \binom{n}{n} = 1 \\
+\binom{n}{0} = \binom{n}{n} = 1
+$$
+
+$$
 \binom{n}{k} = \binom{n}{n - k}
 $$
 
-Theorem 1.9.1
+**Theorem 1.9.1**
 
 $$
 (x_1 + x_2 + ... + x_k)^n = \sum\binom{n}{n_1, n_2, ... , n_k}x_1^{n_1}x_2^{n_2}...x_k^{n_k}
 $$
 
-Theorem 1.10.1
+**Theorem 1.10.1**
 
 $$
 P(A_1 \cup A_2 \cup A_3) = P(A_1) + P(A_2) + P(A_3) \\
@@ -201,7 +204,7 @@ P(A_1 \cup A_2 \cup A_3) = P(A_1) + P(A_2) + P(A_3) \\
 + P(A_1 \cap A_2 \cap A_3)
 $$
 
-Theorem 1.10.2
+**Theorem 1.10.2**
 
 $$
 P(\bigcup_{i = 1}^{n} A_i) = \sum_{i = 1}^{n}P(A_i) - \sum_{i <j}^{}P(A_i \cap A_j) \\
@@ -209,26 +212,26 @@ P(\bigcup_{i = 1}^{n} A_i) = \sum_{i = 1}^{n}P(A_i) - \sum_{i <j}^{}P(A_i \cap A
 + (-1)^{n + 1}P(A_i \cap A_2 \cap ... \cap A_n)
 $$
 
-Theorem 2.1.1
+**Theorem 2.1.1**
 
 $$
 P(A \cap B) = P(B) P(A | B) \\
 P(A \cap B) = P(A) P(B | A)
 $$
 
-Theorem 2.1.2
+**Theorem 2.1.2**
 
 $$
 P(A_1 \cap A_2 \cap ... \cap A_n) = P(A_1)P(A_2 | A_1)P(A_3 | A_1 \cap A_2) ... P(A_n | A_1 \cap A_2 \cap ... \cap A_{n - 1})
 $$
 
-THeorem 2.1.3
+**THeorem 2.1.3**
 
 $$
 P(A_1 \cap A_2 \cap ... \cap A_n | B) = P(A_1 | B) P(A_2 | A_1 \cap B) ... P(A_n|A_1 \cap A_2 \cap ... \cap A_{n-1} \cap B)
 $$
 
-Theorem 2.1.4
+**Theorem 2.1.4**
 
 B<sub>i</sub> is partition of the space S
 
@@ -244,7 +247,7 @@ $$
 P(A|C) = \sum_{j=1}^{k}P(B_j|C)P(A|B_j \cap C)
 $$
 
-Theorem 2.2.1
+**Theorem 2.2.1**
 
 A, B independent
 
@@ -252,7 +255,7 @@ $$
 P(A \cap B^c) = P(A)P(B^c)
 $$
 
-Theorem 2.2.2
+**Theorem 2.2.2**
 
 A<sub>i</sub> i = 1, 2, ..., k 独立，当且仅当任何两个不相交的子集满足
 
@@ -260,18 +263,18 @@ $$
 P(A_{i_1} \cap ... \cap A_{i_m} | A_{j_1} \cap ... \cap A_{J_l}) = P(A_{i_1} \cap ... \cap A_{i_m})
 $$
 
-Theorem 2.2.3
+**Theorem 2.2.3**
 
 Let n > 1 and let A<sub>1</sub>, . . . , A<sub>n</sub> be events that are mutually exclusive. The events are
 also mutually independent if and only if all the events except possibly one of them
 has probability 0.
 
-Theorem 2.2.4
+**Theorem 2.2.4**
 
 Suppose that A1, A2, and B are events such that Pr(A1 ∩ B) > 0. Then A1 and A2 are
 conditionally independent given B if and only if Pr(A2|A1 ∩ B) = Pr(A2|B).
 
-Theorem 2.3.1
+**Theorem 2.3.1**
 
 $$
 P(B_i|A) = \frac{P(B_i)P(A|B_i)}{\sum_{j=1}^{k}P(B_j)P(A|B_j)}
@@ -312,31 +315,31 @@ $$
 F(x) = F(x^{+})
 $$
 
-Theorem 3.3.1
+**Theorem 3.3.1**
 
 $$
 P(X \gt x) = 1 - F(x)
 $$
 
-Theorem 3.3.2
+**Theorem 3.3.2**
 
 $$
 P(x_1 \lt X \le x_2) = F(x_2) - F(x_1)
 $$
 
-Theorem 3.3.3
+**Theorem 3.3.3**
 
 $$
 P(X \lt x) = F(x^{-})
 $$
 
-Theorem 3.3.4
+**Theorem 3.3.4**
 
 $$
 P(X=x) = F(x) - F(x^{-})
 $$
 
-Theorem 3.3.5
+**Theorem 3.3.5**
 
 X 是连续分布
 
@@ -1052,7 +1055,7 @@ If $X_1, . . . , X_n$ are independent random variables with finite means, and if
 
 **Theorem 4.4.1**
 
-If $E(|X|^k) \lt \infty$ for some positive integer k, then $E(|X|^j) \lt \infty$ for every positive integer j such that j < k
+If $E(\vert X \vert^k) \lt \infty$ for some positive integer k, then $E(\vert X \vert^j) \lt \infty$ for every positive integer j such that j < k
 
 **Definition 4.4.2**
 
@@ -1122,7 +1125,7 @@ Furthermore, there will be equality in the relation (4.5.1) if and only if d = �
 
 Mean Absolute Error/M.A.E.
 
-The number $E(|X − d|)$ is called the mean absolute error (M.A.E.) of the prediction d.
+The number $E(\vert X − d \vert)$ is called the mean absolute error (M.A.E.) of the prediction d.
 
 **Theorem 4.5.3**
 
@@ -1257,13 +1260,13 @@ $$
 
 Conditional Expectation/Mean
 
-Let X and Y be random variables such that the mean of Y exists and is ﬁnite. The conditional expectation (or conditional mean) of Y given X = x is denoted by E(Y|x) and is deﬁned to be the expectation of the conditional distribution of Y given X = x.
+Let X and Y be random variables such that the mean of Y exists and is ﬁnite. The conditional expectation (or conditional mean) of Y given X = x is denoted by $E(Y \vert x)$ and is deﬁned to be the expectation of the conditional distribution of Y given X = x.
 
 **Definition 4.7.2**
 
 Conditional Means as Random Variables
 
-Let $h(x)$ stand for the function of x that is denoted $E(Y|x)$ in either (4.7.1) or (4.7.2). Deﬁne the symbol $E(Y|X)$ to mean $h(X)$ and call it the conditional mean of Y given X.
+Let $h(x)$ stand for the function of x that is denoted $E(Y \vert x)$ in either (4.7.1) or (4.7.2). Deﬁne the symbol $E(Y|X)$ to mean $h(X)$ and call it the conditional mean of Y given X.
 
 **Theorem 4.7.1**
 
@@ -1283,7 +1286,7 @@ Let $X$ and $Y$ be random variables, and let $Z = r(X, Y)$ for some function $r$
 
 Conditional Variance
 
-For every given value $x$, let $Var(Y|x)$ denote the variance of the conditional distribution of $Y$ given that $X = x$. That is,
+For every given value $x$, let $Var(Y \vert x)$ denote the variance of the conditional distribution of $Y$ given that $X = x$. That is,
 
 Eq.(4.7.5)
 
@@ -1838,16 +1841,16 @@ for all x at which $F^*(x)$ is continuous.
 
 Delta method
 
-Let $Y_1, Y_2, ...$ be a sequence of random variables and let $F^*$ be a continuous c.d.f. Let $\theta$ be a real number, and let $a_1, a_2, ...$ be a sequence of positive numbers that increase to $\infty$. Supporse that $a_n(Y_n-\theta)$ converages in distribution to $F^*$. Let $\alpha$ be a function with continuous derivative such that $\alpha^{'}(\theta) \ne 0$. Then $a_n[\alpha(Y_n)-\alpha(\theta)]/\alpha'(\theta)$ converges in distribution to $F^*$.
+Let $Y_1, Y_2, ...$ be a sequence of random variables and let $F^{*}$ be a continuous c.d.f. Let $\theta$ be a real number, and let $a_1, a_2, ...$ be a sequence of positive numbers that increase to $\infty$. Supporse that $a_n(Y_n-\theta)$ converages in distribution to $F^*$. Let $\alpha$ be a function with continuous derivative such that $\alpha'(\theta) \ne 0$. Then $a_n[\alpha(Y_n)-\alpha(\theta)]/\alpha'(\theta)$ converges in distribution to $F^*$.
 
 **Corollary 6.3.1**
 
 Delta Method for Average of a Random Sample
 
-Let $X_1, X_2, ...$ be a sequence of i.i.d. random variables from a distribution with mean μ and ﬁnite variance $σ^2$. Let α be a function with continuous derivative such that $α^{'}(μ) \ne 0$. Then the asymptotic distribution of
+Let $X_1, X_2, ...$ be a sequence of i.i.d. random variables from a distribution with mean μ and ﬁnite variance $σ^2$. Let α be a function with continuous derivative such that $α'(μ) \ne 0$. Then the asymptotic distribution of
 
 $$
-\frac{\sqrt{n}}{σ α^{'}(μ)}[α(\overline{X}_n) − α(μ)]
+\frac{\sqrt{n}}{σ α'(μ)}[α(\overline{X}_n) − α(μ)]
 $$
 
 is the standard normal distribution.
@@ -2090,7 +2093,7 @@ Newton’s Method
 
 Let $f(θ)$ be a real-valued function of a real variable, and suppose that we wish to solve the equation $f(θ) = 0$. Let $θ_0$ be an initial guess at the solution. Newton’s method replaces the initial guess with the updated guess
 
-$$θ_1 = θ_0 − \frac{f(θ_0)}{f^{'}(θ_0)}$$
+$$θ_1 = θ_0 − \frac{f(θ_0)}{f'(θ_0)}$$
 
 **Definition 7.6.3**
 
@@ -2307,8 +2310,8 @@ $$
 Suppose that $X_1, . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Let $\overline{X}_n$ denote the sample mean, and define
 
 $$
-\sigma^{'} = [\frac{\sum_{i=1}^n(X_i - \overline{X}_n)^2}{n-1}]^{1/2}
+\sigma' = [\frac{\sum_{i=1}^n(X_i - \overline{X}_n)^2}{n-1}]^{1/2}
 $$
 
-Then $n^{1/2}(\overline{X}_n − μ)/σ^{'}$ has the t distribution with n − 1 degrees of freedom.
+Then $n^{1/2}(\overline{X}_n − μ)/σ'$ has the t distribution with n − 1 degrees of freedom.
 
