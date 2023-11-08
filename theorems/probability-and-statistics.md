@@ -1317,7 +1317,7 @@ $$
 
 Closeness of Binomial and Poisson Distributions
 
-For each integer n and each 0 < p < 1, let $f (x|n, p)$ denote the p.f. of the binomial distribution with parameters n and p. Let $f (x|λ)$ denote the p.f. of the Poisson distribution with mean λ. Let ${p_n}_{n=1}^∞$ be a sequence of numbers between 0 and 1 such that $\lim_{n→∞} np_n = λ$. Then
+For each integer n and each 0 < p < 1, let $f (x \vert n, p)$ denote the p.f. of the binomial distribution with parameters n and p. Let $f (x \vert λ)$ denote the p.f. of the Poisson distribution with mean λ. Let ${p_n}_{n=1}^∞$ be a sequence of numbers between 0 and 1 such that $\lim_{n→∞} np_n = λ$. Then
 
 $$
 \lim_{n→∞}f(x|n, p_n) = f(x|λ),
@@ -1335,7 +1335,227 @@ $$
 \lim_{T→∞}\frac{Pr(Y = x)}{Pr(X_T = x)} = 1.
 $$
 
-//上面还有很多漏了
+**Definition 5.4.2**
+
+Poisson Process
+
+A Poisson process with rate λ per unit time is a process that satisfies the following two properties:
+
++ The number of arrivals in every fixed interval of time of length t has the Poisson
+distribution with mean λt.
++ The numbers of arrivals in every collection of disjoint time intervals are independent.
+
+**Theorem 5.5.1**
+
+Sampling until a Fixed Number of Successes
+
+Suppose that an infinite sequence of Bernoulli trials with probability of success p are available. The number X of failures that occur before the rth success has the following p.d.f.:
+
+Eq.(5.5.1)
+
+$$
+f(x|r, p) = \begin{cases}
+\binom{r+x-1}{x}p^r(1-p)^x \ \ \text{for x = 0, 1, 2,...} \\
+0
+\end{cases}
+$$
+
+**Definition 5.5.1**
+
+Negative Binomial Distribution
+
+A random variable X has the negative binomial distribution with parameters r and p (r = 1, 2, . . . and 0 < p < 1) if X has a discrete
+distribution for which the p.f. $f (x \vert r, p)$ is as specified by Eq. (5.5.1).
+
+**Definition 5.5.2**
+
+Geometric Distribution
+
+A random variable X has the geometric distribution with parameter p (0 < p < 1) if X has a discrete distribution for which the p.f. $f (x\vert 1, p)$ is as follows:
+
+**Theorem 5.5.2**
+
+If $X_1, . . . , X_r$ are i.i.d. random variables and if each $X_i$ has the geometric distribution with parameter p, then the sum $X_1 + . . . + X_r$ has the negative binomial distribution with parameters r and p.
+
+**Theorem 5.5.3**
+
+Moment Generating Function
+
+If X has the negative binomial distribution with parameters r and p, then the m.g.f. of X is as follows:
+
+Eq.(5.5.6)
+
+$$
+ψ(t) = (\frac{p}{1 − (1 − p)e^t})^r \ \ \  \text{for} \ t < log(\frac{1}{1-p})
+$$
+
+**Theorem 5.5.4**
+
+Mean and Variance
+
+If X has the negative binomial distribution with parameters r and p, the mean and the variance of X must be
+
+Eq.(5.5.7)
+
+$$
+E(X) = \frac{r(1 − p)}{p}
+$$
+and 
+
+$$Var(X) = \frac{r(1 − p)}{p^2}$$
+
+**Theorem 5.5.5**
+
+Memoryless Property of Geometric Distributions
+
+Let X have the geometric distribution with parameter p, and let k ≥ 0. Then for every integer t ≥ 0,
+
+$$
+Pr(X = k + t|X ≥ k) = Pr(X = t).
+$$
+
+**Definition 5.6.1**
+
+Definition and p.d.f.
+
+A random variable X has the normal distribution with mean μ and variance σ 2 (−∞ < μ < ∞ and σ > 0) if X has a continuous distribution with the following p.d.f.:
+
+Eq.(5.6.1)
+
+$$
+f (x|μ, σ^2) = \frac{1}{(2π)^{1/2}σ} exp[−\frac{1}{2} (\frac{x − μ}{\sigma})^2] \ \ \ \text{for} −∞ < x < ∞
+$$
+
+**Theorem 5.6.2**
+
+Moment Generating Function
+
+The m.g.f. of the distribution with p.d.f. given by Eq. (5.6.1) is
+
+Eq.(5.6.5)
+
+$$
+ψ(t) = exp (μt + \frac{1}{2}σ^2t^2) \ \ \ \text{for} −∞ < t < ∞.
+$$
+
+**Theorem 5.6.3**
+
+Mean and Variance
+
+The mean and variance of the distribution with p.d.f. given by Eq. (5.6.1) are $μ$ and $σ^2$, respectively.
+
+**Theorem 5.6.4**
+
+If X has the normal distribution with mean $μ$ and variance $σ^2$ and if Y = aX + b, where a and b are given constants and a = 0, then Y has the normal distribution with mean $aμ + b$ and variance $a^2σ^2$
+
+**Definition 5.6.2**
+
+Standard Normal Distribution
+
+The normal distribution with mean 0 and variance 1 is called the standard normal distribution. The p.d.f. of the standard normal distribution is usually denoted by the symbol $\phi$, and the c.d.f. is denoted by the symbol $\Phi$. Thus,
+
+Eq.(5.6.6)
+
+$$
+\phi(x) = f (x|0, 1) = \frac{1}{(2π)^{1/2}} exp(−\frac{1}{2}x^2) \ \ \ \text{for} −∞ < x < ∞
+$$
+
+Eq.(5.6.7)
+
+$$
+\Phi(x) = \int_{−∞}^x \phi(u) du \ \ \ \text{for} −∞ < x < ∞,
+$$
+
+**Theorem 5.6.5**
+
+Consequences of Symmetry
+
+For all x and all 0 < p < 1,
+
+Eq.(5.8.6)
+
+$\Phi(−x) = 1 − \Phi(x)$ and $\Phi^{−1}(p) = −\Phi^{−1}(1 − p)$
+
+**Theorem 5.6.6**
+
+Converting Normal Distributions to Standard
+
+Let X have the normal distribution with mean μ and variance $σ^2$. Let F be the c.d.f. of X. Then $Z = (X − μ)/σ$ has the standard normal distribution, and, for all x and all 0 < p < 1
+
+Eq.(5.6.9)
+
+$$
+F(x) = \Phi(\frac{x − μ}{σ})
+$$
+
+Eq.(5.6.10)
+
+$$
+F^{−1}(p) = μ + σ\Phi^{−1}(p).
+$$
+
+**Theorem 5.6.7**
+
+If the random variables $X_1, . . . , X_k$ are independent and if $X_i$ has the normal distribution with mean $μ_i$ and variance $σ_i^2$ (i = 1, . . . , k), then the sum $X_1 + . . . + X_k$ has the normal distribution with mean $μ_1 + . . . + μ_k$ and variance $σ_1^2 + . . . + σ_k^2$
+
+**Corollary 5.6.1**
+
+If the random variables $X_1, . . . , X_k$ are independent, if $X_i$ has the normal distribution with mean $μ_i$ and variance $σ_i^2$ (i = 1, . . . , k), and if $a_1, . . . , a_k$ and b are constants for which at least one of the values $a_1, . . . , a_k$ is different from 0, then the variable $a_1X_1 + . . . + a_kX_k + b$ has the normal distribution with mean $a_1μ_1 + . . . + a_kμ_k + b$ and variance $a_1^2σ_1^2 + . . . + a_k^2σ_k^2$
+
+**Definition 5.6.3**
+
+Sample Mean
+
+Let $X_1, . . . , X_n$ be random variables. The average of these n random
+variables, $\frac{1}{n}\sum_{i=1}^n X_i$, is called their sample mean and is commonly denoted $\overline{X}_n$
+
+**Corollary 5.6.2**
+
+Suppose that the random variables $X_1, . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$, and let Xn denote their sample mean. Then $\overline{X}_n$ has the normal distribution with mean $μ$ and variance $σ^2/n$
+
+**Definition 5.6.4**
+
+Lognormal Distribution
+
+If $log(X)$ has the normal distribution with mean $μ$ and variance $σ^2$, we say that X has the lognormal distribution with parameters $μ$ and $σ^2$
+
+**Definition 5.7.1**
+
+The Gamma Function
+
+For each positive number $α$, let the value $\Gamma(α)$ be defined by the following integral:
+
+Eq(5.7.2)
+
+$$\Gamma(α) = \int_0^∞ x^{α−1}e^{−x}dx$$
+
+**Theorem 5.7.1**
+
+Eq.(5.7.4)
+
+If α > 1, then $\Gamma(α) = (α − 1)\Gamma(α − 1)$
+
+**Theorem 5.7.2**
+
+Eq.(5.7.5)
+
+For every positive integer n, $\Gamma(n) = (n − 1)!$
+
+**Theorem 5.7.3**
+
+Eq.(5.7.10)
+
+For each α > 0 and each β > 0
+
+$$\int_0^∞ x^{α−1} exp(βx)dx = \frac{β^α}{\Gamma(α)}$$
+
+**Theorem 5.7.4**
+
+Stirling’s Formula
+
+$$
+\lim_{x→∞} \frac{(2π)^{1/2}x^{x−1/2}e^{−x}}{\Gamma(x)} = 1
+$$
 
 **Definition 5.7.2**
 
