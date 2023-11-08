@@ -1838,7 +1838,7 @@ for all x at which $F^*(x)$ is continuous.
 
 Delta method
 
-Let $Y_1, Y_2, ...$ be a sequence of random variables and let $F^{*}$ be a continuous c.d.f. Let $\theta$ be a real number, and let $a_1, a_2, ...$ be a sequence of positive numbers that increase to $\infty$. Supporse that $a_n(Y_n-\theta)$ converages in distribution to $F^*$. Let $\alpha$ be a function with continuous derivative such that $\alpha^{'}(\theta) \ne 0$. Then $a_n[\alpha(Y_n)-\alpha(\theta)]/\alpha^{'}(\theta)$ converges in distribution to $F^*$.
+Let $Y_1, Y_2, ...$ be a sequence of random variables and let $F^*$ be a continuous c.d.f. Let $\theta$ be a real number, and let $a_1, a_2, ...$ be a sequence of positive numbers that increase to $\infty$. Supporse that $a_n(Y_n-\theta)$ converages in distribution to $F^*$. Let $\alpha$ be a function with continuous derivative such that $\alpha^{'}(\theta) \ne 0$. Then $a_n[\alpha(Y_n)-\alpha(\theta)]/\alpha'(\theta)$ converges in distribution to $F^*$.
 
 **Corollary 6.3.1**
 
@@ -1931,7 +1931,7 @@ prior p.f. or p.d.f. as a function of θ.
 
 Posterior Distribution/p.f./p.d.f.
 
-Consider a statistical inference problem with parameter $θ$ and random variables $X_1, ..., X_n$ to be observed. The conditional distribution of $θ$ given $X_1, ... , X_n$ is called the posterior distribution of $θ$. The conditional p.f. or p.d.f. of $θ$ given $X_1 = x_1, ..., X_n = x_n$ is called the posterior p.f. or posterior p.d.f. of $θ$ and is typically denoted $ξ(θ|x_1, ..., x_n)$.
+Consider a statistical inference problem with parameter $θ$ and random variables $X_1, ..., X_n$ to be observed. The conditional distribution of $θ$ given $X_1, ... , X_n$ is called the posterior distribution of $θ$. The conditional p.f. or p.d.f. of $θ$ given $X_1 = x_1, ..., X_n = x_n$ is called the posterior p.f. or posterior p.d.f. of $θ$ and is typically denoted $ξ(θ \vert x_1, ..., x_n)$.
 
 **Theorem 7.2.1**
 
@@ -1956,7 +1956,7 @@ Suppose that $X_1, ..., X_n$ form a random sample from the Bernoulli distributio
 
 Conjugate Family/Hyperparameters
 
-Let $X_1, X_2, ...$ be conditionally i.i.d. given θ with common p.f. or p.d.f. $f(x \vert θ)$. Let $\Psi$ be a family of possible distributions over the parameter space $\Omega$. Suppose that, no matter which prior distribution ξ we choose from $\Psi$, no matter how many observations $X = (X_1, ..., X_n)$ we observe, and no matter what are their observed values $x = (x_1, ..., x_n)$, the posterior distribution $ξ(θ|x)$ is a member of $\Psi$. Then $\Psi$ is called a conjugate family of prior distributions for samples from the distributions $f(x|θ)$. It is also said that the family $\Psi$ is closed under sampling from the distributions $f(x \vert θ)$. Finally, if the distributions in $\Psi$ are parametrized by further parameters, then the associated parameters for the prior distribution are called the prior hyperparameters and the associated parameters of the posterior distribution are called the posterior hyperparameters.
+Let $X_1, X_2, ...$ be conditionally i.i.d. given θ with common p.f. or p.d.f. $f(x \vert θ)$. Let $\Psi$ be a family of possible distributions over the parameter space $\Omega$. Suppose that, no matter which prior distribution ξ we choose from $\Psi$, no matter how many observations $X = (X_1, ..., X_n)$ we observe, and no matter what are their observed values $x = (x_1, ..., x_n)$, the posterior distribution $ξ(θ \vert x)$ is a member of $\Psi$. Then $\Psi$ is called a conjugate family of prior distributions for samples from the distributions $f(x \vert θ)$. It is also said that the family $\Psi$ is closed under sampling from the distributions $f(x \vert θ)$. Finally, if the distributions in $\Psi$ are parametrized by further parameters, then the associated parameters for the prior distribution are called the prior hyperparameters and the associated parameters of the posterior distribution are called the posterior hyperparameters.
 
 **Theorem 7.3.2**
 
@@ -2232,7 +2232,7 @@ If the random variables $X_1 , . . . , X_m$ are i.i.d. with the standard normal 
 
 **Theorem 8.3.1**
 
-Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\overline{X}_n$ and the sample variance $1/n \sum_{i=1}^n (X_i − \overline{X}_n)^2$ are independent random variables, (kong) has the normal distribution with mean $μ$ and variance $σ^2 /n$, and (kong) has the $χ^2$ distribution with $n − 1$ degrees of freedom.
+Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\overline{X}_n$ and the sample variance (kong) are independent random variables, $\overline{X}_n$ has the normal distribution with mean $μ$ and variance $σ^2 /n$, and $\sum_{i=1} (X_i − \overline{X}_n )^2 /σ^2$ has the $χ^2$ distribution with $n − 1$ degrees of freedom.
 
 **Theorem 8.3.2**
 
