@@ -26,7 +26,7 @@ A \cup A = A \\
 A \cup A^c = S \\
 A \cup \empty = A \\
 A \cup S = S \\
-if A \subset B, then A \cup B = B
+if A \subset B \text{, then} \ A \cup B = B
 $$
 
 **Theorem 1.4.6**
@@ -2235,7 +2235,7 @@ If the random variables $X_1 , . . . , X_m$ are i.i.d. with the standard normal 
 
 **Theorem 8.3.1**
 
-Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean $μ$ and variance $σ^2$. Then the sample mean $\overline{X}_n$ and the sample variance (kong) are independent random variables, $\overline{X}_n$ has the normal distribution with mean $μ$ and variance $σ^2 /n$, and $\sum_{i=1} (X_i − \overline{X}_n )^2 /σ^2$ has the $χ^2$ distribution with $n − 1$ degrees of freedom.
+Suppose that $X_1 , . . . , X_n$ form a random sample from the normal distribution with mean μ and variance $σ^2$. Then the sample mean $\overline{X}_n$ and the sample variance $1/n\sum_{i=1}^n (X_i−\overline{X}_n)^2$ are independent random variables, $\overline{X}_n$ has the normal distribution with mean μ and variance $σ^2/n$, and $\sum_{i=1}^n(X_i−\overline{X}_n)^2 /σ^2$ has the $χ^2$ distribution with n − 1 degrees of freedom.
 
 **Theorem 8.3.2**
 
