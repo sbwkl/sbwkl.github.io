@@ -2315,3 +2315,102 @@ $$
 
 Then $n^{1/2}(\overline{X}_n − μ)/σ'$ has the t distribution with n − 1 degrees of freedom.
 
+**Definition 8.5.1**
+
+Confidence Interval
+
+Let $\vec{X} = (X_1, . . . , X_n)$ be a random sample from a distribution that depends on a parameter (or parameter vector) $θ$. Let $g(θ)$ be a real-valued function of $θ$. Let A ≤ B be two statistics that have the property that for all values of θ,
+
+Eq.(8.5.4)
+
+$$Pr(A < g(θ) < B) ≥ γ$$
+
+Then the random interval (A, B) is called a coefficient γ confidence interval for g(θ) or a 100γ percent confidence interval for g(θ).
+
+**Theorem 8.5.1**
+
+Confidence Interval for the Mean of a Normal Distribution
+
+Let $X_1, . . . , X_n$ be a random sample from the normal distribution with mean μ and variance $σ^2$. For each 0 < γ < 1, the interval (A, B) with the following endpoints is an exact coefficient γ confidence interval for μ:
+
+$$
+A = \overline{X}_n − T_{n−1}^{−1} (\frac{1 + γ}{2}) \frac{σ'}{n^{1/2}}
+$$
+
+$$
+B = \overline{X}_n + T_{n−1}^{−1} (\frac{1 + γ}{2}) \frac{σ'}{n^{1/2}}
+$$
+
+**Definition 8.5.2**
+
+One-Sided Confidence Intervals/Limits
+
+Let $\vec{X} = (X_1, . . . , X_n)$ be a random sample from a distribution that depends on a parameter (or parameter vector) θ. Let g(θ)
+be a real-valued function of θ. Let A be a statistic that has the property that for all values of θ,
+
+Eq.(8.5.5)
+
+$$
+Pr(A < g(θ)) ≥ γ
+$$
+
+Then the random interval (A, ∞) is called a one-sided coefficient γ confidence interval for g(θ) or a one-sided 100γ percent confidence interval for g(θ)
+
+**Theorem 8.5.2**
+
+One-Sided Confidence Intervals for the Mean of a Normal Distribution
+
+Let $X_1, . . . , X_n$ be a random sample from the normal distribution with mean μ and variance $σ^2$. For each 0 < γ < 1, the following statistics are, respectively, exact lower and upper coefficient γ confidence limits for μ:
+
+$$
+A = \overline{X}_n − T_{n−1}^{−1}(γ) \frac{σ'}{n^{1/2}}
+$$
+
+$$
+B = \overline{X}_n + T_{n−1}^{−1}(γ) \frac{σ'}{n^{1/2}}
+$$
+
+**Definition 8.5.3**
+
+Pivotal
+
+Let $\vec{X} = (X_1, . . . , X_n)$ be a random sample from a distribution that depends on a parameter (or vector of parameters) θ. Let $V (\vec{X}, θ)$ be a random variable whose distribution is the same for all θ. Then V is called a pivotal quantity (or simply a pivotal).
+
+**Theorem 8.5.3**
+
+Confidence Interval from a Pivotal
+
+Let $\vec{X} = (X_1, . . . , X_n)$ be a random sample from a distribution that depends on a parameter (or vector of parameters) θ. Suppose that a pivotal V exists. Let G be the c.d.f. of V , and assume that G is continuous. Assume that a function r exists as in Eq. (8.5.7), and assume that r(v, x) is strictly increasing in v for each x. Let 0 < γ < 1 and let γ2 > γ1 be such that γ2 − γ1 = γ . Then the following statistics are the endpoints of an exact coefficient γ confidence interval for g(θ):
+
+$$A = r (G^{−1}(γ1), \vec{X}$$
+
+$$B = r (G^{−1}(γ2), \vec{X}$$
+
+If r(v, x) is strictly decreasing in v for each x, then switch the definitions of A and B.
+
+**Definition 8.6.1**
+
+Precision of a Normal Distribution. The precision τ of a normal distribution is defined as the reciprocal of the variance; that is, $τ = 1/σ^2$.
+
+**Theorem 8.6.1**
+
+Suppose that $X_1, . . . , X_n$ form a random sample from the normal distribution with unknown mean μ and unknown precision τ (−∞ < μ < ∞ and τ > 0). Suppose also that the joint prior distribution of μ and τ is as follows: The conditional distribution of μ given τ is the normal distribution with mean $μ_0$ and precision $λ_0τ$ ($−∞ < μ_0 < ∞$ and $λ_0 > 0$), and the marginal distribution of τ is the gamma distribution with parameters $α_0$ and $β_0$ ($α_0 > 0$ and $β_0 > 0$). Then the joint posterior distribution of μ and τ, given that $X_i = x_i$ for i = 1, . . . , n, is as follows: The conditional distribution of μ given τ is the normal distribution with mean $μ_1$ and precision $λ_1τ$, where
+
+Eq.(8.6.1)
+
+$$μ_1 = \frac{λ_0μ_0 + n\overline{x}_n}{λ_0 + n}$$
+
+and
+
+$$λ_1 = λ_0 + n$$
+
+and the marginal distribution of τ is the gamma distribution with parameters $α_1$ and $β_1$, where
+
+Eq.(8.6.2)
+
+$$α_1 = α_0 + \frac{n}{2}$$
+
+and
+
+$$β_1 = β_0 + \frac{1}{2}s_n^2 + \frac{nλ_0(\overline{x}_n − μ_0)^2}{2(λ_0 + n)}$$
+

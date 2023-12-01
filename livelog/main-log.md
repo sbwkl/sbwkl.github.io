@@ -5,7 +5,56 @@
 怎样解决，有什么启示？
 ```
 
-**2023-10-23 周一 晴 18摄氏度**
+**2023-11-28 周二 晴 12℃**
+
+```
+2023-11-27
+16:30 同事反馈 catalyst_fanli 项目无法启动，这是一个远古的 node 项目
+16:35 项目提交记录显示修改的内容极少，修改部分大概率不会引发问题
+16:40 使用 pm2 logs 查看日志，居然没有日志输出，pm2 list 查看项目显示全 error
+16:41 猜测可能日志配置不对，尝试修改日志配置
+16:54 查看部署脚本找到启动配置的 ecosystem.json 文件，只输出 error 日志，另外两个日志输出到黑洞设备
+      {
+         ...
+         "out_file"   : "/dev/null",
+         "error_file" : "/var/log/catalyst_fanli/catalyst_fanli_err.log",
+         "log_file"   : "/dev/null",
+         ...
+      }
+      修改配置后重启项目，依然没有日志输出
+17:10 尝试直接通过 node index.web.js 启动，输出几行 koa 的废弃提示信息后就没有日志了，此时以为是 koa 不兼容导致（伏笔了）
+17:30 一番搜索用 npm list 查看各依赖版本，发现版本没问题
+17:40 怀疑是 pm2 有问题，kill, stop, delete, startOrRestart 各种命令尝试问题依然无解
+18:35 寻找无解，又回到 index.web.js 文件，直接修改文件用 console.log 查看文件执行过程，发现执行卡在代码 await app.startup('catalyst_fanli', router
+19:07 查看 app 是 Airjs 对象，来自 @node/arijs 这个项目是贝贝自研的项目，用于管理项目，但问题是不知道为什么卡住
+19:11 使用 node debug index.web.js 单步调试，不会就查文档，陆续用到
+      c = Continue, n = Step next, s = Step in, o = Step out
+      sb('filepaht', 2) = set breakpoint at filepath line 2
+      repl = show variable
+      这中间以为 watch 是 repl 功能，弄了半天
+19:25 发现代码卡住是因为 dev 环境的 zk 配置不对，通过 export NODE_ENV=production 设置为生产环境，神奇的发现项目启动了
+19:26 使用 nohup 启动项目，先临时解决，第二天再战
+
+
+2023-11-18
+13:39 查看 pm2.log 发现有报错（关键）
+      path.js:1082
+            path = process.cwd();
+                        ^
+      Error: ENOENT: no such file or directory, uv_cwd
+      at Object.resolve (path.js:1082:24)
+13:43 经过搜索，发现似乎和 pm2 的工作文件夹有关 https://github.com/Unitech/pm2/issues/2057
+13:43 ps ax | grep PM2 查看 pm2 进程
+13:44 ls -l /proc/$PM2_PID/cwd 查看工作文件夹，发现
+      lrwxrwxrwx 1 root root 0 Nov 28 13:36 /proc/23254/cwd -> /data/webroot/catalyst_fanli (deleted)
+13:47 pm2 kill 杀光所有相关进程，注意：既杀死 pm2 daemon 进程，也杀死所有受管理的 node 进程
+13:47 pm2 启动 daemon 进程，此时工作文件夹是 /root 这个文件夹大概率不会被删除
+13:50 尝试启动 catalyst_fanli 项目，项目正常启动
+
+幸运的是自研部分的代码没有 minimize 否则根本不知道怎么 debug，也就没法知道项目其实没问题
+```
+
+**2023-10-23 周一 晴 18℃**
 
 ```
 昨晚跑步后半段尝试小腿发力，跖球部分摊一部分压力。似乎可以缓解膝盖疼，这周再实践几次，效果好的话冲击 10km 又有信心了。
