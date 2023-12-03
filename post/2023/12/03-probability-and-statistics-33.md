@@ -27,9 +27,9 @@ plt.grid(True)
 plt.show()
 ```
 
-![](https://files.mdnice.com/user/18103/873445f4-5f36-4de3-ae34-9b9fc952d9d2.png)
+![](03-t-df-25.png)
 
-根据 $P(|U| \le c) = \gamma$ 解出 $c = T_{n-1}^{-1}[(1 + \gamma) / 2]$ 那么 $|\sqrt{n}(\overline{X}_n - \mu)/\sigma'| \lt c$。
+根据 $P(|U| \lt c) = \gamma$ 解出 $c = T_{n-1}^{-1}[(1 + \gamma) / 2]$ 那么 $|\sqrt{n}(\overline{X}_n - \mu)/\sigma'| \lt c$。
 
 $\mu$ 的下限 $A = \overline{X}_n - \frac{\sigma'}{\sqrt{n}} T_{n-1}^{-1}[(1 + \gamma) / 2]$
 
@@ -43,7 +43,7 @@ $A = \overline{X}_n - 0.404\sigma'$
 
 $B = \overline{X}_n + 0.404\sigma'$
 
-置信区间说的是 $\mu$ 在 (A, B) 的概率是 95%，一次抽样后就能算出具体的 (a, b)，不能认为 $\mu$ 在 (a, b) 的概率是 95%，(A, B) 相当于随机变量，(a, b) 是其中一个值。
+置信区间说的是 $\mu$ 在 (A, B) 的概率是 95%，一次抽样后就能算出具体的 (a, b)，但不能认为 $\mu$ 在 (a, b) 的概率是 95%，(A, B) 相当于随机变量，(a, b) 是其中一个值。
 
 这就比较坑了，那该怎么使用？
 
@@ -52,7 +52,7 @@ $B = \overline{X}_n + 0.404\sigma'$
 比如正态分布
 
 $$
-V(\vec{X}, \theta) = \sum_{i=1}^n((X_i - \overline{X})^2/\sigma^2)
+V(\vec{X}, \theta) = \sum_{i=1}^n((X_i - \overline{X}_n)^2/\sigma^2)
 $$
 
 对所有 $\theta = (\mu, \sigma^2)$ 都是 n - 1 的 $\chi^2$ 分布，这个枢轴变量可以用来计算 $\sigma^2$ 的置信区间
@@ -63,7 +63,7 @@ $$
 V(\vec{X}, \theta) = \sqrt{n}(\overline{X}_n - \mu)/\sigma'
 $$
 
-对所有 $\theta$ 都是 n - 1 的 t 分布，这个枢轴变量用来计算 $\mu$ 的置信区间。
+对所有 $\theta$ 都是 n - 1 的 t 分布，这个枢轴变量可以用来计算 $\mu$ 的置信区间。
 
 如果 $\theta$ 是标量更容易，比如参数为 $\theta$ 的指数分布
 
@@ -71,10 +71,10 @@ $$
 V(\vec{X}, \theta) = \theta \sum_{i=1}^n X_i
 $$
 
-对所有 $\theta$ 都是 (n, 1) 的伽马分布，用来计算 $\theta$ 的置信区间。
+对所有 $\theta$ 都是 (n, 1) 的伽马分布，可以用来计算 $\theta$ 的置信区间。
 
 碎碎念
 
-几周前公司从城东搬到了城西，通勤时间提升 200%，幸福指数和大 A 一样天天阴跌。唯一好的一点外卖是真快，不到二十分钟就送达，以至于要在外卖柜里躺上半小时。
+几周前公司从城东搬到了城西，通勤时间飙升 200%，幸福指数就和大 A 一样天天阴跌。唯一好处是外卖送的真快，不到二十分钟就送达，以至于要在外卖柜里躺上半小时。
 
 封面图：Twitter 心臓弱眞君 @xinzoruo
