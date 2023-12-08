@@ -2414,3 +2414,25 @@ and
 
 $$β_1 = β_0 + \frac{1}{2}s_n^2 + \frac{nλ_0(\overline{x}_n − μ_0)^2}{2(λ_0 + n)}$$
 
+**Definition 8.6.2**
+
+Normal-Gamma Family of Distributions
+
+Let μ and τ be random variables. Suppose that the conditional distribution of μ given τ is the normal distribution with mean $μ_0$ and precision $λ_0τ$. Suppose also that the marginal distribution of τ is the gamma distribution with parameters $α_0$ and $β_0$. Then we say that the joint distribution of μ and τ is the normal-gamma distribution with hyperparameters $μ_0, λ_0, α_0, β_0$.
+
+**Theorem 8.6.2**
+
+Marginal Distribution of the Mean. Suppose that the prior distribution of μ and τ is the normal-gamma distribution with hyperparameters $μ_0, λ_0, α_0, β_0$. Then the marginal distribution of μ is related to a t distribution in the following way:
+
+$$(\frac{λ_0α_0}{β_0})^{1/2} (μ − μ_0)$$
+
+has the t distribution with 2α0 degrees of freedom.
+
+**Theorem 8.6.3**
+
+Suppose that μ and τ have the joint normal-gamma distribution with hyperparameters $μ_0, λ_0, α_0, β_0$. If $α_0 > 1/2$, then $E(μ) = μ_0$. If $α_0 > 1$, then
+
+Eq.(8.6.11)
+
+$$Var(μ) = \frac{β_0}{λ_0(α_0 − 1)}$$
+
