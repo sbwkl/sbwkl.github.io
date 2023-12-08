@@ -1298,9 +1298,115 @@ We call $Var(Y|x)$ the conditional variance of $Y$ given $X = x$.
 
 The prediction $d(X)$ that minimizes $E\{[Y − d(X)]^2\}$ is $d(X) = E(Y|X)$
 
+**Theorem 4.7.4**
 
+Law of Total Probability for Variances
 
-//上面还有很多漏了
+If X and Y are arbitrary random variables for which the necessary expectations and variances exist, then $Var(Y ) = E[Var(Y|X)] + Var[E(Y|X)]$.
+
+**Definition 4.8.1**
+
+Utility Function
+
+A person’s utility function U is a function that assigns to each possible amount x (−∞ < x < ∞) a number U(x) representing the actual worth to the person of gaining the amount x.
+
+**Definition 4.8.2**
+
+Maximizing Expected Utility
+
+We say that a person chooses between gambles by maximizing expected utility if the following conditions hold. There is a utility function U, and when the person must choose between any two gambles X and Y, he will prefer X to Y if $E[U(X)] > E[U(Y )]$ and will be indifferent between X and Y if $E[U(X)] = E[U(Y )]$.
+
+**Definition 5.2.1**
+
+Bernoulli Distribution
+
+A random variable X has the Bernoulli distribution with parameter p (0 ≤ p ≤ 1) if X can take only the values 0 and 1 and the probabilities are
+
+Eq.(5.2.1)
+
+Pr(X = 1) = p and Pr(X = 0) = 1 − p.
+
+The p.f. of X can be written as follows:
+
+Eq.(5.2.2)
+
+$$
+f (x|p) = \begin{cases} &p^x(1 − p)^{1−x} \ \ \ \text{for } x = 0, 1 \\
+&0  
+\end{cases}
+$$
+
+**Definition 5.2.2**
+
+Bernoulli Trials/Process
+
+If the random variables in a finite or infinite sequence $X_1,X_2, . . .$ are i.i.d., and if each random variable $X_i$ has the Bernoulli distribution with parameter p, then it is said that $X_1, X_2, . . .$ are Bernoulli trials with parameter p. An infinite sequence of Bernoulli trials is also called a Bernoulli process.
+
+**Definition 5.2.3**
+
+Binomial Distribution
+
+A random variable X has the binomial distribution with parameters n and p if X has a discrete distribution for which the p.f. is as follows:
+
+Eq.(5.2.3)
+
+$$
+f (x|n, p) =  \begin{cases} \binom{n}{x} p^x(1 − p)^{n−x} \ \ for \ x = 0, 1, 2, . . . , n \\
+0
+\end{cases}
+$$
+
+**Theorem 5.2.1**
+
+If the random variables $X_1, . . . , X_n$ form n Bernoulli trials with parameter p, and if $X = X_1 + . . . + X_n$, then X has the binomial distribution with parameters n and p.
+
+**Theorem 5.2.2**
+
+If $X_1, . . . , X_k$ are independent random variables, and if $X_i$ has the binomial distribution with parameters $n_i$ and p (i = 1, . . . , k), then the sum $X_1 + . . . + X_k$ has the binomial distribution with parameters $n = n_1 + . . . + n_k$ and p
+
+**Theorem 5.3.1**
+
+Probability Function
+
+The distribution of X in Example 5.3.1 has the p.f.
+
+Eq.(5.3.1)
+
+$$
+f (x|A, B, n) = \frac{\binom{A}{x} \binom{B}{n − x}}{\binom{A + B}{n}}
+$$
+
+for max{0, n − B} ≤ x ≤ min{n, A}, (5.3.2) and f (x|A, B, n) = 0 otherwise.
+
+**Definition 5.3.1**
+
+Hypergeometric Distribution
+
+Let A, B, and n be nonnegative integers with n ≤ A + B. If a random variable X has a discrete distribution with p.f. as in Eqs. (5.3.1) and (5.3.2), then it is said that X has the hypergeometric distribution with parameters A, B, and n.
+
+**Theorem 5.3.2**
+
+Mean and Variance
+
+Let X have a hypergeometric distribution with strictly positive parameters A, B, and n. Then
+
+Eq.(5.3.3)
+
+$$E(X) = \frac{nA}{A + B}$$
+
+Eq.(5.3.4)
+
+$$Var(X) = \frac{nAB}{(A + B)^2}.\frac{A + B − n}{A + B − 1}$$
+
+**Theorem 5.3.3**
+
+Let $a_n$ and $c_n$ be sequences of real numbers such that $a_n$ converges to 0, and $c_na_n^2$ converges to 0. Then
+
+$$
+\lim_{n→∞}(1 + a_n)^{c_n}e^{−a_nc_n} = 1
+$$
+
+In particular, if $a_nc_n$ converges to b, then $(1 + a_n)^{c_n}$ converges to $e^b$
 
 **Theorem 5.3.4**
 
