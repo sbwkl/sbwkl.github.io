@@ -2532,7 +2532,7 @@ Marginal Distribution of the Mean. Suppose that the prior distribution of μ and
 
 $$(\frac{λ_0α_0}{β_0})^{1/2} (μ − μ_0)$$
 
-has the t distribution with 2α0 degrees of freedom.
+has the t distribution with $2α_0$ degrees of freedom.
 
 **Theorem 8.6.3**
 

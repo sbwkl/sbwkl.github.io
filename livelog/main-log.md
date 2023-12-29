@@ -5,6 +5,40 @@
 怎样解决，有什么启示？
 ```
 
+**2023-12-15 周五 小雨 6℃**
+
+```
+2023-12-12
+18:22 准备跑一下 autogpt 项目，考虑到本机是 win7 肯定不选择，所以选项有二，要么腾讯云的机子，要么公司另一台 win10，于是决定先用腾讯云的机子
+18:23 git clone 然后卡住，老生常淡了，开启 vpn 加速
+
+2023-12-14
+09:17 配置 github token
+09:22 创建 agent
+10:42 启动 agent 中途有依赖下载不下来，依然用 vpn 加速
+10:58 项目启动后发现监听在 localhost 并不是 0.0.0.0 只能本机访问
+14:15 灵机一动想用端口转发的形式转发端口，但不止为何不行（伏笔了）
+      sudo iptables -t nat -A PREROUTING -p tcp --dport 8000 -j DNAT --to-destination 127.0.0.1:8000
+16:41 经过漫长的尝试依然无解，通过阅读代码发现启动 agent 是 forge 下的 __main__.py 文件，修改文件监听 0.0.0.0
+18:06 经过漫长的尝试依然无解，猜测可能是代码版本问题，切换到 0.5.0 tag 依然无果
+
+2023-12-15
+09:01 通过 nc -l 1111 监听 1111 端口在尝试，发现绝大多数端口都通，唯独 8000, 8001, 8008 不通，想起这几个端口曾经转发过
+09:44 通过 buser sudo iptables -t nat -v -L -n --line-number 查看转发记录，发现果然有这些端口
+09:45 通过 buser sudo iptables -t nat -D PREROUTING 2 删除对应的转发记录
+09:55 再次启动 agent 8000 端口通了，配置腾讯云 clb 转发到对应域名，心想总算成了
+09:56 访问 agpt.beisheng.com 提示 oauth 登录，一点无论是 Google 还是 Github 都提示错误
+10:15 猜测大概率是 oauth 配置了重定向地址是 localhost:8000 那岂不是没救了
+10:20 不得已只能在 win10 的电脑上在试一次，先安装 WSL
+      WSL 装不上 conda 只好单独装 python3.11 又装了 pip3
+      WSL 网络和本机不通，又装了 vpn 解决网络问题
+      一套搞下来，终于搞定了，如愿登录上了
+14:00 配置 openai，因为 openai 不能本地访问需要配置自定义地址，找了个 python 文件写入
+      openai.api_base = "ALT_URL"
+      好在 api_key 可以配置环境变量
+      export OPENAI_API_KEY=sk-abc
+```
+
 **2023-12-01 周五 晴 10℃**
 
 ```
