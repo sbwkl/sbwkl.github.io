@@ -2542,3 +2542,23 @@ Eq.(8.6.11)
 
 $$Var(μ) = \frac{β_0}{λ_0(α_0 − 1)}$$
 
+**Definition 8.7.1**
+
+Unbiased Estimator/Bias
+
+An estimator $δ(\vec{X})$ is an unbiased estimator of a function g(θ) of the parameter θ if $E_θ[δ(\vec{X})]= g(θ)$ for every possible value of θ. An estimator that is not unbiased is called a biased estimator. The difference between the expectation of an estimator and g(θ) is called the bias of the estimator. That is, the bias of δ as an estimator of g(θ) is $E_θ[δ(\vec{X})] − g(θ)$, and δ is unbiased if and only if the bias is 0 for all θ.
+
+**Corollary 8.7.1**
+
+Let δ be an estimator with finite variance. Then the M.S.E. of δ as an estimator of g(θ) equals its variance plus the square of its bias.
+
+**Theorem 8.7.1**
+
+Unbiased Estimation of the Variance
+
+Sampling from a General Distribution. Let $\vec{X} = (X_1, . . . , X_n)$ be a random sample from a distribution that depends on a parameter (or parameter vector) θ. Assume that the variance of the distribution is finite. Define g(θ) = Varθ(X1). The following statistic is an unbiased estimator of the variance g(θ):
+
+$$
+\hat{\sigma_1}^2 = \frac{1}{n - 1} \sum_{i=1}^{n}(X_i - \overline{X}_n)^2
+$$
+
