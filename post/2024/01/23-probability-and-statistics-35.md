@@ -68,9 +68,9 @@ $$
 
 $E(\delta) - g(\theta)$ 叫做偏差，显然无偏估计量的偏差为零。顺便一说，机器学习里也有这个词。
 
-估计量的 M.S.E. $E_\theta[(E(\delta) - g(\theta))^2]$，如果 $\delta$ 是无偏估计量，那么 $E_\theta[(E(\delta) - g(\theta))^2]=Var_\theta(\delta)$ 这个很好理解。如果不是，那么 $E_\theta[(E(\delta) - g(\theta))^2] = Var_\theta(\delta) + bias^2$ 这就很费解了。
+估计量的 M.S.E. 如果 $\delta$ 是无偏估计量，那么 $E_\theta[(\delta - g(\theta))^2]=Var_\theta(\delta)$ 这个很好理解。如果不是，那么 $E_\theta[(\delta - g(\theta))^2] = Var_\theta(\delta) + bias^2$ 这就很费解了。
 
-查了一些资料，过程都很微妙，其中一种
+查了一些资料，过程都有点微妙，其中一种
 
 已知 $E(X^2) = Var(X) + [E(X)]^2$，把 $\delta - \theta$ 代入 X 得到
 
@@ -80,9 +80,7 @@ $$
 
 等号左边是 MSE 的定义，等号右边第二项是偏差的平方，问题是为毛 $Var(\delta - \theta) = Var(\delta)$，难道把 $\theta$ 当常量看，不应该是随机变量么，不懂，有没有大手子解释下。
 
-这个公式简化 MSE 计算，估计量 $T_c = c \sum_{i=1}^n (X_i - \overline{X}_n)^2$ 计算 MSE。
-
-<!-- 都可以当做正态分布 $\sigma^2$ 的估计量 -->
+这个公式简化 MSE 计算，估计量 $T_c = c \sum_{i=1}^n (X_i - \overline{X}_n)^2$ 直接计算 MSE 很复杂。
 
 $\sum_{i=1}^n (X_i - \overline{X}_n)^2/\sigma^2$ 是 n - 1 的 $\chi^2$ 分布（假设 $X_i$ 是正态分布）有
 
