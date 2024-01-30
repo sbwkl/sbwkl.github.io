@@ -2,41 +2,51 @@
 
 今天是读《概率统计》的逻辑第 35 天，学习无偏估计量。
 
-一种新的估计量 $\delta(\vec{X})$，满足 $E_\theta[\delta(\vec{X})] = g(\theta)$，最简单就是 $g(\theta) = \theta$
+一种新的估计量，满足 $E_\theta[\delta(\vec{X})] = g(\theta)$，最简单的 $g(\theta) = \theta$。
+
+举个例子
+
+指数分布的 MLE $\hat{\theta} = n / T$，T 是 $(n, \theta)$ 的伽马分布
 
 $$
-\hat{\theta} = 3/T
+\begin{aligned}
+E[\hat{\theta}] &= E[\frac{n}{T}] = nE(\frac{1}{T}) \\
+&=n \int \frac{1}{t} f(t) dt \\
+&=n \int \frac{1}{t} \frac{\theta^n}{\Gamma(n)} t^{n-1} e^{-\theta t}dt \\
+&=\frac{n}{n-1} \theta
+\end{aligned}
 $$
 
-T 是 $(3, \theta)$ 的伽马分布
+$E(\hat{\theta}) - \theta=\theta/(n-1)$，可以知道 $\hat{\theta}$ 不是 $\theta$ 的无偏估计量，比它大一点点，但是 $(n-1)/T$ 是它的无偏估计量。
+
+正态分布 $\sigma^2$ 的 MLE $\hat{\sigma^2} = 1/n \sum_{i=1}^n (X_i - \overline{X}_n)^2$，根据上一节
 
 $$
-E(\hat{\theta}) = 3E(1/T) = 3 \int \frac{1}{t} f(t) dt = 3 \int \frac{1}{t} \frac{\theta^2}{\Gamma(3)} t^2 e^{-\theta t}dt = 3\theta / 2
+\sum_{i=1}^n (X_i -\mu)^2 = \sum_{i=1}^n(X_i - \overline{X}_n)^2 + n(\overline{X}_n - \mu)^2
 $$
 
-可以知道 $\hat{\theta}$ 不是 $\theta$ 的无偏估计量，进一步可以知道 $2/T$ 是 $\theta$ 的无偏估计量
+$E[(X_i - \mu)^2]$ 是 $X_i$ 的方差，$E[(\overline{X}_n - \mu)^2]$ 是 $\overline{X}_n$ 的方差，是 $X_i$ 方差的 $1/n$
 
-T 是 $(n, \theta)$ 的伽马分布
-
-$$
-E(\hat{\theta}) = n E(1/T) = n \int \frac{1}{t} f(t) dt = n \int \frac{1}{t} \frac{\theta^n}{\Gamma(n)} t^{n-1} e^{-\theta t}dt = \frac{n}{n-1} \theta
-$$
-
-$E_\theta [\delta(\vec{X})] - g(\theta)$ 叫做 bias，没找到翻译，也许叫偏差？顺便一说，机器学习里也有这个词。
-
-可以知道 $\hat{\theta}$ 的无偏估计量是 $(n-1)/T$，又多一种，好在这些估计量在 n 很大的时候差别不大，样本量才是王道。
+那么
 
 $$
-E_\theta[(\delta - g(\theta))^2] = Var_\theta(\delta) + bias^2
+\begin{aligned}
+E[\hat{\sigma^2}] &= \frac{1}{n} E[\sum_{i=1}^n(X_i - \overline{X}_n)^2] \\
+&= \frac{1}{n} E[\sum_{i=1}^n (X_i -\mu)^2] - E[(\overline{X}_n - \mu)^2] \\
+&= \frac{1}{n} \sum_{i=1}^n E[(X_i -\mu)^2] - E[(\overline{X}_n - \mu)^2] \\
+&= \sigma^2 - \frac{1}{n}\sigma^2 = \frac{n-1}{n} \sigma^2
+\end{aligned}
 $$
 
-有些分布的无偏估计量很怪，基本没法用。比如几何分布，$g(\theta) = p$ 的无偏估计量，对任何 p 满足
+$E(\hat{\sigma^2}) - \sigma^2 = -\sigma^2/n$ 可以知道 $\hat{\sigma^2}$ 也不是 $\sigma^2$ 无偏估计量，稍微小一点，但 $\frac{1}{n-1} \sum (X_i - \overline{X})^2$ 是无偏估计量。
+
+有些分布的无偏估计量很怪，比如几何分布 $p$ 的无偏估计量
 
 $$
 E[\delta(X)] = \sum_{x=0}^\infty \delta(x) f(x|p) = p
 $$
 
-代入函数
+代入概率函数
 
 $$
 \delta(0)p(1-p)^0 + \delta(1)p(1-p)^1 + \delta(2)p(1-p)^2 + ... = p
@@ -48,41 +58,28 @@ $$
 \delta(0) + \delta(1)(1-p)^1 + \delta(2)(1-p)^2 + ... = 1
 $$
 
-要求这个式子对所有 p 都成立，那好像只有 $\delta(0) = 1$，其他 $\delta(x)$ 都等于 0。
+这个式子要求对所有 p 都成立，那好像只有 $\delta(0) = 1$，其他都等于 0 了。
 
-这样的无偏估计量没啥用，毕竟估计量是用来预测以辅助决策的。这个要么 0 要么 1 太二极管。
+这个估计量没啥用，毕竟估计量是用来预测以辅助决策的。这个要么 0 要么 1 也太 2 了。
 
-根据上一节
 
-$$
-\sum_{i=1}^n (X_i -\mu)^2 = \sum_{i=1}^n(X_i - \overline{X}_n)^2 + n(\overline{X}_n - \mu)^2
-$$
+<!-- 又多一种，好在这些估计量在 n 很大的时候差别不大，样本量才是王道。 -->
 
-其中 $E[(X_i - \mu)^2]$ 是 $X_i$ 的方差，$E[(\overline{X}_n - \mu)^2]$ 是 $\overline{X}_n$ 的方差，是 $X_i$ 方差的 $1/n$
+$\delta - g(\theta)$ 叫做偏差，显然无偏估计量的偏差为零。顺便一说，机器学习里也有这个词。
 
-那么
+估计量的 M.S.E. $E[(\delta - g(\theta))^2]$。如果 $\delta$ 是无偏估计量，那么 $E[(\delta - g(\theta))^2]=Var_\theta(\delta)$ 这个很好理解。如果不是，那么 $E_\theta[(\delta - g(\theta))^2] = Var_\theta(\delta) + bias^2$ 这就很费解了。
 
-$$
-\begin{aligned}
-E[\sum_{i=1}^n(X_i - \overline{X}_n)^2] &= E[\sum_{i=1}^n (X_i -\mu)^2] - nE[(\overline{X}_n - \mu)^2] \\
-&= \sum_{i=1}^n E[(X_i -\mu)^2] - nE[(\overline{X}_n - \mu)^2] \\
-&= n\sigma^2 - n(\frac{1}{n}\sigma^2) = (n-1)\sigma^2
-\end{aligned}
-$$
+查了一些资料，证明过程很简单
 
-对于随机样本 $\vec{X} = (X_1, ..., X_n)$ 如果 $g(\theta) = Var_\theta(X_1)$ 这时候的无偏估计量是
+已知 $E(X^2) = Var(X) + [E(X)]^2$，把 $\hat{\theta} - \theta$ 代入 X 得到
 
 $$
-\delta(\vec{X}) = \frac{1}{n-1} \sum (X_i - \overline{X})^2
+E[(\hat{\theta} - \theta)^2] = Var(\hat{\theta} - \theta) - [E(\hat{\theta} - \theta)]^2
 $$
 
-对于格式
+等号左边就是 MSE 的定义，等号右边第二项是偏差的平方，问题是为毛 $Var(\hat{\theta} - \theta) = Var(\hat{\theta})$，难道把 $\theta$ 当常量看，不懂，有没有大手子解释下。
 
-$$
-T_c = c \sum_{i=1}^n (X_i - \overline{X}_n)^2
-$$
-
-的所有估计量
+用这个公式可以评估估计量的 MSE，比如对于形如 $T_c = c \sum_{i=1}^n (X_i - \overline{X}_n)^2$ 的估计量
 
 $$
 \begin{aligned}
@@ -95,7 +92,7 @@ $$
 
 一元二次方程解最小值，好怀念的感觉，当 $c=n+1$ 的时候 MSE 最小。
 
-好家伙，关于 $\sigma^2$ 现在有 3 个估计量，就看你信哪个
+这下好了，关于 $\sigma^2$ 现在有 3 个估计量
 
 MLE $\hat{\theta} = 1/n \sum_{i=1}^n (X_i - \overline{X}_n)^2$
 
@@ -103,6 +100,8 @@ MLE $\hat{\theta} = 1/n \sum_{i=1}^n (X_i - \overline{X}_n)^2$
 
 最后一个方差最小 $1/(n+1) \sum_{i=1}^n (X_i - \overline{X}_n)^2$
 
-还挺规律
+就看你信哪个
+
+难怪说科学的尽头是玄学。
 
 封面图：Twitter 心臓弱眞君 @xinzoruo
