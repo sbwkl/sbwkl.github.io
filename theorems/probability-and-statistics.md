@@ -2562,3 +2562,63 @@ $$
 \hat{\sigma_1}^2 = \frac{1}{n - 1} \sum_{i=1}^{n}(X_i - \overline{X}_n)^2
 $$
 
+**Definition 8.8.1**
+
+Fisher Information in a Random Variable.
+
+Let X be a random variable whose distribution depends on a parameter θ that takes values in an open interval $\Omega$ of the real line. Let the p.f. or p.d.f. of X be $f (x|θ)$. Assume that the set of x such that $f (x|θ) > 0$ is the same for all θ and that $λ(x|θ) = log f (x|θ)$ is twice differentiable as a function of θ. The Fisher information I(θ) in the random variable X is defined as
+
+Eq(8.8.1)
+
+$$I (θ) = E_θ\{[λ'(X|θ)]^2\}.$$
+
+Thus, if f (x|θ) is a p.d.f., then
+
+Eq(8.8.2)
+
+$$I (θ) = \int_S[λ'(x|θ)]^2f (x|θ) dx.$$
+
+**Theorem 8.8.1**
+
+Assume the conditions of Definition 8.8.1. Also, assume that two derivatives of $\int_Sf (x|θ)dx$ with respect to θ can be calculated by reversing the order of integration and differentiation. Then the Fisher information also equals
+
+Eq(8.8.3)
+
+$$I (θ) = −E_θ[λ''(X|θ)].$$
+
+Another expression for the Fisher information is
+
+Eq(8.8.4)
+
+$$I (θ) = Var_θ[λ'(X|θ)].$$
+
+**Definition 8.8.2**
+
+Fisher Information in a Random Sample. Suppose that $\vec{X} = (X_1, . . . , X_n)$ form a random sample from a distribution for which the p.f. or p.d.f. is $f (x|θ)$, where the value of the parameter θ must lie in an open interval $\Omega$ of the real line. Let $f_n(\vec{x}|θ)$ denote the joint p.f. or joint p.d.f. of X. Define
+
+Eq(8.8.9)
+
+$$λ_n(\vec{x}|θ) = log f_n(vec{x}|θ)$$
+
+Assume that the set of $\vec{x}$ such that $f_n(\vec{x}|θ) > 0$ is the same for all θ and that log $f_n(\vec{x}|θ)$ is twice differentiable with respect to θ. The Fisher information $I_n(θ)$ in the random sample X is defined as
+
+$$I_n(θ) = E_θ\{[λ_n'(\vec{X}|θ)]^2\}$$
+
+For continuous distributions, the Fisher information $I_n(θ)$ in the entire sample is given by the following n-dimensional integral:
+
+$$I_n(θ) = \int_S . . . \int_S[λ_n'(\vec{x}|θ)]^2 f_n(\vec{x}|θ) dx_1 . . . dx_n$$
+
+For discrete distributions, replace the n-dimensional integral by an n-fold summation
+
+Furthermore, if we again assume that derivatives can be passed under the integrals, then we may express $I_n(θ)$ in either of the following two ways:
+
+Eq(8.8.10)
+
+$$I_n(θ) = Var_θ[λ_n'(\vec{X}|θ)]$$
+
+or
+
+Eq(8.8.11)
+
+$$I_n(θ) = −E_θ[λ_n''(\vec{X}|θ)]$$
+
