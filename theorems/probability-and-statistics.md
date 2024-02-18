@@ -2622,3 +2622,41 @@ Eq(8.8.11)
 
 $$I_n(θ) = −E_θ[λ_n''(\vec{X}|θ)]$$
 
+**Theorem 8.8.2**
+
+Under the conditions of Definitions 8.8.1 and 8.8.2,
+
+Eq(8.8.12)
+
+$$I_n(θ) = nI (θ)$$
+
+**Theorem 8.8.3**
+
+Cram´er-Rao (Information) Inequality.
+
+Suppose that $X = (X_1, . . . , X_n)$ form a random sample from a distribution for which the p.d.f. is $f (x|θ)$. Suppose also that all the assumptions which have been made about $f (x|θ)$ thus far in this section continue to hold. Let $T = r(\vec{X})$ be a statistic with finite variance. Let $m(θ) = E_θ(T )$. Assume that m(θ) is a differentiable function of θ. Then
+
+Eq. (8.8.14)
+
+$$Var_θ(T ) ≥ \frac{[m'(θ)]^2}{nI (θ)}$$
+
+
+There will be equality in (8.8.14) if and only if there exist functions u(θ) and v(θ) that may depend on θ but do not depend on X and that satisfy the relation
+
+Eq. (8.8.15)
+
+$$T = u(θ)λ_n'(\vec{X}|θ) + v(θ)$$
+
+**Corollary 8.8.1**
+
+Cram´er-Rao Lower Bound on the Variance of an Unbiased Estimator.
+
+Assume the assumptions of Theorem 8.8.3. Let T be an unbiased estimator of θ. Then
+
+$$Var_θ(T ) ≥ \frac{1}{nI (θ)}$$
+
+**Definition 8.8.3**
+
+Efficient Estimator.
+
+It is said that an estimator T is an efficient estimator of its expectation m(θ) if there is equality in (8.8.14) for every value of $θ ∈ \Omega$.
