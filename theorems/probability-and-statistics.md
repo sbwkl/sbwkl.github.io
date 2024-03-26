@@ -2598,7 +2598,7 @@ Fisher Information in a Random Sample. Suppose that $\vec{X} = (X_1, . . . , X_n
 
 Eq(8.8.9)
 
-$$λ_n(\vec{x}|θ) = log f_n(vec{x}|θ)$$
+$$λ_n(\vec{x}|θ) = log f_n(\vec{x}|θ)$$
 
 Assume that the set of $\vec{x}$ such that $f_n(\vec{x}|θ) > 0$ is the same for all θ and that log $f_n(\vec{x}|θ)$ is twice differentiable with respect to θ. The Fisher information $I_n(θ)$ in the random sample X is defined as
 
