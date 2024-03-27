@@ -22,6 +22,8 @@ $$
 
 根据定义算了下几个学过的分布
 
+<!-- 这里把计算过程列出来，$\lambda'$ 后面要用 -->
+
 伯努利分布
 
 $$I(p) = \frac{1}{p(1-p)}$$
@@ -39,7 +41,7 @@ $$
 泊松分布
 
 $$
-I(\lambda) = \frac{1}{\lambda}
+I(\theta) = \frac{1}{\theta}
 $$
 
 方差的倒数
@@ -80,15 +82,59 @@ $$
 I_n(\theta) = nI(\theta)
 $$
 
-Cram´er-Rao Inequality
+Cram´er-Rao Inequality 说的统计的方差有个下限
 
 $$
 Var_\theta(T) \ge \frac{[m'(\theta)]^2}{nI(\theta)}
 $$
 
-等号成立的等价条件
+等号成立的等价条件是
 
 $$
 T = u(\theta)\lambda_n'(\vec{X}|\theta) + v(\theta)
 $$
+
+用上面的分布验证一下
+
+伯努利分布 $E(X)=p, Var(X) = p(1-p)$
+
+$$
+\frac{[m'(p)]^2}{I(p)} = \frac{1}{p(1-p)}
+$$
+
+刚好等于下限，按照定理 $X$ 应该能表示成 $u(p)\lambda'(x|p) + v(p)$
+
+$$
+\lambda'(x|p) = \frac{x}{p} - \frac{1-x}{1-p} = \frac{x}{p(1-p)} - \frac{1}{1-p}
+$$
+
+$$
+X = p(1-p)\lambda'(x|p) + p
+$$
+
+$$
+u(p) = p(1-p), v(p) = p
+$$
+
+确实可以
+
+其他几个类似
+
+二项式分布 $E(X) = np$
+
+$$
+Var(X) = np(1-p) \ge n^2 * \frac{p(1-p)}{n} = np(1-p)
+$$
+
+也是等于 $X = p(1-p)\lambda' + np$
+
+泊松分布
+
+也是等于 $X = \theta \lambda' + \theta$
+
+注：上面几个是我手算的，我相信定理，但不相信自己，可能有算错的。
+
+Efficient Estimator 有效估计量，数了下，这应该是第 4 个出现的估计量了。
+
+满足 Cram´er-Rao Inequality 等号要求的那个估计量叫做有效估计量，那应该记忆是方差最小的估计量吧
 
