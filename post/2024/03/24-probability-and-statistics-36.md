@@ -17,7 +17,7 @@ $$
 $$
 
 $$
-I(\theta) = Var_\theta[\lambda'(X|\theta)] = E_\theta[\lambda''(X|\theta)]
+I(\theta) = Var_\theta[\lambda'(X|\theta)] = - E_\theta[\lambda''(X|\theta)]
 $$
 
 根据定义算了下几个学过的分布
@@ -26,14 +26,26 @@ $$
 
 伯努利分布
 
-$$I(p) = \frac{1}{p(1-p)}$$
+$$
+\begin{aligned}
+\lambda(x|p) &= xlogp + (1-x)log(1-p) \\
+\lambda'(x|p) &= \frac{x}{p} - \frac{1-x}{1-p} \\
+\lambda''(x|p) &= -\frac{x}{p^2} - \frac{1-x}{(1-p)^2} \\
+I(p) &= \frac{E(X)}{p^2} + \frac{1 - E(X)}{(1-p)^2} = \frac{1}{p(1-p)}
+\end{aligned}
+$$
 
 方差的倒数
 
 二项式，n 固定
 
 $$
-I(p) = \frac{n}{p(1-p)}
+\begin{aligned}
+\lambda(x|p) &= log[\binom{n}{x}] + xlogp + (n-x) log(1-p) \\
+\lambda'(x|p) &= \frac{x}{p} - \frac{n-x}{1-p} \\
+\lambda''(x|p) &= -\frac{x}{p^2} - \frac{n-x}{(1-p)^2} \\
+I(p) &=  \frac{E(X)}{p^2} + \frac{n - E(X)}{(1-p)^2} = \frac{n}{p(1-p)}
+\end{aligned}
 $$
 
 伯努利的 n 倍
@@ -41,40 +53,62 @@ $$
 泊松分布
 
 $$
-I(\theta) = \frac{1}{\theta}
+\begin{aligned}
+\lambda(x|\theta) &= -\theta + x log \theta - log (x!)\\
+\lambda'(x|\theta) &= \frac{x}{\theta} - 1 \\
+\lambda''(x|\theta) &= -\frac{x}{\theta^2} \\
+I(\theta) &= -\frac{E(X)}{\theta^2} = \frac{1}{\theta}
+\end{aligned}
+
 $$
 
 方差的倒数
 
 负二项式分布
 
+$E(X) = r(1-p)/p^2$
+
 $$
-I(p) = \frac{r}{p^2(1-p)}
+\begin{aligned}
+\lambda(x|p) &= log[\binom{r+x-1}{x}] + rlogp + x log(1-p) \\
+\lambda'(x|p) &= \frac{r}{p} - \frac{x}{1-p} \\
+\lambda''(x|p) &= - \frac{r}{p^2} - \frac{x}{(1-p)^2} \\ 
+I(p) &= \frac{r}{p^2} + \frac{E(X)}{(1-p)^2} = \frac{r}{p^2(1-p)}
+\end{aligned}
+
 $$
 
 正态分布
 
-$\mu$ 固定
+$\mu$ 已知
 
 $$
-I(\sigma) = \frac{2}{\sigma^2}
+\begin{aligned}
+\lambda(x|\sigma) &= -log(\sqrt{2\pi}) - log\sigma - \frac{(x-\mu)^2}{2\sigma^2} \\
+\lambda'(x|\sigma) &= -\frac{1}{\sigma} + \frac{(x-\mu)^2}{\sigma^3} \\
+\lambda''(x|\sigma) &= \frac{1}{\sigma^2} - \frac{3(x-\mu)^2}{\sigma^4} \\
+I(\sigma) &= -\frac{1}{\sigma} + \frac{3E(X-\mu)^2}{\sigma^4} = -\frac{1}{\sigma} + \frac{3Var(X)}{\sigma^4} = \frac{2}{\sigma^2}
+\end{aligned}
 $$
 
-$\sigma$ 固定
+$\sigma$ 已知
 
 $$
-I(\mu) = \frac{1}{\sigma^2}
+\begin{aligned}
+\lambda(x|\mu) &= -log(\sqrt{2\pi}\sigma) - \frac{(x-\mu)^2}{2\sigma^2} \\
+\lambda'(x|\mu) &= \frac{x-\mu}{\sigma^2} \\
+\lambda''(x|\mu) &= - \frac{1}{\sigma^2} \\
+I(\mu) &= \frac{1}{\sigma^2}
+\end{aligned}
 $$
 
-$\mu, \sigma$ 不固定，我不会。
+不管哪个已知，咋最后都和 $\sigma$ 有关，好神奇。至于 $\mu, \sigma$ 都未知，这个不会。
 
-每次看到 $\mu$ 或者 $\sigma$ 已知的正态分布，总让我想起那个边放水，边灌水的疯狂泳池管理员。
-
-伽马分布，$\alpha$ 固定
+<!-- 伽马分布，$\alpha$ 固定
 
 $$
 I(\beta) = \frac{\alpha}{\beta^2}
-$$
+$$ -->
 
 费舍尔信息对随机样本同样有效
 
@@ -136,5 +170,5 @@ $$
 
 Efficient Estimator 有效估计量，数了下，这应该是第 4 个出现的估计量了。
 
-满足 Cram´er-Rao Inequality 等号要求的那个估计量叫做有效估计量，那应该记忆是方差最小的估计量吧
+满足 Cram´er-Rao Inequality 等号要求的那个估计量叫做有效估计量，那应该是方差最小的估计量吧
 
