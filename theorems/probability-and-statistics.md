@@ -2679,3 +2679,65 @@ Asymptotic Distribution of M.L.E
 
 Suppose that in an arbitrary problem the M.L.E. $\hat{θ}_n$ is determined by solving the equation $λ'_n(\vec{x}|θ) = 0$, and in addition both the second and third derivatives $λ''_n(\vec{x}|θ)$ and $λ'''_n(\vec{x}|θ)$ exist and satisfy certain regularity conditions. Then the asymptotic distribution of $[nI (θ)]^{1/2}(\hat{θ}_n − θ)$ is the standard normal distribution.
 
+**Theorem 8.8.6**
+
+Efficient Estimation
+
+Assume the same smoothness conditions on the likelihood function as in Theorem 8.8.5. Assume that $\tilde{θ}_n$ is a sequence of estimators of θ such that $\sqrt{n}(\tilde{θ}_n − θ)$ converges in distribution to some distribution (it doesn’t matter what distribution). Use $\tilde{θ}_n$ as the starting value, and perform one step of Newton’s method (Definition 7.6.2) toward finding the M.L.E. of θ. Let the result of this one step be called $θ^∗_n$. Then the asymptotic distribution of $[nI (θ)]^{1/2}(θ_n^∗ − θ)$ is the standard normal distribution.
+
+**Definition 8.8.4**
+
+Fisher Information for a Vector Parameter. Suppose that $\vec{X} = (X_1, . . . , X_n)$ form a random sample from a distribution for which the p.d.f. is f(x|θ), where the value of the parameter $\vec{θ} = (θ_1, . . . , θ_k)$ must lie in an open subset $\Omega$ of a k-dimensional real space. Let $f_n(x|θ)$ denote the joint p.d.f. or joint p.f. of $\vec{X}$. Define
+
+$$λ_n(\vec{x}|θ) = log f_n(\vec{x}|θ)$$
+
+Assume that the set of $\vec{x}$ such that $f_n(x|θ) > 0$ is the same for all θ and that log $f_n(\vec{x}|θ)$ is twice differentiable with respect to θ. The Fisher information matrix $I_n(θ)$ in the random sample $\vec{X}$ is defined as the k × k matrix with (i, j) element equal to
+
+$$
+I_{n,i,j}(θ) = Cov_θ [\frac{∂}{∂θ_i} λ'_n(\vec{X}|θ), \frac{∂}{∂θ_j} λ_n'(\vec{X}|θ)]
+$$
+
+**Definition 9.1.1**
+
+Null and Alternative Hypotheses/Reject
+
+The hypothesis $H_0$ is called the null hypothesis and the hypothesis $H_1$ is called the alternative hypothesis. When performing a test, if we decide that θ lies in $\Omega_1$, we are said to reject $H_0$. If we decide that θ lies in $\Omega_0$, we are said not to reject $H_0$.
+
+**Definition 9.1.2**
+
+Simple and Composite Hypotheses
+
+If $\Omega_i$ contains just a single value of θ, then $H_i$ is a simple hypothesis. If the set $\Omega_i$ contains more than one value of θ, then $H_i$ is a composite hypothesis.
+
+**Definition 9.1.3**
+
+One-Sided and Two-Sided Hypotheses
+
+Let θ be a one-dimensional parameter. One-sided null hypotheses are of the form $H_0 : θ ≤ θ_0$ or $H_0 : θ ≥ θ_0$, with the corresponding one-sided alternative hypotheses being $H_1 : θ > θ_0$ or $H_1 : θ < θ_0$. When the null hypothesis is simple, such as (9.1.1), the alternative hypothesis is usually two-sided, $H_1 : θ = θ_0$.
+
+**Definition 9.1.4**
+
+Critical Region
+
+The set $S_1$ defined above is called the critical region of the test
+
+**Definition 9.1.5**
+
+Test Statistic/Rejection Region
+
+Let $\vec{X}$ be a random sample from a distribution that depends on a parameter θ. Let $T = r(\vec{X})$ be a statistic, and let R be a subset of the real line. Suppose that a test procedure for the hypotheses (9.1.3) is of the form “reject $H_0$ if T ∈ R.” Then we call T a test statistic, and we call R the rejection region of the test.
+
+**Definition 9.1.6**
+
+Power Function
+
+Let δ be a test procedure. The function π(θ|δ) is called the power function of the test δ. If $S_1$ denotes the critical region of δ, then the power function π(θ|δ) is determined by the relation
+
+Eq.(9.1.4)
+$$π(θ|δ) = Pr(X ∈ S_1|θ) for θ ∈ \Omega$$
+
+If δ is described in terms of a test statistic T and rejection region R, the power function is
+
+Eq(9.1.5)
+$$π(θ|δ) = Pr(T ∈ R|θ) for θ ∈ \Omega$$
+
