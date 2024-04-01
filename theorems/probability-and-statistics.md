@@ -2660,3 +2660,22 @@ $$Var_θ(T ) ≥ \frac{1}{nI (θ)}$$
 Efficient Estimator.
 
 It is said that an estimator T is an efficient estimator of its expectation m(θ) if there is equality in (8.8.14) for every value of $θ ∈ \Omega$.
+
+**Theorem 8.8.4**
+
+Asymptotic Distribution of an Efficient Estimator
+
+Assume the assumptions of Theorem 8.8.3. Let T be an efficient estimator of its mean m(θ). Assume that $m'(θ)$ is never 0. Then the asymptotic distribution of
+
+$$
+\frac{\sqrt{nI(\theta)}}{m'(\theta)}[T-m(\theta)]
+$$
+
+is the standard normal distribution.
+
+**Theorem 8.8.5**
+
+Asymptotic Distribution of M.L.E
+
+Suppose that in an arbitrary problem the M.L.E. $\hat{θ}_n$ is determined by solving the equation $λ'_n(\vec{x}|θ) = 0$, and in addition both the second and third derivatives $λ''_n(\vec{x}|θ)$ and $λ'''_n(\vec{x}|θ)$ exist and satisfy certain regularity conditions. Then the asymptotic distribution of $[nI (θ)]^{1/2}(\hat{θ}_n − θ)$ is the standard normal distribution.
+
