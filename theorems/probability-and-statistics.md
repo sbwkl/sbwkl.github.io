@@ -2741,3 +2741,87 @@ If δ is described in terms of a test statistic T and rejection region R, the po
 Eq(9.1.5)
 $$π(θ|δ) = Pr(T ∈ R|θ) for θ ∈ \Omega$$
 
+**Definition 9.1.7**
+
+Type I/II Error
+
+An erroneous decision to reject a true null hypothesis is a type I error, or an error of the first kind. An erroneous decision not to reject a false null hypothesis is called a type II error, or an error of the second kind.
+
+**Definition 9.1.8**
+
+Level/Size
+
+A test that satisfies $\pi(\theta|\delta) \le \alpha_0$ for $\theta \in \Omega_0$ is called a level $α_0$ test, and we say that the test
+has level of significance α0. In addition, the size α(δ) of a test δ is defined as follows:
+
+Eq.(9.1.7)
+$$α(δ) = sup_{θ∈\Omega_0}π(θ|δ)$$
+
+**Corollary 9.1.1.**
+
+A test δ is a level $α_0$ test if and only if its size is at most $α_0$ (i.e., $α(δ) ≤ α_0$). If the null hypothesis is simple, that is, $H_0 : θ = θ_0$, then the size of δ will be $α(δ) = π(θ_0|δ)$.
+
+**Definition 9.1.9**
+
+p-value
+
+In general, the p-value is the smallest level $α_0$ such that we would reject the null-hypothesis at level $α_0$ with the observed data
+
+**Theorem 9.1.1**
+
+Defining Confidence Sets from Tests
+
+Let $\vec{X} = (X_1, . . . , X_n)$ be a random sample from a distribution that depends on a parameter θ. Let g(θ) be a function, and suppose that for each possible value $g_0$ of g(θ), there is a level $α_0$ test $δ_{g_0}$ of the hypotheses
+
+Eq.(9.1.13)
+$$H_{0,g_0} : g(θ) = g_0, H_{1,g_0} : g(θ) \ne g_0$$
+
+For each possible value $\vec{x}$ of $\vec{X}$, define
+
+Eq.(9.1.14)
+$$ω(x) = \{g_0 : δ_{g_0} \ does \ not \ reject \ H_{0,g_0} \ if \ \vec{X} = \vec{x} \ is \ observed\}$$
+
+Let $γ = 1 − α_0$. Then, the random set $ω(\vec{X})$ satisfies
+
+Eq.(9.1.15)
+$$Pr[g(θ_0) ∈ ω(\vec{X})|θ = θ_0] ≥ γ$$
+
+for all $θ_0 ∈ \Omega$.
+
+**Definition 9.1.10**
+
+Confidence Set
+
+If a random set $ω(\vec{X})$ satisfies (9.1.15) for every $θ_0 ∈ \Omega$, we call it a coefficient γ confidence set for g(θ). If the inequality in (9.1.15) is equality for all $θ_0$, then we call the confidence set exact.
+
+**Theorem 9.1.2**
+
+Defining Tests from Confidence Sets
+
+Let $\vec{X} = (X_1, . . . , X_n)$ be a random sample from a distribution that depends on a parameter θ. Let g(θ) be a function of θ, and let $ω(\vec{X})$ be a coefficient γ confidence set for g(θ). For each possible value $g_0$ of g(θ), construct the following test $δ_{g_0}$ of the hypotheses in Eq. (9.1.13): $δ_{g_0}$ does not reject $H_{0,g_0}$ if and only if $g_0 ∈ ω(\vec{X})$. Then $δ_{g_0}$ is a level $α_0 = 1 − γ$ test of the hypotheses in Eq. (9.1.13).
+
+**Theorem 9.1.3**
+
+One-Sided Confidence Intervals from One-Sided Tests
+
+Let $\vec{X} = (X_1, . . . , X_n)$ be a random sample from a distribution that depends on a parameter θ. Let g(θ) be a real-valued function, and suppose that for each possible value $g_0$ of g(θ), there is a level $α_0$ test $δ_{g_0}$ of the hypotheses (9.1.19). For each possible value $\vec{x}$ of $\vec{X}$, define $ω(\vec{x})$ by Eq. (9.1.14). Let $γ = 1 − α_0$. Then the random set ω(X) satisfies Eq. (9.1.15) for all $θ_0 ∈ \Omega$.
+
+**Definition 9.1.11**
+
+Likelihood Ratio Test
+
+The statistic
+
+Eq.(9.1.24)
+$$\Lambda(x) = \frac{sup_{θ∈\Omega_0} f_n(\vec{x}|θ)}{sup_{θ∈\Omega} f_n(\vec{x}|θ)}$$
+
+**Theorem 9.1.4**
+
+Large-Sample Likelihood Ratio Tests
+
+Let $\Omega$ be an open subset of p-dimensional space, and suppose that $H_0$ specifies that k coordinates of θ are equal to k specific values. Assume that $H_0$ is true and that the likelihood function satisfies the conditions needed to prove that the M.L.E. is asymptotically normal and asymptotically efficient. (See page 523.) Then, as n → ∞, $−2 log \Lambda(\vec{X})$ converges in distribution to the $χ^2$ distribution with k degrees of freedom.
+
+**Theorem 9.1.5**
+
+For i = 1, . . . , n, let $H_{0,i}$ be a null hypothesis, and let $δ_i$ be a level $α_0$,i test of $H_{0,i}$. Define the combined null hypothesis $H_0$ that all of $H_{0,1}, . . . , H_{0,n}$ are simultaneously true. Let δ be the test that rejects $H_0$ if at least one of $δ_1, . . . , δ_n$ rejects its corresponding null hypothesis. Then δ is a level $\sum_{i=1}^{n} α_{0,i}$ test of $H_0$.
+
