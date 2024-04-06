@@ -2825,3 +2825,20 @@ Let $\Omega$ be an open subset of p-dimensional space, and suppose that $H_0$ sp
 
 For i = 1, . . . , n, let $H_{0,i}$ be a null hypothesis, and let $δ_i$ be a level $α_0$,i test of $H_{0,i}$. Define the combined null hypothesis $H_0$ that all of $H_{0,1}, . . . , H_{0,n}$ are simultaneously true. Let δ be the test that rejects $H_0$ if at least one of $δ_1, . . . , δ_n$ rejects its corresponding null hypothesis. Then δ is a level $\sum_{i=1}^{n} α_{0,i}$ test of $H_0$.
 
+**Theorem 9.2.1**
+
+Let $δ^∗$ denote a test procedure such that the hypothesis $H_0$ is not rejected if $af_0(\vec{x}) > bf_1(\vec{x})$ and the hypothesis $H_0$ is rejected if $af_0(\vec{x}) < bf_1(\vec{x})$. The null hypothesis $H_0$ can be either rejected or not if $af_0(\vec{x}) = bf_1(\vec{x})$. Then for every other test procedure δ,
+
+Eq.(9.2.4)
+$$aα(δ^∗) + bβ(δ^∗) ≤ aα(δ) + bβ(δ)$$
+
+**Corollary 9.2.1**
+
+Assume the conditions of Theorem 9.2.1, and assume that a > 0 and b > 0. Then the test δ for which the value of $aα(δ) + bβ(δ)$ is a minimum rejects $H_0$ when the likelihood ratio exceeds a/b and does not reject $H_0$ when the likelihood ratio is less than a/b.
+
+**Theorem 9.2.2**
+
+Nayman-Pearson lemma
+
+Suppose that $δ'$ is a test procedure that has the following form for some constant k > 0: The hypothesis $H_0$ is not rejected if $f_1(\vec{x}) < kf_0(\vec{x})$ and the hypothesis $H_0$ is rejected if $f_1(\vec{x}) > kf_0(\vec{x})$. The null hypothesis $H_0$ can be either rejected or not if $f_1(\vec{x}) = kf_0(\vec{x})$. If δ is another test procedure such that $α(δ) ≤ α(δ')$, then it follows that $β(δ) ≥ β(δ')$. Furthermore, if $α(δ) < α(δ')$, then $β(δ) > β(δ')$
+
