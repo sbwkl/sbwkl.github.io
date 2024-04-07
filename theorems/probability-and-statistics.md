@@ -2842,3 +2842,19 @@ Nayman-Pearson lemma
 
 Suppose that $δ'$ is a test procedure that has the following form for some constant k > 0: The hypothesis $H_0$ is not rejected if $f_1(\vec{x}) < kf_0(\vec{x})$ and the hypothesis $H_0$ is rejected if $f_1(\vec{x}) > kf_0(\vec{x})$. The null hypothesis $H_0$ can be either rejected or not if $f_1(\vec{x}) = kf_0(\vec{x})$. If δ is another test procedure such that $α(δ) ≤ α(δ')$, then it follows that $β(δ) ≥ β(δ')$. Furthermore, if $α(δ) < α(δ')$, then $β(δ) > β(δ')$
 
+**Definition 9.3.1**
+
+Uniformly Most Powerful(UMP) Test
+
+A test procedure $δ^∗$ is a uniformly most powerful (UMP) test of the hypotheses (9.3.1) at the level of significance $α_0$ if $α(δ^∗) ≤ α_0$ and, for every other test procedure δ such that $α(δ) ≤ α_0$, it is true that
+
+Eq.(9.3.4)
+
+$π(θ|δ) ≤ π(θ|δ^∗)$ for every value of $θ ∈ \Omega_1$.
+
+**Definition 9.3.2**
+
+Monotone Likelihood Ratio
+
+Let $f_n(\vec{x}|θ)$ denote the joint p.d.f. or the joint p.f. of the observations $\vec{X} = (X_1, . . . , X_n)$. Let $T = r(\vec{X})$ be a statistic. It is said that the joint distribution of $\vec{X}$ has a monotone likelihood ratio (MLR) in the statistic T if the following property is satisfied: For every two values $θ_1 ∈ \Omega$ and $θ_2 ∈ \Omega$, with $θ_1 < θ_2$, the ratio $f_n(\vec{x}|θ_2)/f_n(\vec{x}|θ_1)$ depends on the vector $\vec{x}$ only through the function $r(\vec{x})$, and this ratio is a monotone function of $r(\vec{x})$ over the range of possible values of $r(\vec{x})$. Specifically, if the ratio is increasing, we say that the distribution of $\vec{X}$ has increasing MLR, and if the ratio is decreasing, we say that the distribution has decreasing MLR.
+
