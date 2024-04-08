@@ -1,15 +1,18 @@
 # 《概率统计》 day 38
 
-今天是读《概率统计》的逻辑第 38 天，学习一种特殊的假设检验，它的 $H_0$ 只有一个值，$H_1$ 也只有一个值，然后找 $\delta$。
+今天是读《概率统计》的逻辑第 38 天，学习一种特殊的假设检验，它的 $H_0$ 只有一个值，$H_1$ 也只有一个值。
 
 理想状态下 $\theta \in \Omega_0$，$\pi(\theta|\delta) = 0$，但现实不是理想，总有亿点点差距。
 
 定义两种误差 type I error 和 type II error，中文应该叫假阳性和假阴性，尽量小就对了。
 
-$$α(δ) = P(\text{Rejecting} \ H_0|θ = θ_0)$$
-$$β(δ) = P(\text{Not Rejecting} H_0|θ = θ_1)$$
+$$
+\begin{aligned}
+α(δ) &= P(\text{Rejecting} \ H_0|θ = θ_0) \\
+β(δ) &= P(\text{Not Rejecting} H_0|θ = θ_1)
+\end{aligned}$$
 
-这节提供一个方法，寻找最小化 $α(δ)，β(δ)$ 的检验 $\delta$
+这节提供一个方法，寻找最小化 $α(δ), β(δ)$ 的检验 $\delta$。
 
 有两种形式
 
@@ -78,9 +81,7 @@ $\alpha(\delta_1)$ 是小了，但 $\beta(\delta_1)$ 大的更多。
 
 **第二种形式**
 
-要求 $\alpha(\delta) \le 0.05$ 寻找 $\delta$ 最小化 $\beta(\delta)$
-
-计算过程和第一种非常类似，无非是 b 固定是 1
+计算过程和第一种非常类似，无非是 b 固定是 1。
 
 $f_1(\vec{x})/f_0(\vec{x}) = exp [n(\overline{x}_n - 1/2)] > k$ 得到 $\overline{x}_n \gt 1/2 + (1/n)log(k)$ 右半截用 $k'$ 表示。
 
