@@ -58,7 +58,7 @@ $$
 \end{aligned}
 $$
 
-$\delta$：如果 $\overline{X}_n \gt 1/2$ 拒绝 $H_0$。
+$\delta$：如果 $\overline{X}_n \gt 1/2$ 拒绝 $H_0$
 
 $$
 \begin{aligned}
