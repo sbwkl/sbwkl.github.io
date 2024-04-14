@@ -2815,6 +2815,8 @@ The statistic
 Eq.(9.1.24)
 $$\Lambda(x) = \frac{sup_{θ∈\Omega_0} f_n(\vec{x}|θ)}{sup_{θ∈\Omega} f_n(\vec{x}|θ)}$$
 
+is called the likelihood ratio statistic. A likelihood ratio test of hypotheses (9.1.23) is to reject $H_0$ if $\Lambda(\vec{x}) ≤ k$ for some constant k.
+
 **Theorem 9.1.4**
 
 Large-Sample Likelihood Ratio Tests
@@ -2857,4 +2859,22 @@ $π(θ|δ) ≤ π(θ|δ^∗)$ for every value of $θ ∈ \Omega_1$.
 Monotone Likelihood Ratio
 
 Let $f_n(\vec{x}|θ)$ denote the joint p.d.f. or the joint p.f. of the observations $\vec{X} = (X_1, . . . , X_n)$. Let $T = r(\vec{X})$ be a statistic. It is said that the joint distribution of $\vec{X}$ has a monotone likelihood ratio (MLR) in the statistic T if the following property is satisfied: For every two values $θ_1 ∈ \Omega$ and $θ_2 ∈ \Omega$, with $θ_1 < θ_2$, the ratio $f_n(\vec{x}|θ_2)/f_n(\vec{x}|θ_1)$ depends on the vector $\vec{x}$ only through the function $r(\vec{x})$, and this ratio is a monotone function of $r(\vec{x})$ over the range of possible values of $r(\vec{x})$. Specifically, if the ratio is increasing, we say that the distribution of $\vec{X}$ has increasing MLR, and if the ratio is decreasing, we say that the distribution has decreasing MLR.
+
+**Theorem 9.3.1**
+
+Suppose that the joint distribution of X has increasing monotone likelihood ratio in
+the statistic $T = r(\vec{X})$. Let c and $α_0$ be constants such that
+
+Eq.(9.3.9)
+
+$$Pr(T ≥ c|θ = θ_0) = α_0$$
+
+**Definition 9.4.1**
+
+Unbiased Test
+
+A test procedure δ is said to be unbiased if, for every $θ ∈ \Omega_0$ and $θ ∈ \Omega_1$,
+
+Eq.(9.4.11)
+$$π(θ|δ) ≤ π(θ'|δ)$$
 
