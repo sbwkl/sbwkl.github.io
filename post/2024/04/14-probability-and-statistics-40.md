@@ -2,9 +2,11 @@
 
 今天是读《概率统计》的逻辑第 40 天。
 
-这几节看下来，似乎 $\delta$ 才是假设检验的重点。除了第一节介绍海量概念，第二节找 $\delta$，第三节找 $\delta$，这节还是找 $\delta$。$\delta$ 形式：如果 $T \le c_1$ 或 $T \ge c_2$ 拒绝 $H_0: \mu_1 \le \mu \le \mu_2$。
+这几天看下来，似乎 $\delta$ 才是假设检验的重点。除了第一节介绍海量概念，第二节找 $\delta$，第三节找 $\delta$，这节还是找 $\delta$。
 
-因为是区间，c 也不再只有一个，从解方程改为解方程组
+$\delta$ 形式：如果 $T \le c_1$ 或 $T \ge c_2$ 拒绝 $H_0: \mu_1 \le \mu \le \mu_2$。
+
+因为有两个 c，从解方程升级为解方程组
 
 $$
 \begin{cases}
@@ -15,7 +17,7 @@ $$
 
 $\alpha_1 \le \alpha_0, \alpha_2 \le \alpha_0$
 
-比如 $N(\mu, 1)$ 的正态分布 $X_i$ 选 n = 25 个样本
+比如 $N(\mu, 1)$ 的正态分布 $X_i$ 随机抽样 n = 25
 
 $$
 H_0: 0.1 \le \mu \le 0.2
@@ -44,9 +46,13 @@ $$
 \end{aligned}
 $$
 
-理论上有无限种 $c_1, c_2$ 可选，和 $\alpha_1, \alpha_2$ 取值有关。
+理论上有无限种 $c_1, c_2$ 可选，取决于 $\alpha_1, \alpha_2$ 的取值。
 
-如果取 $\alpha_1 = \alpha_2 = 0.05$ 那么 $c_1 = 0.15 - c$，$c_2 = 0.15 + c$
+如果取 $\alpha_1 = \alpha_2 = 0.05$ 那么 $c_1, c_2$ 对称
+
+$c_1 = 0.15 - c$
+
+$c_2 = 0.15 + c$
 
 解方程 $\Phi[5(0.05 - c)] + \Phi[-5(0.05 + c)] = 0.05$
 
@@ -57,7 +63,8 @@ from scipy.stats import norm
 rv = norm()
 
 def f(c):
-    return rv.cdf(5 * (0.05 - c)) + rv.cdf(-5 * (0.05 + c))
+    return rv.cdf(5 * (0.05 - c)) \
+        + rv.cdf(-5 * (0.05 + c))
 
 def g(c):
     return f(c) - 0.05
@@ -65,7 +72,7 @@ def g(c):
 optimize.newton(g, 0.4)
 ```
 
-先对 $g(c)$ 作图，看到 $g(c) = 0$ 大概在 0.4 附近，初始猜测 0.4，牛顿法会迭代计算最接近 $c = 0.4039$。
+先对 $g(c)$ 作图，看到 $g(c) = 0$ 大概在 0.4 附近，初始猜测 0.4，牛顿法会迭代计算最接近的 $c = 0.4039$。
 
 $\delta_1$：如果 $\overline{X}_n \le -0.2539$ 或 $\overline{X}_n \ge 0.5539$ 拒绝 $H_0$
 
@@ -80,7 +87,7 @@ $$
 \end{cases}
 $$
 
-方程①变换得到 $c_2 = 0.1 - 0.2 * \Phi^{-1}[0.02-\Phi(5(c_1 - 0.1))]$ 代入方程②解 $c_1$ 的方程。
+方程①变换得到 $c_2 = 0.1 - 0.2 * \Phi^{-1}[0.02-\Phi(5(c_1 - 0.1))]$ 代入方程②解 $c_1$
 
 ```
 from scipy import optimize
@@ -89,11 +96,13 @@ from scipy.stats import norm
 rv = norm()
 
 def _c2(c1):
-    return 0.1 - rv.ppf(0.02 - rv.cdf(5 * (c1 - 0.1))) / 5
+    return 0.1 - 0.2 * \
+        rv.ppf(0.02 - rv.cdf(5 * (c1 - 0.1)))
 
 def f(c1):
     c2 = _c2(c1)
-    return rv.cdf(5 * (c1 - 0.2)) + rv.cdf(-5 * (c2 - 0.2))
+    return rv.cdf(5 * (c1 - 0.2)) \
+        + rv.cdf(-5 * (c2 - 0.2))
 
 def g(c1):
     return f(c1) - 0.05
@@ -139,6 +148,6 @@ plt.show()
 
 ![](https://files.mdnice.com/user/18103/01c3c1ff-d5b0-4410-ab41-8483143708b2.png)
 
-可以看到 $\delta_1$ 比较板正，$\delta_2$ 有一点点歪。
+可以看到 $\delta_1$ 比较板正，$\delta_2$ 有一点点歪，导致有少量 $\Omega_1$ 范围内 $\pi(\mu|\delta)$ 比 $\Omega_0$ 还小。
 
 封面图：Twitter 心臓弱眞君 @xinzoruo
