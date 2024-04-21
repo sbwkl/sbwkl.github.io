@@ -70,7 +70,7 @@ $$
 X = \frac{W}{(\frac{Y}{m})^{1/2}}
 $$
 
-W 是 $(\psi, 1)$ 的正态分布，Y 是自由度 m 的 $\chi^2$ 分布
+W 是 $(\psi, 1)$ 的正态分布，Y 是自由度 m 的 $\chi^2$ 分布，W 和 Y 独立。
 
 刚好 U 可以改写为
 
@@ -94,8 +94,8 @@ from scipy.stats import nct
 n, psi = 5, 5
 x = np.linspace(-5, 15, 100)
 
-def f1(x, n, nc):
-    return nct(df=n, nc=nc).pdf(x)
+def f1(x, n, psi):
+    return nct(df=n, nc=psi).pdf(x)
 
 plt.plot(x, f1(x, n, psi), label=f'n = {n}, ψ = {psi}')
 
