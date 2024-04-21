@@ -1,6 +1,6 @@
 # 《概率统计》 day 41
 
-今天是读《概率统计》的逻辑第 41 天，学习 t Test，光听名字就能猜到它和 t 分布有关。
+今天是读《概率统计》的逻辑第 41 天，学习 t Test，光听名字就能猜到和 t 分布有关。
 
 回顾 t 分布，推理期望和方差都未知的正态分布
 
@@ -62,7 +62,7 @@ p 值 = $P(U \ge 1.7275) = 1 - T_9(1.7275) = 0.0591$
 
 当 $\mu \ne \mu_0$
 
-U 不再是 t 分布，而是叫做 noncentral t Distributions。
+U 不再是 t 分布，而是叫做 Noncentral t Distributions。
 
 它的定义
 
@@ -84,7 +84,7 @@ $S_n^2/\sigma^2$ 是自由度 n - 1 的 $\chi^2$ 分布
 
 所以 t 分布其实是 $\psi=0$ 的 noncentral t 分布对么。
 
-我本以为 noncentral t 分布是对称轴左右移动的 t 分布，画出来之后发现不对，都歪了
+我本以为 noncentral t 分布只是单纯的对称轴左右移动，画出来之后发现不对，都歪了
 
 ```python
 import numpy as np
@@ -105,9 +105,7 @@ plt.show()
 
 ![](https://files.mdnice.com/user/18103/3955203a-81b6-4612-9fde-89821758fbe5.png)
 
-如果 $H_0: \mu_0 = 1.2$ 是这种假设，
-
-最后搜了下 python 直接有包计算 t test，只要输入样本数据即可，这可太方便了。
+最后搜了下，python 有包可以直接计算 t test，只要输入样本数据即可，这可太方便了。
 
 ```python
 from scipy.stats import ttest_1samp
