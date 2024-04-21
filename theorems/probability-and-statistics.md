@@ -2878,3 +2878,88 @@ A test procedure δ is said to be unbiased if, for every $θ ∈ \Omega_0$ and $
 Eq.(9.4.11)
 $$π(θ|δ) ≤ π(θ'|δ)$$
 
+**Theorem 9.5.1**
+
+Level and Unbiasedness of t Tests
+
+Let $\vec{X} = (X_1, . . . , X_n)$ be a random sample from the normal distribution with mean μ and variance $σ^2$, let U be the statistic in Eq. (9.5.2), and let c be the $1 − α_0$ quantile of the t distribution with n − 1 degrees of freedom. Let δ be the test that rejects $H_0: \mu \le \mu_0$ if U ≥ c. The power function $π(μ, σ^2|δ)$ has the following properties:
+
+- i.    $π(μ, σ^2|δ) = α_0$ when $μ = μ_0$,
+- ii.   $π(μ, σ^2|δ) < α_0$ when $μ < μ_0$,
+- iii.  $π(μ, σ^2|δ) > α_0$ when $μ > μ_0$,
+- iv.   $π(μ, σ^2|δ) → 0$ as μ → −∞,
+- v.    $π(μ, σ^2|δ) → 1$ as μ → ∞.
+
+Furthermore, the test δ has size $α_0$ and is unbiased
+
+**Corollary 9.5.1**
+
+t Tests for Hypotheses of Eq. (9.5.3)
+
+Let $\vec{X} = (X_1, . . . , X_n)$ be a random sample from the normal distribution with mean μ and variance $σ^2$, let U be the statistic in Eq. (9.5.2), and let c be the α0 quantile of the t distribution with n − 1 degrees of freedom. Let δ be the test that rejects $H_0: \mu \ge \mu_0$  if U ≤ c. The power function $π(μ, σ^2|δ)$ has the following properties:
+
+- i.    $π(μ, σ^2|δ) = α_0$ when $μ = μ_0$,
+- ii.   $π(μ, σ^2|δ) > α_0$ when $μ < μ_0$,
+- iii.  $π(μ, σ^2|δ) < α_0$ when $μ > μ_0$,
+- iv.   $π(μ, σ^2|δ) → 1$ as μ → −∞,
+- v.    $π(μ, σ^2|δ) → 0$ as μ → ∞.
+
+Furthermore, the test δ has size $α_0$ and is unbiased.
+
+**Theorem 9.5.2**
+
+p-Values for t Tests
+
+Suppose that we are testing either the hypotheses in Eq. (9.5.1) or the hypotheses in Eq. (9.5.3). Let u be the observed value of the statistic U in Eq. (9.5.2), and let $T_{n−1}(.)$ be the c.d.f. of the t distribution with n − 1 degrees of freedom. Then the p-value for the hypotheses in Eq. (9.5.1) is $1 − T_{n−1}(u)$ and the p-value for the hypotheses in Eq. (9.5.3) is $T_{n−1}(u)$.
+
+**Definition 9.5.1**
+
+Noncentral t Distributions
+
+Let Y and W be independent random variables with W having the normal distribution with mean ψ and variance 1 and Y having the $χ^2$ distribution with m degrees of freedom. Then the distribution of
+
+$$
+X = \frac{W}{(\frac{Y}{m})^{1/2}}
+$$
+
+is called the noncentral t distribution with m degrees of freedom and noncentrality parameter ψ. We shall let $T_m(t|ψ)$ denote the c.d.f. of this distribution. That is, $T_m(t|ψ) = Pr(X ≤ t)$
+
+**Theorem 9.5.3**
+
+Let $X_1, . . . , X_n$ be a random sample from the normal distribution with mean μ and variance $σ^2$. The distribution of the statistic U in Eq. (9.5.2) is the noncentral t distribution with n − 1 degrees of freedom and noncentrality parameter $ψ = n^{1/2}(μ − μ_0)/σ$. Let δ be the test that rejects $H_0 : μ ≤ μ_0$ when U ≥ c. Then the power function of δ is $π(μ, σ^2|δ) = 1 − T_{n−1}(c|ψ)$. Let $δ'$ be the test that rejects $H_0 : μ ≥ μ_0$ when U ≤ c. Then the power function of $δ'$ is $π(μ, σ^2|δ') = T_{n−1}(c|ψ)$.
+
+**Theorem 9.5.4**
+
+p-Values for Two-Sided t Tests
+
+Suppose that we are testing the hypotheses in Eq. (9.5.7). Let u be the observed value of the statistic U, and let $T_{n−1}(.)$ be the c.d.f. of the t distribution with n − 1 degrees of freedom. Then the p-value is $2[1 − T_{n−1}(|u|)]$.
+
+**Theorem 9.6.1**
+
+Two-Sample t Statistic. Assume the structure described in the preceding paragraphs. Define
+
+Eq.(9.6.2)
+
+$$
+\overline{X}_m = \frac{1}{m} \sum_{i=1}^m X_i
+$$
+$$
+\overline{Y}_n = \frac{1}{n} \sum_{i=1}^n Y_i
+$$
+$$
+S^2_X = \sum_{i=1}^m (X_i − \overline{X}_m)^2
+$$
+$$
+S_Y^2 = \sum_{i=1}^n (Y_i − \overline{Y}_n)^2
+$$
+
+Define the test statistic
+
+Eq.(9.6.3)
+
+$$
+U = \frac{(m + n − 2)^{1/2}(\overline{X}_m − \overline{Y}_n)}{(\frac{1}{m} + \frac{1}{n})^{1/2} (S_X^2 + S_Y^2)^{1/2}}.
+$$
+
+For all values of $θ = (μ_1, μ_2, σ^2)$ such that $μ_1 = μ_2$, the distribution of U is the t distribution with m + n − 2 degrees of freedom.
+
