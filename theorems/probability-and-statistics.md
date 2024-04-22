@@ -2963,3 +2963,68 @@ $$
 
 For all values of $θ = (μ_1, μ_2, σ^2)$ such that $μ_1 = μ_2$, the distribution of U is the t distribution with m + n − 2 degrees of freedom.
 
+**Definition 9.7.1**
+
+The F distributions
+
+Let Y and W be independent random variables such that Y has the $χ^2$ distribution with m degrees of freedom and W has the $χ^2$ distribution with n degrees of freedom, where m and n are given positive integers. Define a new random variable X as follows:
+
+Eq.(9.7.1)
+
+$$
+X = \frac{Y/m}{W/n}= \frac{nY}{mW}
+$$
+
+Then the distribution of X is called the F distribution with m and n degrees of freedom.
+
+**Theorem 9.7.1**
+
+Probability Density Function. Let X have the F distribution with m and n degrees of freedom. Then its p.d.f. f(x) is as follows, for x > 0:
+
+Eq.(9.7.2)
+
+$$
+f (x) = \frac{\Gamma[\frac{1}{2}(m + n)]m^{m/2}n^{n/2}}{\Gamma(\frac{1}{2}m)\Gamma(\frac{1}{2}n)}.\frac{x^{(m/2)−1}}{(mx + n)^{(m+n)/2}}
+$$
+
+and f(x) = 0 for x ≤ 0
+
+**Theorem 9.7.2**
+
+If X has the F distribution with m and n degrees of freedom, then its reciprocal 1/X has the F distribution with n and m degrees of freedom. If Y has the t distribution with n degrees of freedom, then $Y^2$ has the F distribution with 1 and n degrees of freedom.
+
+**Definition 9.7.2**
+
+Eq.(9.7.4)
+
+$$
+V = \frac{S^2_X/(m − 1)}{S^2_Y/(n − 1)}
+$$
+
+$\delta$: if $V \ge c$ reject $H_0: \sigma_1^2 \le \sigma_2^2$ Eq.(9.7.3)
+
+F test
+
+The test procedure defined above is called an F test.
+
+**Theorem 9.7.3**
+
+Distribution of V
+
+Let V be the statistic in Eq.(9.7.4). The distribution of ($σ_2^2/σ_1^2)V$ is the F distribution with m − 1 and n − 1 degrees of freedom. In particular, if $σ_1^2 = σ_2^2$, then the distribution of V itself is the F distribution with m − 1 and n − 1 degrees of freedom.
+
+**Theorem 9.7.4**
+
+Level, Power Function, and P-Values
+
+Let V be the statistic defined in Eq. (9.7.4). Let c be the $1 − α_0$ quantile of the F distribution with m − 1 and n − 1 degrees of freedom, and let $G_{m−1,n−1}$ be the c.d.f. of that F distribution. Let δ be test that rejects $H_0$ in (9.7.3) when V ≥ c. The power function $π(μ_1, μ_2, σ_1^2, σ_2^2|δ)$ satisfies the following properties:
+
+- i.    $π(μ_1, μ_2, σ_1^2, σ_2^2|δ) = 1 − G_{m−1,n−1} (\frac{σ_2^2}{σ_1^2}c)$,
+- ii.   $π(μ_1, μ_2, σ_1^2, σ_2^2|δ) = α_0$ when σ12 = σ22,
+- iii.  $π(μ_1, μ_2, σ_1^2, σ_2^2|δ) < α_0$ when σ12 < σ22,
+- iv.   $π(μ_1, μ_2, σ_1^2, σ_2^2|δ) > α_0$ when σ12 > σ22,
+- v.    $π(μ_1, μ_2, σ_1^2, σ_2^2|δ) → 0$ as $σ_1^2/σ_2^2 → 0$,
+- vi.   $π(μ_1, μ_2, σ_1^2, σ_2^2|δ) → 1$ as $σ_1^2/σ_2^2 → ∞$
+
+The test δ has level $α_0$ and is unbiased. The p-value when V = v is observed equals $1 − G_{m−1,n−1}(v)$.
+
