@@ -2963,6 +2963,35 @@ $$
 
 For all values of $θ = (μ_1, μ_2, σ^2)$ such that $μ_1 = μ_2$, the distribution of U is the t distribution with m + n − 2 degrees of freedom.
 
+
+**Theorem 9.6.2**
+
+Level and Unbiasedness of Two-Sample t Tests
+
+Let δ be the two-sample t test defined above. The power function $π(μ_1, μ_2, σ^2|δ)$ has the following properties:
+
+- i.   $π(μ_1, μ_2, σ^2|δ) = α_0$ when $μ_1 = μ_2$,
+- ii.  $π(μ_1, μ_2, σ^2|δ) < α_0$ when $μ_1 < μ_2$,
+- iii. $π(μ_1, μ_2, σ^2|δ) > α_0$ when $μ_1 > μ_2$,
+- iv.  $π(μ_1, μ_2, σ^2|δ) → 0$ as $μ_1 − μ_2 → −∞$,
+- v.   $π(μ_1, μ_2, σ^2|δ) → 1$ as $μ_1 − μ_2 → ∞$
+
+**Theorem 9.6.3**
+
+p-Values for Two-Sample t Tests
+
+Suppose that we are testing either the hypotheses in Eq. (9.6.1) or the hypotheses in Eq. (9.6.7). Let u be the observed value of the statistic U in Eq. (9.6.3), and let $T_{m+n−2}(.)$ be the c.d.f. of the t distribution with m + n − 2 degrees of freedom. Then the p-value for the hypotheses in Eq. (9.6.1) is $1 − T_{m+n−2}(u)$ and the p-value for the hypotheses in Eq. (9.6.7) is $T_{m+n−2}(u)$.
+
+**Theorem 9.6.4**
+
+Power of Two-Sample t Test. Assume the conditions stated earlier in this section. Let U be defined in Eq. (9.6.6). Then U has the noncentral t distribution with m + n − 2 degrees of freedom and noncentrality parameter
+
+Eq.(9.6.8)
+
+$$
+ψ = \frac{μ_1 − μ_2}{σ(\frac{1}{m} + \frac{1}{n})^{1/2}}
+$$
+
 **Definition 9.7.1**
 
 The F distributions
