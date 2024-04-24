@@ -3057,3 +3057,13 @@ Let V be the statistic defined in Eq. (9.7.4). Let c be the $1 − α_0$ quantil
 
 The test δ has level $α_0$ and is unbiased. The p-value when V = v is observed equals $1 − G_{m−1,n−1}(v)$.
 
+**Theorem 9.7.5**
+
+P-Value of Equal-Tailed Two-Sided F Test
+
+Let V be as defined in (9.7.4). Suppose that we wish to test the hypotheses (9.7.7). Let $δ_{α_0}$ be the equal-tailed two-sided F test that rejects $H_0$ when $V ≤ c_1$ or $V ≥ c_2$, where $c_1$ and $c_2$ are, respectively, the $α_0/2$ and $1 − α_0/2$ quantiles of the appropriate F distribution. Then the smallest $α_0$ such that $δ_{α_0}$ rejects $H_0$ when V = v is observed is
+
+Eq.(9.7.8)
+
+$2 \min\{1 − G_{m−1, n−1}(v), G_{m−1, n−1}(v)\}$
+
