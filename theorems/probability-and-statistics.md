@@ -3067,3 +3067,17 @@ Eq.(9.7.8)
 
 $2 \min\{1 − G_{m−1, n−1}(v), G_{m−1, n−1}(v)\}$
 
+**Theorem 10.1.1**
+
+$\chi^2$ Statistic
+
+The following statistic
+
+Eq.(10.1.2)
+
+$$
+Q = \sum_{i=1}^k \frac{(N_i − np_i^0)^2}{np_i^0}
+$$
+
+has the property that if $H_0$ is true and the sample size n → ∞, then Q converges in distribution to the $χ^2$ distribution with k − 1 degrees of freedom.
+
