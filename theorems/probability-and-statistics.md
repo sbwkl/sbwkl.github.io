@@ -3067,6 +3067,30 @@ Eq.(9.7.8)
 
 $2 \min\{1 − G_{m−1, n−1}(v), G_{m−1, n−1}(v)\}$
 
+**Theorem 9.8.1**
+
+Suppose that $f_n(\vec{x}|θ)$ has a monotone likelihood ratio in the statistic $T = r(\vec{X})$. Let the hypotheses be as in Eq. (9.8.8), and assume that the loss function is of the form
+
+||$d_0$|$d_1$|
+|--|--|--|
+|$\theta \le \theta_0$|0|$w_0$|
+|$\theta \gt \theta_0$|$w_1$|0|
+
+where $w_0, w_1 > 0$ are constants. Then a test procedure that minimizes the posterior expected loss is to reject $H_0$ when T ≥ c for some constant c (possibly infinite).
+
+**Theorem 9.8.2**
+
+Suppose that $X_1, . . . , X_m$ form a random sample from a normal distribution with mean $μ_1$ and precision τ while $Y_1, . . . , Y_n$ form a random sample from a normal distribution with mean $μ_2$ and precision τ. Suppose that the parameters have the improper prior with “p.d.f.” $ξ(μ_1, μ_2, τ) = 1/τ$ for τ > 0. The posterior distribution of
+
+Eq.(9.8.17)
+
+$$
+(m + n − 2)^{1/2} \frac{μ_1 − μ_2 − (\overline{x}_m − \overline{y}_n)}{(\frac{1}{m} + \frac{1}{n})^{1/2}(s_x^2 + s_y^2)^{1/2}}
+$$
+
+is the t distribution with m + n − 2 degrees of freedom, where $s_x^2$ and $s_y^2$ are the observed values of $S^2_X$ and $S_Y^2$, respectively
+
+
 **Theorem 10.1.1**
 
 $\chi^2$ Statistic
@@ -3080,4 +3104,3 @@ Q = \sum_{i=1}^k \frac{(N_i − np_i^0)^2}{np_i^0}
 $$
 
 has the property that if $H_0$ is true and the sample size n → ∞, then Q converges in distribution to the $χ^2$ distribution with k − 1 degrees of freedom.
-

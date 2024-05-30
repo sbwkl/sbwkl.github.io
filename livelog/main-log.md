@@ -11,6 +11,15 @@
 
 ```
 
+**2024-05-30 周四 晴 25℃**
+
+```
+找了点显微镜素材
+B 站：微观猎人
+载玻片 世泰
+《水生生物学》第二版
+```
+
 **2024-05-24 周五 晴 30℃**
 
 OpenAI 前首席科学家推荐的清单
@@ -42,6 +51,28 @@ OpenAI 前首席科学家推荐的清单
 - [Machine Super Intelligence Dissertation↗](https://www.vetta.org/documents/Machine_Super_Intelligence.pdf)
 - [PAGE 434 onwards: Komogrov Complexity↗](https://www.lirmm.fr/~ashen/kolmbook-eng-scan.pdf)
 - [CS231n Convolutional Neural Networks for Visual Recognition↗](https://cs231n.github.io/)
+
+**2024-05-11 周六 大雨转阴 24℃**
+
+```
+把首页干崩溃了
+
+13:30 开新分支迁移 bg 项目快速结算相关的代码
+13:39 拷贝完相关代码，发预发，报错
+13:51 修完 bug 再发预发，项目启动，健康检查通过，隐患留下
+13:52 开始发布线上
+14:00 老板说首页崩了，我擦，赶紧查日志
+14:04 webservice 日志显示广告位数组越界，这太奇怪了，广告位用了很久了
+14:11 查看日志是从 13:55 开始出问题的，我去这不就是更新 core 的时候
+14:13 赶紧回滚，回滚途中，老板说功能恢复了，我擦，肯定是 core 的问题了
+14:32 赶紧 debug 预发，发现是 mybatis 文件写错了，写了 <include refid="Base_Column_List" /> 但是没有定义 Base_Column_List 草了
+14:35 mybatis xml 写错导致整个项目的 sql 操作都失败，只是刚好广告位是第一个被看到的
+14:54 用户反馈部分订单没有佣金，同样的原因
+14:56 修完代码再发布，没问题
+15:34 佣金数据修复
+
+回顾整个过程，发布预发时没有验证首页是根本问题，回顾当时的心态，一是觉得提供新接口，最多这个接口有问题，不会影响其他功能。二是真没想到一个文件可以干跨整个项目的 SQL 操作。
+```
 
 **2024-04-19 周五 阴 19℃**
 
