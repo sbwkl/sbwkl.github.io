@@ -3104,3 +3104,44 @@ Q = \sum_{i=1}^k \frac{(N_i − np_i^0)^2}{np_i^0}
 $$
 
 has the property that if $H_0$ is true and the sample size n → ∞, then Q converges in distribution to the $χ^2$ distribution with k − 1 degrees of freedom.
+
+**Theorem 10.2.1**
+
+χ2 Test for Composite Null
+
+(10.2.3)
+
+$$
+H_0: There exists a value of θ ∈ \Omega such that \\
+
+p_i = π_i(θ) \ for \ i = 1, . . . , k, \\
+
+H_1: The \ hypothesis \ H_0 \ is \ not \ true
+$$
+
+(10.2.4)
+
+$$
+Q = \sum_{i=1}^k \frac{[N_i − nπ_i(\hat{θ})]^2}{nπ_i(\hat{θ})}
+$$
+
+Suppose that the null hypothesis $H_0$ in (10.2.3) is true and certain regularity conditions are satisfied. Then as the sample size n → ∞, the c.d.f. of Q in (10.2.4) converges to the c.d.f. of the $χ^2$ distribution with k − 1 − s degrees of freedom.
+
+**Theorem 10.2.2**
+
+Let $X_1, . . . , X_n$ be a random sample from a distribution with a p-dimensional parameter θ. Let $\hat{θ}_n$ denote the M.L.E. as defined in Definition 7.5.2. Partition the real line into k > p + 1 disjoint intervals $I_1, . . . , I_k$. Let $N_i$ be the number of observations that fall into Ii for i = 1, . . . , k. Let $π_i(θ) = Pr(X_i ∈ I_i|θ)$. Let
+
+(10.2.11)
+
+$$
+Q' = \sum_{i=1}^k \frac{[N_i − nπ_i(\hat{θ}_n)]^2}{nπ_i(\hat{θ}_n)}
+$$
+
+Assume the regularity conditions needed for asymptotic normality of the M.L.E. Then, as n → ∞, the c.d.f. of $Q'$ converges to a c.d.f. that lies between the c.d.f. of the $χ^2$ distribution with k − p − 1 degrees of freedom and the c.d.f. of the $χ^2$ distribution with k − 1 degrees of freedom.
+
+**Definition 10.3.1**
+
+Contingency Tables
+
+A table in which each observation is classified in two or more ways is called a contingency table.
+
