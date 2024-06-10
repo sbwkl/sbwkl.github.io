@@ -3145,3 +3145,39 @@ Contingency Tables
 
 A table in which each observation is classified in two or more ways is called a contingency table.
 
+**Definition 10.6.1**
+
+Sample (Empirical) Distribution Function
+
+Let $x_1, . . . , x_n$ be the observed values of a random sample $X_1, . . . , X_n$. For each number x (−∞ < x < ∞), define the value $F_n(x)$ as the proportion of observed values in the sample that are less than or equal to x. In other words, if exactly k of the observed values in the sample are less than or equal to x, then $F_n(x) = k/n$. The function $F_n(x)$ defined in this way is called the sample distribution function, or simply the sample c.d.f.Sometimes $F_n(x)$ is called the empirical c.d.f
+
+**Theorem 10.6.1**
+
+Glivenko-Cantelli Lemma
+
+Let $F_n$ be the sample c.d.f. from an i.i.d. sample $X_1, . . . , X_n$ from the c.d.f. F. Define
+
+Eq.(10.6.2)
+
+$$
+D_n = sup_{−∞<x<∞}|F_n(x) − F(x)|
+$$
+
+Then $D_n \xrightarrow{p} 0$
+
+**Theorem 10.6.2**
+
+If the null hypothesis $H_0$ is true, then for each given value t > 0,
+
+Eq.(10.6.5)
+
+$$
+\lim_{n→∞}Pr(n^{1/2}D^∗_n ≤ t) = 1 − 2\sum_{i=1}^∞(−1)^{i−1}e^{−2i^2t^2}
+$$
+
+**Definition 10.6.2**
+
+Kolmogorov-Smirnov test
+
+A test procedure that rejects $H_0$ when $n^{1/2}D_n^∗ ≥ c$ is called a Kolmogorov-Smirnov test.
+
