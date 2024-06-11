@@ -3181,3 +3181,29 @@ Kolmogorov-Smirnov test
 
 A test procedure that rejects $H_0$ when $n^{1/2}D_n^∗ ≥ c$ is called a Kolmogorov-Smirnov test.
 
+**Theorem 10.6.3**
+
+Two-Sample Kolmogorov-Smirnov Statistic
+
+For each value of t > 0, let H(t) denote the right side of Eq. (10.6.5). If the null hypothesis $H_0$ in (10.6.6) is true, then
+
+Eq.(10.6.9)
+
+$$
+\lim_{m→∞, n→∞}Pr[(\frac{mn}{m + n})^{1/2} D_{mn} ≤ t] = H(t)
+$$
+
+**Definition 10.6.3**
+
+Two-Sample Kolmogorov-Smirnov Test
+
+A test procedure that rejects $H_0$ when
+
+Eq.(10.6.10)
+
+$$
+(\frac{mn}{m + n})^{1/2} D_{mn} ≥ c
+$$
+
+where c is an appropriate constant, is called a *Kolmogorov-Smirnov two-sample test*
+
