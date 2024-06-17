@@ -3207,3 +3207,47 @@ $$
 
 where c is an appropriate constant, is called a *Kolmogorov-Smirnov two-sample test*
 
+**Definition 10.7.1**
+
+Contaminated Normal Distributions
+
+Eq.(10.7.1)
+
+$$
+f (x) = (1 − \epsilon)(2πσ^2)^{−1/2} exp(−\frac{1}{2σ^2} [x − μ]^2) + \epsilon g(x).
+$$
+
+A distribution whose p.d.f. has the form of Eq. (10.7.1) is called a *contaminated normal*, and the distribution with p.d.f. g is called the *contaminating distribution*.
+
+**Definition 10.7.2**
+
+Trimmed Means
+
+For each positive integer k such that k < n/2, ignore the k smallest observations $Y_1, . . . , Y_k$ and the k largest observations $Y_n, Y_{n−1}, . . . , Y_{n−k+1}$ in the sample. The average of the remaining n − 2k intermediate observations is called the kth *level trimmed mean*.
+
+**Definition 10.7.3**
+
+Scale Parameters
+
+An arbitrary parameter σ is a *scale parameter* for the distribution of X if, for all a > 0 and all real b, the corresponding parameter for the distribution of aX + b is aσ.
+
+**Definition 10.7.4**
+
+Median Absolute Deviation
+
+The *median absolute deviation* of a random variable X is the median of the distribution of |X − m|, where m is the median of X.
+
+**Definition 10.7.5**
+
+Laplace Distributions
+
+Let σ > 0 and θ be real numbers. The distribution whose p.d.f. is
+
+Eq.(10.7.5)
+
+$$
+f (x|θ, σ ) = \frac{1}{2σ}e^{−|x−θ|/σ}
+$$
+
+is called the *Laplace distribution with parameters θ and σ*.
+
