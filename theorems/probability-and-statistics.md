@@ -3251,3 +3251,18 @@ $$
 
 is called the *Laplace distribution with parameters θ and σ*.
 
+**Definition 10.7.6**
+
+M-Estimators
+
+Eq.(10.7.6)
+
+$$g_k(x|θ, σ ) = c_ke^{h_k([x−θ]/σ )}$$
+
+$$h_k(y) = \begin{cases}
+-0.5y^2         & \text{if -k ＜ y ＜ k} \\
+0.5k^2 - k|y|  & \text{otherwise}
+\end{cases}$$
+
+The M.L.E. of θ under the assumption that the data have p.d.f. gk in Eq. (10.7.6) is called an *M-estimator*.
+
