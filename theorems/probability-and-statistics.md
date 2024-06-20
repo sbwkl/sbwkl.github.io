@@ -3266,3 +3266,9 @@ $$h_k(y) = \begin{cases}
 
 The M.L.E. of θ under the assumption that the data have p.d.f. gk in Eq. (10.7.6) is called an *M-estimator*.
 
+**Theorem 10.7.1**
+
+Asymptotic Distribution of Sample Quantile
+
+Under the conditions above, let $\tilde{θ}_{p,n}$ denote the sample p quantile. Then, as n → ∞, the c.d.f. of $n^{1/2}(\tilde{θ}_{p,n} − θ_p)$ will converge to the c.d.f. of the normal distribution with mean 0 and variance $p(1−p)/f^2(θ_p)$
+
