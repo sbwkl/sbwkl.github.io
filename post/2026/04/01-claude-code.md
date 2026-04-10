@@ -1,4 +1,4 @@
-# Flutter App 开发初体验
+# Claude Code 初体验
 
 Claude Code 出来已经一年多了，作为一个干啥都慢半拍的程序员，决定上手玩一玩。
 
