@@ -63,6 +63,21 @@
       gtag('js', new Date());
     
       gtag('config', 'G-219NKEJMDN');
+
+      // 读取 frommm 参数并上报
+      (function() {
+        const params = new URLSearchParams(window.location.search);
+        const frommm = params.get('frommm');
+        if (frommm) {
+          sessionStorage.setItem('frommm', frommm);
+        }
+        const value = frommm || sessionStorage.getItem('frommm');
+        if (value) {
+          gtag('event', 'page_view', {
+            frommm: value
+          });
+        }
+      })();
     </script>
   {% endif %}
   </body>
